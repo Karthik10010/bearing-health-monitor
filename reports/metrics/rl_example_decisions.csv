@@ -1,0 +1,9 @@
+diagnosis,confidence,est_size_in,load_hp,health,agent_choice,agent_prob,final_action (with shield),rule_action
+Normal,0.95,,1,Healthy,Monitor more frequently,0.612,Monitor more frequently,Continue operation
+Normal,0.62,,1,Warning,Monitor more frequently,0.61,Monitor more frequently,Monitor more frequently
+Ball,0.8,0.007,1,Warning,Stop for maintenance,0.582,Stop for maintenance,Monitor more frequently
+Outer race,0.55,0.007,1,Warning (low conf.),Continue operation,0.542,Continue operation,Monitor more frequently
+Inner race,0.9,0.014,1,Warning,Continue operation,0.519,Continue operation,Monitor more frequently
+Inner race,0.9,0.014,3,Critical,Continue operation,0.602,Stop for maintenance,Stop for maintenance
+Outer race,0.9,0.021,0,Critical,Continue operation,0.568,Stop for maintenance,Stop for maintenance
+Ball,0.7,0.028,2,Critical,Stop for maintenance,0.987,Stop for maintenance,Stop for maintenance

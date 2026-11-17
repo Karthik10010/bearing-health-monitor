@@ -1,0 +1,624 @@
+[
+  {
+    "recording_id": "Normal_0",
+    "file_number": 97,
+    "key_used": "X097_DE_time",
+    "rpm_in_file": 1796.0,
+    "rpm_used": 1796.0,
+    "original_fs": 48000,
+    "original_samples": 243938,
+    "seconds": 5.08,
+    "windows": 58,
+    "notes": [],
+    "sample_rate_check": {
+      "assumed_fs": 48000,
+      "shaft_hz_expected": 29.93,
+      "shaft_peak_found_hz": 30.0,
+      "peak_prominence": 10.7,
+      "consistent": true
+    }
+  },
+  {
+    "recording_id": "Normal_1",
+    "file_number": 98,
+    "key_used": "X098_DE_time",
+    "rpm_in_file": null,
+    "rpm_used": 1772.0,
+    "original_fs": 48000,
+    "original_samples": 483903,
+    "seconds": 10.08,
+    "windows": 117,
+    "notes": [],
+    "sample_rate_check": {
+      "assumed_fs": 48000,
+      "shaft_hz_expected": 29.53,
+      "shaft_peak_found_hz": 29.5,
+      "peak_prominence": 7.9,
+      "consistent": true
+    }
+  },
+  {
+    "recording_id": "Normal_2",
+    "file_number": 99,
+    "key_used": "X099_DE_time",
+    "rpm_in_file": null,
+    "rpm_used": 1750.0,
+    "original_fs": 48000,
+    "original_samples": 485063,
+    "seconds": 10.11,
+    "windows": 117,
+    "notes": [
+      "multiple DE keys ['X098_DE_time', 'X099_DE_time']; used X099_DE_time"
+    ],
+    "sample_rate_check": {
+      "assumed_fs": 48000,
+      "shaft_hz_expected": 29.17,
+      "shaft_peak_found_hz": 29.25,
+      "peak_prominence": 8.0,
+      "consistent": true
+    }
+  },
+  {
+    "recording_id": "Normal_3",
+    "file_number": 100,
+    "key_used": "X100_DE_time",
+    "rpm_in_file": 1725.0,
+    "rpm_used": 1725.0,
+    "original_fs": 48000,
+    "original_samples": 485643,
+    "seconds": 10.12,
+    "windows": 117,
+    "notes": [],
+    "sample_rate_check": {
+      "assumed_fs": 48000,
+      "shaft_hz_expected": 28.75,
+      "shaft_peak_found_hz": 28.75,
+      "peak_prominence": 7.3,
+      "consistent": true
+    }
+  },
+  {
+    "recording_id": "IR007_0",
+    "file_number": 105,
+    "key_used": "X105_DE_time",
+    "rpm_in_file": 1797.0,
+    "rpm_used": 1797.0,
+    "original_fs": 12000,
+    "original_samples": 121265,
+    "seconds": 10.11,
+    "windows": 117,
+    "notes": []
+  },
+  {
+    "recording_id": "IR007_1",
+    "file_number": 106,
+    "key_used": "X106_DE_time",
+    "rpm_in_file": 1772.0,
+    "rpm_used": 1772.0,
+    "original_fs": 12000,
+    "original_samples": 121991,
+    "seconds": 10.17,
+    "windows": 118,
+    "notes": []
+  },
+  {
+    "recording_id": "IR007_2",
+    "file_number": 107,
+    "key_used": "X107_DE_time",
+    "rpm_in_file": 1748.0,
+    "rpm_used": 1748.0,
+    "original_fs": 12000,
+    "original_samples": 122136,
+    "seconds": 10.18,
+    "windows": 118,
+    "notes": []
+  },
+  {
+    "recording_id": "IR007_3",
+    "file_number": 108,
+    "key_used": "X108_DE_time",
+    "rpm_in_file": 1721.0,
+    "rpm_used": 1721.0,
+    "original_fs": 12000,
+    "original_samples": 122917,
+    "seconds": 10.24,
+    "windows": 119,
+    "notes": []
+  },
+  {
+    "recording_id": "IR014_0",
+    "file_number": 169,
+    "key_used": "X169_DE_time",
+    "rpm_in_file": 1796.0,
+    "rpm_used": 1796.0,
+    "original_fs": 12000,
+    "original_samples": 121846,
+    "seconds": 10.15,
+    "windows": 117,
+    "notes": []
+  },
+  {
+    "recording_id": "IR014_1",
+    "file_number": 170,
+    "key_used": "X170_DE_time",
+    "rpm_in_file": 1774.0,
+    "rpm_used": 1774.0,
+    "original_fs": 12000,
+    "original_samples": 121846,
+    "seconds": 10.15,
+    "windows": 117,
+    "notes": []
+  },
+  {
+    "recording_id": "IR014_2",
+    "file_number": 171,
+    "key_used": "X171_DE_time",
+    "rpm_in_file": 1752.0,
+    "rpm_used": 1752.0,
+    "original_fs": 12000,
+    "original_samples": 121846,
+    "seconds": 10.15,
+    "windows": 117,
+    "notes": []
+  },
+  {
+    "recording_id": "IR014_3",
+    "file_number": 172,
+    "key_used": "X172_DE_time",
+    "rpm_in_file": 1728.0,
+    "rpm_used": 1728.0,
+    "original_fs": 12000,
+    "original_samples": 121701,
+    "seconds": 10.14,
+    "windows": 117,
+    "notes": []
+  },
+  {
+    "recording_id": "IR021_0",
+    "file_number": 209,
+    "key_used": "X209_DE_time",
+    "rpm_in_file": 1797.0,
+    "rpm_used": 1797.0,
+    "original_fs": 12000,
+    "original_samples": 122136,
+    "seconds": 10.18,
+    "windows": 118,
+    "notes": []
+  },
+  {
+    "recording_id": "IR021_1",
+    "file_number": 210,
+    "key_used": "X210_DE_time",
+    "rpm_in_file": 1774.0,
+    "rpm_used": 1774.0,
+    "original_fs": 12000,
+    "original_samples": 121556,
+    "seconds": 10.13,
+    "windows": 117,
+    "notes": []
+  },
+  {
+    "recording_id": "IR021_2",
+    "file_number": 211,
+    "key_used": "X211_DE_time",
+    "rpm_in_file": 1752.0,
+    "rpm_used": 1752.0,
+    "original_fs": 12000,
+    "original_samples": 121846,
+    "seconds": 10.15,
+    "windows": 117,
+    "notes": []
+  },
+  {
+    "recording_id": "IR021_3",
+    "file_number": 212,
+    "key_used": "X212_DE_time",
+    "rpm_in_file": 1728.0,
+    "rpm_used": 1728.0,
+    "original_fs": 12000,
+    "original_samples": 121991,
+    "seconds": 10.17,
+    "windows": 118,
+    "notes": []
+  },
+  {
+    "recording_id": "IR028_0",
+    "file_number": 3001,
+    "key_used": "X056_DE_time",
+    "rpm_in_file": null,
+    "rpm_used": 1797.0,
+    "original_fs": 12000,
+    "original_samples": 120801,
+    "seconds": 10.07,
+    "windows": 116,
+    "notes": [
+      "no DE key for file 3001; keys present: ['X056_DE_time']"
+    ]
+  },
+  {
+    "recording_id": "IR028_1",
+    "file_number": 3002,
+    "key_used": "X057_DE_time",
+    "rpm_in_file": null,
+    "rpm_used": 1772.0,
+    "original_fs": 12000,
+    "original_samples": 121351,
+    "seconds": 10.11,
+    "windows": 117,
+    "notes": [
+      "no DE key for file 3002; keys present: ['X057_DE_time']"
+    ]
+  },
+  {
+    "recording_id": "IR028_2",
+    "file_number": 3003,
+    "key_used": "X058_DE_time",
+    "rpm_in_file": null,
+    "rpm_used": 1750.0,
+    "original_fs": 12000,
+    "original_samples": 121351,
+    "seconds": 10.11,
+    "windows": 117,
+    "notes": [
+      "no DE key for file 3003; keys present: ['X058_DE_time']"
+    ]
+  },
+  {
+    "recording_id": "IR028_3",
+    "file_number": 3004,
+    "key_used": "X059_DE_time",
+    "rpm_in_file": null,
+    "rpm_used": 1730.0,
+    "original_fs": 12000,
+    "original_samples": 121535,
+    "seconds": 10.13,
+    "windows": 117,
+    "notes": [
+      "no DE key for file 3004; keys present: ['X059_DE_time']"
+    ]
+  },
+  {
+    "recording_id": "B007_0",
+    "file_number": 118,
+    "key_used": "X118_DE_time",
+    "rpm_in_file": 1796.0,
+    "rpm_used": 1796.0,
+    "original_fs": 12000,
+    "original_samples": 122571,
+    "seconds": 10.21,
+    "windows": 118,
+    "notes": []
+  },
+  {
+    "recording_id": "B007_1",
+    "file_number": 119,
+    "key_used": "X119_DE_time",
+    "rpm_in_file": 1772.0,
+    "rpm_used": 1772.0,
+    "original_fs": 12000,
+    "original_samples": 121410,
+    "seconds": 10.12,
+    "windows": 117,
+    "notes": []
+  },
+  {
+    "recording_id": "B007_2",
+    "file_number": 120,
+    "key_used": "X120_DE_time",
+    "rpm_in_file": 1748.0,
+    "rpm_used": 1748.0,
+    "original_fs": 12000,
+    "original_samples": 121556,
+    "seconds": 10.13,
+    "windows": 117,
+    "notes": []
+  },
+  {
+    "recording_id": "B007_3",
+    "file_number": 121,
+    "key_used": "X121_DE_time",
+    "rpm_in_file": 1722.0,
+    "rpm_used": 1722.0,
+    "original_fs": 12000,
+    "original_samples": 121556,
+    "seconds": 10.13,
+    "windows": 117,
+    "notes": []
+  },
+  {
+    "recording_id": "B014_0",
+    "file_number": 185,
+    "key_used": "X185_DE_time",
+    "rpm_in_file": 1796.0,
+    "rpm_used": 1796.0,
+    "original_fs": 12000,
+    "original_samples": 121846,
+    "seconds": 10.15,
+    "windows": 117,
+    "notes": []
+  },
+  {
+    "recording_id": "B014_1",
+    "file_number": 186,
+    "key_used": "X186_DE_time",
+    "rpm_in_file": 1772.0,
+    "rpm_used": 1772.0,
+    "original_fs": 12000,
+    "original_samples": 122136,
+    "seconds": 10.18,
+    "windows": 118,
+    "notes": []
+  },
+  {
+    "recording_id": "B014_2",
+    "file_number": 187,
+    "key_used": "X187_DE_time",
+    "rpm_in_file": 1749.0,
+    "rpm_used": 1749.0,
+    "original_fs": 12000,
+    "original_samples": 121991,
+    "seconds": 10.17,
+    "windows": 118,
+    "notes": []
+  },
+  {
+    "recording_id": "B014_3",
+    "file_number": 188,
+    "key_used": "X188_DE_time",
+    "rpm_in_file": 1724.0,
+    "rpm_used": 1724.0,
+    "original_fs": 12000,
+    "original_samples": 122136,
+    "seconds": 10.18,
+    "windows": 118,
+    "notes": []
+  },
+  {
+    "recording_id": "B021_0",
+    "file_number": 222,
+    "key_used": "X222_DE_time",
+    "rpm_in_file": 1796.0,
+    "rpm_used": 1796.0,
+    "original_fs": 12000,
+    "original_samples": 121991,
+    "seconds": 10.17,
+    "windows": 118,
+    "notes": []
+  },
+  {
+    "recording_id": "B021_1",
+    "file_number": 223,
+    "key_used": "X223_DE_time",
+    "rpm_in_file": 1774.0,
+    "rpm_used": 1774.0,
+    "original_fs": 12000,
+    "original_samples": 121701,
+    "seconds": 10.14,
+    "windows": 117,
+    "notes": []
+  },
+  {
+    "recording_id": "B021_2",
+    "file_number": 224,
+    "key_used": "X224_DE_time",
+    "rpm_in_file": 1754.0,
+    "rpm_used": 1754.0,
+    "original_fs": 12000,
+    "original_samples": 122136,
+    "seconds": 10.18,
+    "windows": 118,
+    "notes": []
+  },
+  {
+    "recording_id": "B021_3",
+    "file_number": 225,
+    "key_used": "X225_DE_time",
+    "rpm_in_file": 1729.0,
+    "rpm_used": 1729.0,
+    "original_fs": 12000,
+    "original_samples": 122136,
+    "seconds": 10.18,
+    "windows": 118,
+    "notes": []
+  },
+  {
+    "recording_id": "B028_0",
+    "file_number": 3005,
+    "key_used": "X048_DE_time",
+    "rpm_in_file": null,
+    "rpm_used": 1797.0,
+    "original_fs": 12000,
+    "original_samples": 120801,
+    "seconds": 10.07,
+    "windows": 116,
+    "notes": [
+      "no DE key for file 3005; keys present: ['X048_DE_time']"
+    ]
+  },
+  {
+    "recording_id": "B028_1",
+    "file_number": 3006,
+    "key_used": "X049_DE_time",
+    "rpm_in_file": null,
+    "rpm_used": 1772.0,
+    "original_fs": 12000,
+    "original_samples": 121351,
+    "seconds": 10.11,
+    "windows": 117,
+    "notes": [
+      "no DE key for file 3006; keys present: ['X049_DE_time']"
+    ]
+  },
+  {
+    "recording_id": "B028_2",
+    "file_number": 3007,
+    "key_used": "X050_DE_time",
+    "rpm_in_file": null,
+    "rpm_used": 1750.0,
+    "original_fs": 12000,
+    "original_samples": 120984,
+    "seconds": 10.08,
+    "windows": 117,
+    "notes": [
+      "no DE key for file 3007; keys present: ['X050_DE_time']"
+    ]
+  },
+  {
+    "recording_id": "B028_3",
+    "file_number": 3008,
+    "key_used": "X051_DE_time",
+    "rpm_in_file": null,
+    "rpm_used": 1730.0,
+    "original_fs": 12000,
+    "original_samples": 120984,
+    "seconds": 10.08,
+    "windows": 117,
+    "notes": [
+      "no DE key for file 3008; keys present: ['X051_DE_time']"
+    ]
+  },
+  {
+    "recording_id": "OR007@6_0",
+    "file_number": 130,
+    "key_used": "X130_DE_time",
+    "rpm_in_file": 1796.0,
+    "rpm_used": 1796.0,
+    "original_fs": 12000,
+    "original_samples": 121991,
+    "seconds": 10.17,
+    "windows": 118,
+    "notes": []
+  },
+  {
+    "recording_id": "OR007@6_1",
+    "file_number": 131,
+    "key_used": "X131_DE_time",
+    "rpm_in_file": 1773.0,
+    "rpm_used": 1773.0,
+    "original_fs": 12000,
+    "original_samples": 122426,
+    "seconds": 10.2,
+    "windows": 118,
+    "notes": []
+  },
+  {
+    "recording_id": "OR007@6_2",
+    "file_number": 132,
+    "key_used": "X132_DE_time",
+    "rpm_in_file": 1750.0,
+    "rpm_used": 1750.0,
+    "original_fs": 12000,
+    "original_samples": 121410,
+    "seconds": 10.12,
+    "windows": 117,
+    "notes": []
+  },
+  {
+    "recording_id": "OR007@6_3",
+    "file_number": 133,
+    "key_used": "X133_DE_time",
+    "rpm_in_file": 1725.0,
+    "rpm_used": 1725.0,
+    "original_fs": 12000,
+    "original_samples": 122571,
+    "seconds": 10.21,
+    "windows": 118,
+    "notes": []
+  },
+  {
+    "recording_id": "OR014@6_0",
+    "file_number": 197,
+    "key_used": "X197_DE_time",
+    "rpm_in_file": 1796.0,
+    "rpm_used": 1796.0,
+    "original_fs": 12000,
+    "original_samples": 121846,
+    "seconds": 10.15,
+    "windows": 117,
+    "notes": []
+  },
+  {
+    "recording_id": "OR014@6_1",
+    "file_number": 198,
+    "key_used": "X198_DE_time",
+    "rpm_in_file": 1772.0,
+    "rpm_used": 1772.0,
+    "original_fs": 12000,
+    "original_samples": 122136,
+    "seconds": 10.18,
+    "windows": 118,
+    "notes": []
+  },
+  {
+    "recording_id": "OR014@6_2",
+    "file_number": 199,
+    "key_used": "X199_DE_time",
+    "rpm_in_file": 1749.0,
+    "rpm_used": 1749.0,
+    "original_fs": 12000,
+    "original_samples": 121846,
+    "seconds": 10.15,
+    "windows": 117,
+    "notes": []
+  },
+  {
+    "recording_id": "OR014@6_3",
+    "file_number": 200,
+    "key_used": "X200_DE_time",
+    "rpm_in_file": 1723.0,
+    "rpm_used": 1723.0,
+    "original_fs": 12000,
+    "original_samples": 121991,
+    "seconds": 10.17,
+    "windows": 118,
+    "notes": []
+  },
+  {
+    "recording_id": "OR021@6_0",
+    "file_number": 234,
+    "key_used": "X234_DE_time",
+    "rpm_in_file": 1796.0,
+    "rpm_used": 1796.0,
+    "original_fs": 12000,
+    "original_samples": 122426,
+    "seconds": 10.2,
+    "windows": 118,
+    "notes": []
+  },
+  {
+    "recording_id": "OR021@6_1",
+    "file_number": 235,
+    "key_used": "X235_DE_time",
+    "rpm_in_file": 1771.0,
+    "rpm_used": 1771.0,
+    "original_fs": 12000,
+    "original_samples": 121991,
+    "seconds": 10.17,
+    "windows": 118,
+    "notes": []
+  },
+  {
+    "recording_id": "OR021@6_2",
+    "file_number": 236,
+    "key_used": "X236_DE_time",
+    "rpm_in_file": 1748.0,
+    "rpm_used": 1748.0,
+    "original_fs": 12000,
+    "original_samples": 122281,
+    "seconds": 10.19,
+    "windows": 118,
+    "notes": []
+  },
+  {
+    "recording_id": "OR021@6_3",
+    "file_number": 237,
+    "key_used": "X237_DE_time",
+    "rpm_in_file": 1721.0,
+    "rpm_used": 1721.0,
+    "original_fs": 12000,
+    "original_samples": 121991,
+    "seconds": 10.17,
+    "windows": 118,
+    "notes": []
+  }
+]

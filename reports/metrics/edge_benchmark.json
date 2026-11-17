@@ -1,0 +1,101 @@
+{
+  "label": "Measured on development laptop (Windows, CPU), not on edge hardware.",
+  "machine": {
+    "platform": "Windows-10-10.0.26200-SP0",
+    "processor": "AMD64 Family 25 Model 117 Stepping 2, AuthenticAMD",
+    "python": "3.11.9",
+    "logical_cpus": 16,
+    "ram_gb": 25.0,
+    "label": "Measured on development laptop (Windows, CPU), not on edge hardware."
+  },
+  "chosen_edge_model": {
+    "n_estimators": 10,
+    "max_depth": 8
+  },
+  "chosen_edge_lolo_macro_f1": 0.9973200638208413,
+  "chosen_edge_unseen_bearing_macro_f1": 0.4935919955673882,
+  "edge_vs_full_window_agreement": 1.0,
+  "parity": {
+    "fault_rf (full)": {
+      "n": 5577,
+      "label_agreement": 1.0,
+      "label_mismatches": 0,
+      "max_abs_prob_diff": 6.556510925292969e-07
+    },
+    "fault_rf_edge": {
+      "n": 5577,
+      "label_agreement": 1.0,
+      "label_mismatches": 0,
+      "max_abs_prob_diff": 1.358985901589449e-07
+    },
+    "severity_rf_edge": {
+      "n": 5168,
+      "label_agreement": 1.0,
+      "label_mismatches": 0,
+      "max_abs_prob_diff": 1.3710378288234182e-07
+    }
+  },
+  "latency": {
+    "feature_extraction_per_window": {
+      "median_ms": 4.341750027379021,
+      "p95_ms": 6.6474649705924085,
+      "mean_ms": 4.472999700054061,
+      "repeats": 1000
+    },
+    "inference_joblib_full_per_window": {
+      "median_ms": 6.754350004484877,
+      "p95_ms": 10.446615016553551,
+      "mean_ms": 7.057586665226457,
+      "repeats": 300
+    },
+    "inference_joblib_edge_per_window": {
+      "median_ms": 0.9260499791707844,
+      "p95_ms": 1.5082700119819494,
+      "mean_ms": 0.9485109988600016,
+      "repeats": 300
+    },
+    "inference_onnx_full_per_window": {
+      "median_ms": 0.02039998071268201,
+      "p95_ms": 0.05234004638623443,
+      "mean_ms": 0.024268899927847087,
+      "repeats": 1000
+    },
+    "inference_onnx_edge_per_window": {
+      "median_ms": 0.012699980288743973,
+      "p95_ms": 0.019600032828748226,
+      "mean_ms": 0.013471199839841574,
+      "repeats": 1000
+    },
+    "end_to_end_onnx_edge_per_window": {
+      "median_ms": 4.2366000125184655,
+      "p95_ms": 6.723024958046151,
+      "mean_ms": 4.458547801361419,
+      "repeats": 1000
+    },
+    "end_to_end_onnx_edge_full_recording": {
+      "median_ms": 58.702650014311075,
+      "p95_ms": 73.58217000728472,
+      "mean_ms": 60.0705179956276,
+      "repeats": 50
+    }
+  },
+  "memory": {
+    "peak_python_alloc_features_plus_onnx_per_window_mb": 0.169384,
+    "peak_python_alloc_full_recording_mb": 15.393157,
+    "process_rss_mb_after_loading_everything": 291.479552
+  },
+  "file_sizes_kb": {
+    "fault_rf.joblib": 806.8,
+    "fault_rf.onnx": 401.1,
+    "fault_rf_edge.joblib": 114.3,
+    "fault_rf_edge.onnx": 36.4,
+    "severity_rf.joblib": 908.1,
+    "severity_rf_edge.joblib": 103.4,
+    "severity_rf_edge.onnx": 32.2
+  },
+  "benchmark_recording": {
+    "recording_id": "OR014@6_2",
+    "windows": 117,
+    "seconds_of_signal": 10.15
+  }
+}

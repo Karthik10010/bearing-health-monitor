@@ -1,0 +1,34 @@
+{
+  "name": "severity_rf",
+  "file": "severity_rf.joblib",
+  "trained_utc": "2026-11-15T12:51:46+00:00",
+  "classes": [
+    "0.007",
+    "0.014",
+    "0.021",
+    "0.028"
+  ],
+  "n_features": 37,
+  "n_estimators": 100,
+  "max_depth": null,
+  "feature_params": {
+    "n_bands": 8,
+    "band_max_hz": 6000,
+    "envelope_band_hz": [
+      2000,
+      5500
+    ],
+    "envelope_nfft": 8192,
+    "envelope_max_hz": 600,
+    "envelope_tolerance": 0.03,
+    "envelope_harmonics": 3,
+    "multipliers": {
+      "bpfo": 3.5848,
+      "bpfi": 5.4152,
+      "bsf": 4.7135
+    }
+  },
+  "target": "size_in (inches, as class label)",
+  "trained_on": "faulty windows only",
+  "lolo_window_macro_f1": 0.9969832409468471
+}

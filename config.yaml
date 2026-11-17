@@ -1,0 +1,131 @@
+# Central settings for the whole project. Code reads these through pdm/config.py.
+# Change values here instead of in the code.
+
+paths:
+  raw_dir: data/raw
+  unseen_dir: data/unseen        # independent hold-out recordings (never used for training)
+  features_csv: data/features/features.csv
+  samples_dir: data/samples
+  models_dir: models
+  figures_dir: reports/figures
+  metrics_dir: reports/metrics
+
+data:
+  target_fs: 12000          # Hz. Every signal is resampled to this rate.
+  normal_fs: 48000          # Hz. CWRU normal-baseline files are recorded at 48 kHz.
+  fault_fs: 12000           # Hz. CWRU "12k Drive End" fault files.
+  outer_race_position: "@6" # only the load-zone-centred outer race recordings are used
+
+signal:
+  window_size: 2048         # samples per window (~0.17 s at 12 kHz, ~5 shaft revolutions)
+  overlap: 0.5              # 50 % overlap between consecutive windows
+  n_bands: 8                # FFT band-energy features
+  band_max_hz: 6000         # bands cover 0 .. band_max_hz (Nyquist at 12 kHz)
+  envelope_band_hz: [2000, 5500]   # band-pass before the Hilbert envelope (bearing resonance region)
+  envelope_nfft: 8192       # zero-padded FFT length for the envelope spectrum (finer frequency grid)
+  envelope_max_hz: 600      # envelope spectrum range used for the "background" level
+  envelope_tolerance: 0.03  # search +/- 3 % around each defect frequency
+  envelope_harmonics: 3     # 1x, 2x, 3x of BPFO/BPFI/BSF
+
+bearing:                    # SKF 6205-2RS JEM (CWRU drive end). Multiples of shaft speed,
+  name: "6205-2RS JEM SKF"  # verified on engineering.case.edu/bearingdatacenter/bearing-information
+  bpfi: 5.4152              # inner ring
+  bpfo: 3.5848              # outer ring
+  ftf: 0.39828              # cage train
+  bsf: 4.7135               # rolling element (ball spin)
+
+physics:
+  # "Clear knock signature" check (domain rule, no training): the strongest envelope peak family
+  # (BPFO / BPFI / BSF, in multiples of the background level) must be at least min_peak_ratio
+  # AND min_dominance times the next family. On CWRU it fired on 19/48 recordings, all correct.
+  min_peak_ratio: 5.0
+  min_dominance: 1.5
+
+ml:
+  random_state: 42
+  # Absolute vibration size depends on the individual bearing, sensor and machine, so it made the
+  # model "recognise bearings" instead of faults. These are still computed (for display and
+  # explanations) but NOT used by the models. (Unseen-bearing macro-F1: 0.462 with them, 0.553 without
+  # them plus the knock-ratio features.)
+  exclude_features: [t_mean, t_std, t_rms, t_min, t_max, t_p2p]
+  fault_rf:
+    n_estimators: 100
+    max_depth: null
+    min_samples_leaf: 1
+    class_weight: balanced  # Normal has only 4 recordings
+  severity_rf:
+    n_estimators: 100
+    max_depth: null
+    min_samples_leaf: 1
+    class_weight: balanced
+    # Bigger cracks give bigger impacts, so vibration size IS a size clue: the severity model keeps
+    # the absolute-amplitude features. Honest caveat: on an UNSEEN fault type every variant tried
+    # stays below chance (macro-F1 0.13 with them, 0.05 without; chance ~0.25), so size estimates
+    # are indicative only.
+    exclude_features: []
+
+health:                     # Rule-based estimate (plan Module 3). Sizes in inches.
+  healthy_min_confidence: 0.70
+  low_confidence_threshold: 0.60
+  warning_sizes: [0.007, 0.014]
+  critical_min_size: 0.021
+  escalate_size: 0.014      # this size becomes Critical at high load
+  escalate_min_load_hp: 2
+
+rl:
+  # ---------------------------------------------------------------------------------------------
+  # SIMULATED maintenance game. Every number below is an ILLUSTRATIVE ASSUMPTION (not plant data).
+  # Money is in arbitrary "cost units" (think: thousands). 1 step = 1 day.
+  # ---------------------------------------------------------------------------------------------
+  episode_days: 180
+  costs:
+    production_per_day: 10.0          # value of one day of full-load operation
+    reduced_load_fraction: 0.6        # production share when running at reduced load
+    monitoring_activation: 1.0        # one-off cost to switch on frequent monitoring
+    monitoring_per_day: 0.2           # running cost while frequent monitoring is on
+    inspection: 4.0                   # cost of an inspection (plus its downtime)
+    inspection_downtime_days: 1
+    maintenance: 30.0                 # bearing replacement (plus its downtime)
+    maintenance_downtime_days: 3
+    unnecessary_maintenance: 15.0     # extra penalty: replaced a bearing that had no fault
+    failure: 300.0                    # unplanned breakdown (ends the episode)
+    safety_per_day: 5.0               # running while the bearing is truly critical
+  degradation:
+    initial_fault_prob: 0.35          # episode starts with an existing (small) fault
+    initial_fault_max: 0.4            # ...of degradation uniform in [0, this]
+    initiation_prob_per_day: 0.015    # healthy bearing develops a fault (mean ~67 days)
+    growth_days_to_failure: 70        # mean days from 0 -> 1 at load factor 1 (before acceleration)
+    growth_gamma_shape: 2.0           # randomness of daily growth
+    load_factor: {0: 0.8, 1: 1.0, 2: 1.2, 3: 1.4}   # wear speed by load (HP)
+    reduced_load_factor: 0.5          # wear & failure multiplier when load is reduced
+    failure_a: 0.3                    # daily failure probability = a * degradation^b * load_factor
+    failure_b: 5.0
+    size_thresholds: [0.25, 0.5, 0.75]  # degradation -> 0.007 / 0.014 / 0.021 / 0.028 in
+    critical_degradation: 0.75        # "truly critical" (safety penalty)
+  observation:
+    # Diagnoses are sampled from the REAL out-of-fold RF predictions on UNSEEN bearings
+    # (reports/metrics/fault_oof_unseen_bearing.csv, severity_oof_unseen_type.csv).
+    measure_every_days: 7             # routine measurement interval
+    windows_per_measurement: 10       # ~1 s of signal
+    monitoring_windows: 50            # ~4 s of signal per measurement when monitoring is on
+    monitoring_duration_days: 14
+  runtime:
+    days_since_inspection: 30         # assumed when the dashboard analyses a single upload
+  # Safety shield (decided with the project owner, 2026-11-16): on a Critical rating the agent may not
+  # recommend "Continue operation" or "Monitor more frequently"; the rule-based action is used instead.
+  safety_shield: true
+  ppo:
+    total_timesteps: 500000
+    seeds: [0, 1, 2]
+    n_envs: 8
+    learning_rate: 0.0003
+    n_steps: 512
+    batch_size: 256
+    gamma: 0.99
+    ent_coef: 0.01
+  eval_episodes: 1000
+
+llm:
+  gemini_model: "gemini-2.5-flash"   # change here if Google renames/updates models
+  temperature: 0.2
+  max_output_tokens: 1024

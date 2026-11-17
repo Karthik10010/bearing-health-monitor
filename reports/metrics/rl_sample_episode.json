@@ -1,0 +1,1707 @@
+{
+ "seed": 3000853,
+ "PPO agent + safety shield": {
+  "reward": 1644.199999999995,
+  "failures": 0,
+  "timeline": [
+   {
+    "day": 0,
+    "degradation": 0.30676207300407166,
+    "true_fault": "Ball",
+    "diagnosis": "Ball",
+    "confidence": 0.788,
+    "health": "Warning",
+    "action": "Stop for maintenance"
+   },
+   {
+    "day": 3,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9790000000000001,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 4,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9811999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 5,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9813999999999998,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 6,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9799999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 7,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9778,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 8,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9765999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 9,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9812000000000001,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 10,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9783999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 11,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9765999999999998,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 12,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.977,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 13,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9806,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 14,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.977,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 15,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9806,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 16,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9815999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 17,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9787999999999998,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 18,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9811999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 19,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9811999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 20,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.978,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 21,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9788,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 22,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9765999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 23,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9793999999999998,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 24,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9778,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 25,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9778,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 26,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9795999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 27,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9787999999999998,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 28,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9808,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 29,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9811999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 30,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9811999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 31,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9787999999999998,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 32,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9795999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 33,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9767999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 34,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9765999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 35,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9765999999999998,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 36,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9765999999999998,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 37,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9803999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 38,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9811999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 39,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9783999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 40,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9785999999999998,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 41,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.978,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 42,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9803999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 43,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9789999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 44,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9777999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 45,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9777999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 46,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9799999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 47,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9795999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 48,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9799999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 49,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9777999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 50,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9818000000000001,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 51,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9767999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 52,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9787999999999998,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 53,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9783999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 54,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9761999999999997,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 55,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9785999999999998,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 56,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9777999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 57,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9779999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 58,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9761999999999997,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 59,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9789999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 60,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.978,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 61,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9812000000000001,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 62,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9767999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 63,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9811999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 64,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9768000000000001,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 65,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9788000000000001,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 66,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9761999999999997,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 67,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9765999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 68,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9783999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 69,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9799999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 70,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9817999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 71,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9778,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 72,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9779999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 73,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9783999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 74,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9767999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 75,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9811999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 76,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9787999999999998,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 77,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9812000000000001,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 78,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9793999999999998,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 79,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9805999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 80,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9815999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 81,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9812000000000001,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 82,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9783999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 83,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9779999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 84,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9813999999999998,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 85,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9778,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 86,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9765999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 87,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9795999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 88,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9788,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 89,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9811999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 90,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9768000000000001,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 91,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9778,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 92,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9777999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 93,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9777999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 94,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.981,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 95,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9772000000000002,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 96,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9761999999999997,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 97,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9785999999999998,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 98,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9813999999999998,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 99,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9817999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 100,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9769999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 101,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9765999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 102,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9792000000000001,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 103,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9779999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 104,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9765999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 105,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9811999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 106,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9799999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 107,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9788000000000001,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 108,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9761999999999997,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 109,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9788000000000001,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 110,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9793999999999998,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 111,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9793999999999998,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 112,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9777999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 113,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9788,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 114,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9778,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 115,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9790000000000001,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 116,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9777999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 117,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9812000000000001,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 118,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9817999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 119,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9799999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 120,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9795999999999998,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 121,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9788000000000001,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 122,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9767999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 123,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9795999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 124,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9813999999999998,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 125,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9811999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 126,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9818000000000001,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 127,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9795999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 128,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9789999999999998,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 129,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9811999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 130,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9765999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 131,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.977,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 132,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9788000000000001,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 133,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9787999999999998,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 134,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9805999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 135,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9786,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 136,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9813999999999998,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 137,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9811999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 138,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.981,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 139,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9795999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 140,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9765999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 141,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9806,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 142,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9765999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 143,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9779999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 144,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9808,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 145,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9789999999999998,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 146,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.981,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 147,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9772000000000002,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 148,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9817999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 149,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9765999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 150,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9778,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 151,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9779999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 152,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9765999999999998,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 153,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9783999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 154,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9810000000000001,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 155,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9768000000000001,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 156,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9789999999999998,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 157,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9795999999999998,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 158,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9786,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 159,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9810000000000001,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 160,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9817999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 161,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.977,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 162,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9783999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 163,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9772000000000002,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 164,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9783999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 165,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9795999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 166,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9786,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 167,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9765999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 168,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9783999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 169,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9789999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 170,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9813999999999998,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 171,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9772000000000002,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 172,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9772,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 173,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9765999999999999,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 174,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9806,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 175,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9778,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 176,
+    "degradation": 0.0,
+    "true_fault": "Normal",
+    "diagnosis": "Normal",
+    "confidence": 0.9806,
+    "health": "Healthy",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 177,
+    "degradation": 0.0,
+    "true_fault": "Outer race",
+    "diagnosis": "Outer race",
+    "confidence": 0.4982,
+    "health": "Critical",
+    "action": "Stop for maintenance"
+   }
+  ]
+ },
+ "Rule-based": {
+  "reward": -197.2,
+  "failures": 1,
+  "timeline": [
+   {
+    "day": 0,
+    "degradation": 0.30676207300407166,
+    "true_fault": "Ball",
+    "diagnosis": "Ball",
+    "confidence": 0.788,
+    "health": "Warning",
+    "action": "Monitor more frequently"
+   },
+   {
+    "day": 1,
+    "degradation": 0.3081113590401565,
+    "true_fault": "Ball",
+    "diagnosis": "Ball",
+    "confidence": 0.7574,
+    "health": "Warning",
+    "action": "Schedule inspection"
+   },
+   {
+    "day": 2,
+    "degradation": 0.3081113590401565,
+    "true_fault": "Ball",
+    "diagnosis": "Ball",
+    "confidence": 0.7554000000000002,
+    "health": "Warning",
+    "action": "Continue operation"
+   },
+   {
+    "day": 3,
+    "degradation": 0.3190697308537724,
+    "true_fault": "Ball",
+    "diagnosis": "Ball",
+    "confidence": 0.7752,
+    "health": "Warning",
+    "action": "Continue operation"
+   },
+   {
+    "day": 4,
+    "degradation": 0.3606100597541479,
+    "true_fault": "Ball",
+    "diagnosis": "Ball",
+    "confidence": 0.7766,
+    "health": "Warning",
+    "action": "Continue operation"
+   },
+   {
+    "day": 5,
+    "degradation": 0.37853226319625666,
+    "true_fault": "Ball",
+    "diagnosis": "Ball",
+    "confidence": 0.7674,
+    "health": "Warning",
+    "action": "Continue operation"
+   },
+   {
+    "day": 6,
+    "degradation": 0.3933005094382233,
+    "true_fault": "Ball",
+    "diagnosis": "Ball",
+    "confidence": 0.7585999999999999,
+    "health": "Warning",
+    "action": "Continue operation"
+   },
+   {
+    "day": 7,
+    "degradation": 0.4352257843865546,
+    "true_fault": "Ball",
+    "diagnosis": "Ball",
+    "confidence": 0.7456,
+    "health": "Warning",
+    "action": "Continue operation"
+   },
+   {
+    "day": 8,
+    "degradation": 0.44761756877980324,
+    "true_fault": "Ball",
+    "diagnosis": "Ball",
+    "confidence": 0.7612000000000001,
+    "health": "Warning",
+    "action": "Continue operation"
+   },
+   {
+    "day": 9,
+    "degradation": 0.5124360492939319,
+    "true_fault": "Ball",
+    "diagnosis": "Outer race",
+    "confidence": 0.4768,
+    "health": "Warning",
+    "action": "Continue operation"
+   },
+   {
+    "day": 10,
+    "degradation": 0.52929543578425,
+    "true_fault": "Ball",
+    "diagnosis": "Outer race",
+    "confidence": 0.4852,
+    "health": "Warning",
+    "action": "Continue operation"
+   },
+   {
+    "day": 11,
+    "degradation": 0.5357940742584149,
+    "true_fault": "Ball",
+    "diagnosis": "Outer race",
+    "confidence": 0.5074000000000001,
+    "health": "Warning",
+    "action": "Continue operation"
+   }
+  ]
+ }
+}

@@ -1,0 +1,10 @@
+[project]
+name = "pdm"
+version = "0.1.0"
+description = "Bearing fault diagnosis & predictive maintenance (CWRU) - ML + Edge AI + RL + LLM"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+filterwarnings = ["ignore::DeprecationWarning"]

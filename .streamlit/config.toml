@@ -1,0 +1,10 @@
+# Streamlit settings for the dashboard (run from the project folder).
+[client]
+toolbarMode = "minimal"      # hides the "Deploy" button and developer menu items
+
+[theme]
+primaryColor = "#3b82f6"
+font = "sans serif"
+
+[browser]
+gatherUsageStats = false

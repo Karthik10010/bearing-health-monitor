@@ -1,0 +1,68 @@
+[
+  {
+    "file": "cwru_Normal_1.npy",
+    "label": "Normal @ 1 HP",
+    "fs": 48000,
+    "rpm": 1772.0,
+    "load_hp": 1,
+    "true_fault": "Normal",
+    "true_size_in": null,
+    "cwru_recording": "Normal_1",
+    "note": "Cut from a CWRU recording used in training - not an independent test."
+  },
+  {
+    "file": "cwru_IR007_0.npy",
+    "label": "Inner race 0.007\" @ 0 HP",
+    "fs": 12000,
+    "rpm": 1797.0,
+    "load_hp": 0,
+    "true_fault": "Inner race",
+    "true_size_in": 0.007,
+    "cwru_recording": "IR007_0",
+    "note": "Cut from a CWRU recording used in training - not an independent test."
+  },
+  {
+    "file": "cwru_OR014at6_2.csv",
+    "label": "Outer race 0.014\" @ 2 HP",
+    "fs": 12000,
+    "rpm": 1749.0,
+    "load_hp": 2,
+    "true_fault": "Outer race",
+    "true_size_in": 0.014,
+    "cwru_recording": "OR014@6_2",
+    "note": "Cut from a CWRU recording used in training - not an independent test."
+  },
+  {
+    "file": "cwru_B021_2.npy",
+    "label": "Ball 0.021\" @ 2 HP",
+    "fs": 12000,
+    "rpm": 1754.0,
+    "load_hp": 2,
+    "true_fault": "Ball",
+    "true_size_in": 0.021,
+    "cwru_recording": "B021_2",
+    "note": "Cut from a CWRU recording used in training - not an independent test."
+  },
+  {
+    "file": "cwru_OR021at6_1.npy",
+    "label": "Outer race 0.021\" @ 1 HP",
+    "fs": 12000,
+    "rpm": 1771.0,
+    "load_hp": 1,
+    "true_fault": "Outer race",
+    "true_size_in": 0.021,
+    "cwru_recording": "OR021@6_1",
+    "note": "Cut from a CWRU recording used in training - not an independent test."
+  },
+  {
+    "file": "cwru_IR028_2.npy",
+    "label": "Inner race 0.028\" @ 2 HP",
+    "fs": 12000,
+    "rpm": 1750.0,
+    "load_hp": 2,
+    "true_fault": "Inner race",
+    "true_size_in": 0.028,
+    "cwru_recording": "IR028_2",
+    "note": "Cut from a CWRU recording used in training - not an independent test."
+  }
+]

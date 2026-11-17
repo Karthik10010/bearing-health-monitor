@@ -1,0 +1,1504 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bearing PdM — The Complete Guide</title>
+<style>
+:root{
+  --bg:#f7f8fa; --panel:#ffffff; --panel2:#f0f3f7; --text:#1d2433; --muted:#5b6578; --line:#dde2ea;
+  --accent:#2f6fde; --accent-soft:#e6efff; --good:#1f9d7a; --warn:#d9911c; --bad:#d1495b;
+  --c1:#2f6fde; --c2:#d1495b; --c3:#1f9d7a; --c4:#d9911c; --c5:#7b5cd6;
+  --code:#eef1f6; --on-accent:#ffffff; --shadow:0 1px 3px rgba(0,0,0,.08),0 4px 14px rgba(0,0,0,.04);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#11151c; --panel:#181e28; --panel2:#1f2733; --text:#e6e9ef; --muted:#9aa4b5; --line:#2b3442;
+    --accent:#6ea2ff; --accent-soft:#1d2a44; --good:#3cc39c; --warn:#f0b04a; --bad:#ff6b7d;
+    --c1:#6ea2ff; --c2:#ff6b7d; --c3:#3cc39c; --c4:#f0b04a; --c5:#a78bfa; --code:#222b38; --on-accent:#0b1020; --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#11151c; --panel:#181e28; --panel2:#1f2733; --text:#e6e9ef; --muted:#9aa4b5; --line:#2b3442;
+  --accent:#6ea2ff; --accent-soft:#1d2a44; --good:#3cc39c; --warn:#f0b04a; --bad:#ff6b7d;
+  --c1:#6ea2ff; --c2:#ff6b7d; --c3:#3cc39c; --c4:#f0b04a; --c5:#a78bfa; --code:#222b38; --on-accent:#0b1020; --shadow:none;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 -apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:var(--accent)}
+code,kbd{background:var(--code);padding:.1em .35em;border-radius:4px;font-size:.9em;font-family:Consolas,"Cascadia Code",Menlo,monospace}
+pre{background:var(--code);padding:12px 14px;border-radius:8px;overflow:auto;font-size:.88em;line-height:1.5}
+#progress{position:fixed;top:0;left:0;height:3px;background:var(--accent);width:0;z-index:50}
+.layout{display:grid;grid-template-columns:270px minmax(0,1fr);gap:0}
+nav#toc{position:sticky;top:0;height:100vh;overflow:auto;padding:22px 16px 40px;border-right:1px solid var(--line);background:var(--panel)}
+nav#toc h2{font-size:15px;margin:0 0 4px}
+nav#toc .sub{font-size:12px;color:var(--muted);margin-bottom:14px}
+nav#toc .part{font-size:12.5px;font-weight:700;color:var(--muted);margin:14px 0 4px}
+nav#toc a{display:flex;gap:8px;align-items:baseline;text-decoration:none;color:var(--text);font-size:14px;padding:3px 8px;border-radius:6px}
+nav#toc a:hover{background:var(--panel2)}
+nav#toc a.active{background:var(--accent-soft);color:var(--accent);font-weight:600}
+nav#toc a .tick{margin-left:auto;color:var(--good);font-size:12px;visibility:hidden}
+nav#toc a.read .tick{visibility:visible}
+.toolbar{display:flex;gap:6px;margin:10px 0 6px}
+button,.btn{font:inherit;font-size:14px;border:1px solid var(--line);background:var(--panel);color:var(--text);padding:6px 12px;border-radius:7px;cursor:pointer}
+button:hover{border-color:var(--accent)}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+button:disabled{opacity:.45;cursor:not-allowed}
+main{padding:28px clamp(16px,4vw,56px) 80px;max-width:980px}
+header.hero{padding:26px 28px;border-radius:14px;background:linear-gradient(135deg,var(--accent-soft),var(--panel));border:1px solid var(--line);margin-bottom:28px}
+header.hero h1{margin:0 0 6px;font-size:clamp(26px,3.4vw,36px);line-height:1.2}
+header.hero p{margin:6px 0;color:var(--muted)}
+section.chapter{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px clamp(16px,3vw,32px);margin:0 0 26px;box-shadow:var(--shadow);scroll-margin-top:12px}
+section.chapter>h2{margin:0 0 4px;font-size:24px}
+.kicker{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:700}
+h3{margin:22px 0 6px;font-size:18px}
+.tldr{background:var(--accent-soft);border:1px solid color-mix(in srgb,var(--accent) 35%,transparent);padding:10px 14px;border-radius:8px;margin:12px 0}
+.example{background:var(--panel2);border:1px dashed var(--line);border-radius:10px;padding:12px 16px;margin:12px 0}
+.example::before{content:"Example";display:block;font-size:13px;font-weight:700;color:var(--good);margin-bottom:2px}
+.analogy{background:color-mix(in srgb,var(--c5) 8%,var(--panel));border:1px solid color-mix(in srgb,var(--c5) 35%,transparent);border-radius:10px;padding:12px 16px;margin:12px 0}
+.analogy::before{content:"Everyday analogy";display:block;font-size:13px;font-weight:700;color:var(--c5);margin-bottom:2px}
+.honest{background:color-mix(in srgb,var(--warn) 10%,var(--panel));border:1px solid color-mix(in srgb,var(--warn) 45%,transparent);padding:10px 14px;border-radius:8px;margin:12px 0}
+.honest::before{content:"Honesty note";display:block;font-size:13px;font-weight:700;color:var(--warn);margin-bottom:2px}
+.demo{border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:16px 0;background:var(--bg)}
+.demo>.dtitle{font-weight:700;font-size:15px;display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.demo>.dtitle::before{content:"▶ Try it";font-size:11px;background:var(--accent);color:var(--on-accent);border-radius:999px;padding:2px 8px;letter-spacing:.05em}
+.controls{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin:6px 0 10px;font-size:14px}
+.controls label{display:flex;align-items:center;gap:8px}
+input[type=range]{width:170px;accent-color:var(--accent)}
+select,input[type=number],input[type=text],textarea{font:inherit;font-size:14px;background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:6px;padding:4px 8px}
+textarea{width:100%;min-height:70px;font-family:Consolas,Menlo,monospace}
+canvas{width:100%;display:block;background:var(--panel);border:1px solid var(--line);border-radius:8px}
+.out{font-size:14px;margin-top:8px}
+.pill{display:inline-block;padding:1px 9px;border-radius:999px;font-weight:700;font-size:13px}
+.pill.h{background:#17775c;color:#fff} .pill.w{background:#f0b04a;color:#2b1d00} .pill.c{background:#b3263a;color:#fff}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.card{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:14px;margin:10px 0}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{background:var(--panel2);font-weight:600}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.bars .row{display:grid;grid-template-columns:150px 1fr 60px;gap:8px;align-items:center;font-size:13px;margin:3px 0}
+.bars .track{background:var(--panel2);border-radius:5px;height:16px;overflow:hidden}
+.bars .fill{height:100%;background:var(--accent);border-radius:5px;transition:width .25s}
+.trees{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-top:8px}
+.tree{border:1px solid var(--line);border-radius:8px;padding:6px 8px;font-size:12px;background:var(--panel)}
+.tree b{font-size:13px}
+.boot{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.boot span{min-width:42px;text-align:center;border:1px solid var(--line);border-radius:6px;padding:4px 6px;font-size:13px;background:var(--panel)}
+.boot span.dup{background:var(--accent-soft);border-color:var(--accent)}
+.boot span.oob{opacity:.45;text-decoration:line-through}
+.splitgrid{display:grid;grid-template-columns:120px repeat(4,1fr);gap:4px;font-size:12px;align-items:center}
+.splitgrid .cell{display:flex;gap:2px;justify-content:center;padding:4px;border-radius:6px;background:var(--panel)}
+.splitgrid .w{width:12px;height:12px;border-radius:3px;background:var(--line)}
+.w.train{background:var(--c1)} .w.test{background:var(--c4)}
+.legend{display:flex;gap:14px;font-size:13px;margin:6px 0}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.heat td{text-align:center;font-variant-numeric:tabular-nums;border:1px solid var(--line)}
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:10px 0}
+.flow button{font-size:13px}
+.flow button.on{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.flow .arrow{color:var(--muted)}
+.flowdetail{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:var(--panel);min-height:90px}
+.game{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:12px}
+@media (max-width:760px){.game{grid-template-columns:1fr}}
+.screen{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--panel);font-size:14px}
+.actions{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.log{max-height:170px;overflow:auto;font-size:12.5px;border:1px solid var(--line);border-radius:8px;padding:6px 8px;background:var(--panel);font-family:Consolas,Menlo,monospace}
+.quiz .q{border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:12px 0;background:var(--panel)}
+.quiz .q p{margin:0 0 6px;font-weight:600}
+.quiz label{display:block;padding:4px 8px;border-radius:6px;cursor:pointer;font-size:14.5px}
+.quiz label:hover{background:var(--panel2)}
+.quiz .fb{font-size:14px;margin-top:6px;display:none}
+.quiz .q.right{border-color:var(--good)} .quiz .q.wrong{border-color:var(--bad)}
+.quiz .q.right .fb{display:block;color:var(--good)} .quiz .q.wrong .fb{display:block;color:var(--bad)}
+.quiz .fb span{color:var(--text)}
+#score{font-size:18px;font-weight:700}
+.gloss dt{font-weight:700;margin-top:8px} .gloss dd{margin:0 0 4px 0;color:var(--text)}
+.muted{color:var(--muted)} .small{font-size:13px}
+.formula{font-family:Cambria,"Times New Roman",serif;font-size:1.05em;background:var(--panel2);padding:6px 12px;border-radius:8px;display:inline-block;margin:4px 0}
+.markread{margin-top:14px;font-size:13px}
+svg text{fill:var(--text)}
+@media (max-width:900px){
+  .layout{grid-template-columns:1fr}
+  nav#toc{position:relative;height:auto;border-right:none;border-bottom:1px solid var(--line)}
+  nav#toc .links{display:none} nav#toc.open .links{display:block}
+}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<div class="layout">
+<nav id="toc">
+  <h2>Bearing PdM Guide</h2>
+  <div class="sub">From zero to "I understand the whole system"</div>
+  <div class="toolbar"><button id="themeBtn" title="Switch light / dark">◐ Theme</button><button id="tocBtn">☰ Chapters</button></div>
+  <div class="links">
+    <div class="part">Start</div>
+    <a href="#intro">0 · How to use this guide<span class="tick">✓</span></a>
+    <div class="part">Part 1 — The physics basics</div>
+    <a href="#problem">1 · The problem: fans & bearings<span class="tick">✓</span></a>
+    <a href="#signals">2 · Vibration, signals & sampling<span class="tick">✓</span></a>
+    <a href="#knocks">3 · Why a damaged bearing "knocks"<span class="tick">✓</span></a>
+    <a href="#fft">4 · Seeing frequencies (FFT)<span class="tick">✓</span></a>
+    <a href="#envelope">5 · Envelope analysis<span class="tick">✓</span></a>
+    <a href="#windows">6 · Cutting signals into windows<span class="tick">✓</span></a>
+    <a href="#features">7 · Features: turning waves into numbers<span class="tick">✓</span></a>
+    <div class="part">Part 2 — Machine learning</div>
+    <a href="#ml">8 · What machine learning is<span class="tick">✓</span></a>
+    <a href="#trees">9 · Decision trees & how they are trained<span class="tick">✓</span></a>
+    <a href="#forest">10 · Random Forest training, inside out<span class="tick">✓</span></a>
+    <a href="#severity">11 · Severity & health rules<span class="tick">✓</span></a>
+    <a href="#evaluation">12 · Honest testing & metrics<span class="tick">✓</span></a>
+    <div class="part">Part 3 — Edge AI</div>
+    <a href="#edge">13 · Small, fast, portable models<span class="tick">✓</span></a>
+    <div class="part">Part 4 — Reinforcement learning</div>
+    <a href="#rl">14 · What reinforcement learning is<span class="tick">✓</span></a>
+    <a href="#sim">15 · Our simulator (play it!)<span class="tick">✓</span></a>
+    <a href="#nn">16 · Neural networks & gradient descent<span class="tick">✓</span></a>
+    <a href="#ppo">17 · How PPO training works inside<span class="tick">✓</span></a>
+    <a href="#whatif">18 · "What if we keep running?"<span class="tick">✓</span></a>
+    <div class="part">Part 5 — Conversational AI</div>
+    <a href="#llm">19 · The AI assistant & its guard<span class="tick">✓</span></a>
+    <div class="part">Part 6 — Putting it together</div>
+    <a href="#pipeline">20 · One "Analyze" click, step by step<span class="tick">✓</span></a>
+    <a href="#limits">21 · Limitations & honesty<span class="tick">✓</span></a>
+    <a href="#glossary">22 · Glossary<span class="tick">✓</span></a>
+    <a href="#quiz">23 · Final quiz<span class="tick">✓</span></a>
+  </div>
+</nav>
+
+<main>
+<header class="hero">
+  <h1>Bearing Fault Diagnosis &amp; Predictive Maintenance — explained from scratch</h1>
+  <p>Signals · Machine Learning · Edge AI · Reinforcement Learning · Conversational AI</p>
+  <p class="small">Every number in this guide comes from the real project (<code>reports/metrics/</code>). The interactive demos are simplified so you can see the idea; they run entirely in your browser.</p>
+</header>
+
+<!-- ===================================================== 0 -->
+<section class="chapter" id="intro">
+  <h2>0 · How to use this guide</h2>
+  <p>This guide assumes <b>no background</b> in signal processing, machine learning or AI. Each chapter has:</p>
+  <ul>
+    <li><b>A one-line summary</b> (blue box) so you always know the point.</li>
+    <li><b>Everyday analogies</b> (purple) and <b>small worked examples</b> (green) with real numbers.</li>
+    <li><b>"Try it" demos</b> — move sliders and click buttons; the best way to understand is to play.</li>
+    <li><b>Honesty notes</b> (orange) wherever the project has an important limitation.</li>
+  </ul>
+  <p>The big picture in one sentence:</p>
+  <div class="tldr">We record how a bearing <b>vibrates</b>, turn the vibration into <b>numbers</b>, let a <b>Random Forest</b> decide what is wrong, let a <b>reinforcement-learning agent</b> suggest what to do, and let a <b>chat assistant</b> explain it — all from one function, <code>analyze()</code>.</div>
+  <p>Chapters build on each other, but you can jump around with the menu. A ✓ appears in the menu when you have scrolled through a chapter. The quiz at the end checks your understanding.</p>
+</section>
+
+<!-- ===================================================== 1 -->
+<section class="chapter" id="problem">
+  <h2>1 · The problem: fans &amp; bearings</h2>
+  <div class="tldr">A big power-plant fan spins on ball bearings. Bearings get small cracks that grow slowly. If we notice early, we can fix it cheaply instead of suffering a sudden breakdown.</div>
+  <p>A coal power plant has <b>PA (Primary Air) fans</b>. They blow air that carries coal powder into the boiler. If one stops unexpectedly, the boiler loses fuel and the plant can trip — expensive and rushed.</p>
+  <p>The part that most often fails is the <b>ball bearing</b>: a ring of steel balls that lets the shaft spin smoothly.</p>
+  <div class="grid2">
+    <svg viewBox="0 0 260 260" role="img" aria-label="Diagram of a ball bearing">
+      <circle cx="130" cy="130" r="118" fill="none" stroke="var(--c1)" stroke-width="16"/>
+      <circle cx="130" cy="130" r="62" fill="none" stroke="var(--c3)" stroke-width="16"/>
+      <circle cx="130" cy="130" r="40" fill="var(--panel2)" stroke="var(--muted)" stroke-width="2"/>
+      <g id="balls"></g>
+      <text x="130" y="134" text-anchor="middle" font-size="12">shaft</text>
+      <text x="130" y="14" text-anchor="middle" font-size="11">outer race (still)</text>
+      <text x="130" y="180" text-anchor="middle" font-size="11">inner race (spins)</text>
+      <circle cx="226" cy="190" r="6" fill="var(--c2)"/><text x="196" y="215" font-size="10">crack</text>
+    </svg>
+    <div>
+      <p><b>Four parts can be damaged:</b></p>
+      <ul>
+        <li><b style="color:var(--c1)">Outer race</b> — the outer ring. It stays still.</li>
+        <li><b style="color:var(--c3)">Inner race</b> — the inner ring. It spins with the shaft.</li>
+        <li><b>Balls</b> — the rolling steel balls.</li>
+        <li><b>Cage</b> — holds the balls apart.</li>
+      </ul>
+      <p>Our system recognises 4 classes: <b>Normal</b>, <b>Inner race</b>, <b>Outer race</b>, <b>Ball</b> fault.</p>
+    </div>
+  </div>
+  <div class="analogy">A bearing failing is like a pothole forming on a road. It starts as a tiny crack, every car makes it a bit worse, and eventually a wheel breaks. Spotting the crack early means a cheap patch instead of an accident.</div>
+  <h3>The data we use: CWRU</h3>
+  <p>We do not have recordings from a real PA fan. We use the famous <b>CWRU bearing dataset</b> (Case Western Reserve University). Researchers put a 6205 bearing in a 2 HP motor, <b>deliberately made pits</b> of 0.007, 0.014, 0.021 and 0.028 inch, and recorded the vibration at 4 loads (0–3 HP, ~1797–1730 RPM).</p>
+  <table>
+    <tr><th>What</th><th class="num">Count</th></tr>
+    <tr><td>Recordings used (Normal 4 · Inner 16 · Ball 16 · Outer @6 o'clock 12)</td><td class="num">48</td></tr>
+    <tr><td>Short "windows" cut from them (chapter 6)</td><td class="num">5,577</td></tr>
+    <tr><td>Numbers (features) computed per window (chapter 7) — the fault-type model uses 31 of them</td><td class="num">37</td></tr>
+  </table>
+  <div class="honest">CWRU is a <b>laboratory test rig</b>, not a fan. The PA fan is the <i>target application</i>. Everything works on CWRU; it has <b>not</b> been validated on a real fan.</div>
+</section>
+
+<!-- ===================================================== 2 -->
+<section class="chapter" id="signals">
+  <h2>2 · Vibration, signals &amp; sampling</h2>
+  <div class="tldr">A sensor measures shaking many thousands of times per second. That list of measurements is the "signal". You must measure fast enough, or you see fake slow waves (aliasing).</div>
+  <p>An <b>accelerometer</b> glued to the bearing housing measures how hard it shakes. It does not record a smooth curve — it takes a <b>sample</b> (one number) at regular moments.</p>
+  <ul>
+    <li><b>Frequency</b> = how many times per second something repeats, in <b>Hertz (Hz)</b>. 50 Hz = 50 times per second.</li>
+    <li><b>Sampling rate (fs)</b> = how many samples per second the sensor takes. CWRU fault data: <b>12,000 per second (12 kHz)</b>. CWRU healthy data: <b>48 kHz</b>.</li>
+    <li><b>RPM</b> = revolutions per minute. 1750 RPM ÷ 60 = <b>29.17 turns per second</b> (29.17 Hz).</li>
+  </ul>
+  <div class="demo" id="demo-sampling">
+    <div class="dtitle">Sampling a wave</div>
+    <div class="controls">
+      <label>Wave frequency <input type="range" id="smpF" min="1" max="20" step="1" value="3"> <b id="smpFv"></b></label>
+      <label>Sampling rate <input type="range" id="smpS" min="2" max="60" step="1" value="40"> <b id="smpSv"></b></label>
+    </div>
+    <canvas id="cvSampling" height="220"></canvas>
+    <div class="out" id="smpOut"></div>
+  </div>
+  <p><b>Nyquist rule:</b> to see a frequency <i>f</i> you need a sampling rate of <b>more than 2·f</b>. At 12 kHz we can see up to 6 kHz — enough for bearing faults.</p>
+  <h3>Resampling: why the healthy data had to be "slowed down"</h3>
+  <p>Healthy CWRU files are recorded at 48 kHz, faulty ones at 12 kHz. If we feed the model different rates, it would learn "48 kHz = healthy" — a cheat! So we <b>resample</b> everything to 12 kHz. We first remove frequencies above 6 kHz with a filter (<b>anti-aliasing</b>), then keep every 4th sample. The project verified the 48 kHz assumption from the data itself: the shaft-speed peak landed exactly at RPM÷60 (e.g. 30.0 Hz found vs 29.93 Hz expected).</p>
+  <div class="example">48,000 samples per second → keep 1 of every 4 → 12,000 per second. A 5-second healthy recording with 243,938 samples becomes ~60,985 samples.</div>
+</section>
+
+<!-- ===================================================== 3 -->
+<section class="chapter" id="knocks">
+  <h2>3 · Why a damaged bearing "knocks"</h2>
+  <div class="tldr">Every time a ball rolls over a crack it makes a tiny "knock". How often it knocks depends on WHERE the crack is — that's how we can tell faults apart.</div>
+  <p>The bearing geometry fixes how many knocks happen per shaft turn. These are the <b>defect frequency multipliers</b> for the 6205 bearing (from the CWRU website):</p>
+  <table>
+    <tr><th>Crack location</th><th>Name</th><th class="num">Knocks per shaft turn</th></tr>
+    <tr><td>Outer race</td><td>BPFO (Ball Pass Frequency, Outer)</td><td class="num">3.5848</td></tr>
+    <tr><td>Inner race</td><td>BPFI (Ball Pass Frequency, Inner)</td><td class="num">5.4152</td></tr>
+    <tr><td>Ball</td><td>BSF (Ball Spin Frequency)</td><td class="num">4.7135</td></tr>
+    <tr><td>Cage</td><td>FTF (Fundamental Train Frequency)</td><td class="num">0.39828</td></tr>
+  </table>
+  <div class="example">Shaft at 1750 RPM → 1750 / 60 = 29.17 turns/s. Outer-race crack: 29.17 × 3.5848 = <b>104.6 knocks per second (104.6 Hz)</b>. Inner-race crack: 29.17 × 5.4152 = <b>157.9 Hz</b>.</div>
+  <div class="demo" id="demo-knock">
+    <div class="dtitle">Hear it with your eyes: simulated vibration</div>
+    <div class="controls">
+      <label>Fault <select id="knFault"><option>Normal</option><option selected>Outer race</option><option>Inner race</option><option>Ball</option></select></label>
+      <label>Speed <input type="range" id="knRpm" min="1200" max="1800" step="10" value="1750"> <b id="knRpmV"></b></label>
+    </div>
+    <canvas id="cvKnock" height="200"></canvas>
+    <div class="out" id="knOut"></div>
+  </div>
+  <p>Notice: <b>outer race</b> knocks are evenly strong (the crack sits still, always in the loaded zone). <b>Inner race</b> knocks get louder and quieter once per shaft turn (the crack travels in and out of the load zone). <b>Ball</b> faults are weak and irregular — the hardest to detect.</p>
+</section>
+
+<!-- ===================================================== 4 -->
+<section class="chapter" id="fft">
+  <h2>4 · Seeing frequencies: the FFT</h2>
+  <div class="tldr">The FFT takes a wiggly signal and tells you which frequencies are inside it and how strong each one is — like a recipe listing ingredients.</div>
+  <div class="analogy">Hearing an orchestra chord, a trained ear can say "there's a C, an E and a G". The <b>FFT (Fast Fourier Transform)</b> does that for any signal: it breaks it into pure tones and gives the strength of each. The result is called a <b>spectrum</b>.</div>
+  <div class="demo" id="demo-fft">
+    <div class="dtitle">Mix two tones, then look at the spectrum</div>
+    <div class="controls">
+      <label>Tone A <input type="range" id="ffF1" min="1" max="100" value="12"> <b id="ffF1v"></b></label>
+      <label>strength <input type="range" id="ffA1" min="0" max="10" value="10"></label>
+      <label>Tone B <input type="range" id="ffF2" min="1" max="100" value="45"> <b id="ffF2v"></b></label>
+      <label>strength <input type="range" id="ffA2" min="0" max="10" value="5"></label>
+      <label>Noise <input type="range" id="ffN" min="0" max="10" value="2"></label>
+    </div>
+    <canvas id="cvFftT" height="140"></canvas>
+    <canvas id="cvFftF" height="170" style="margin-top:8px"></canvas>
+    <div class="out small muted">Top: the signal over 1 second (what the sensor sees). Bottom: its spectrum (what the FFT sees). The two tall bars sit exactly at your two tone frequencies.</div>
+  </div>
+  <p>In the project, frequency-domain features include the <b>spectral centroid</b> (the "centre of gravity" of the spectrum), the <b>dominant frequency</b> (tallest bar) and the <b>share of energy in 8 bands</b> from 0 to 6 kHz (0–750 Hz, 750–1500 Hz, …).</p>
+</section>
+
+<!-- ===================================================== 5 -->
+<section class="chapter" id="envelope">
+  <h2>5 · Envelope analysis: finding the knock rate</h2>
+  <div class="tldr">Each knock makes the bearing housing "ring" at a high pitch (thousands of Hz). The envelope traces the outline of these rings, and its spectrum shows how often the knocks happen (~100 Hz).</div>
+  <p>A plain FFT of a faulty bearing is messy: each knock excites a <b>resonance</b> at ~2–5 kHz, so the energy is high up, not at 105 Hz. The classic trick (used in industry for decades) has 3 steps:</p>
+  <ol>
+    <li><b>Band-pass filter</b> 2,000–5,500 Hz → keep only the ringing.</li>
+    <li><b>Envelope</b> (Hilbert transform) → trace the outline of the rings, like drawing a line over the tops of waves.</li>
+    <li><b>FFT of the envelope</b> → a clear peak at the knock rate (BPFO, BPFI or BSF) and its multiples.</li>
+  </ol>
+  <div class="demo" id="demo-env">
+    <div class="dtitle">The three steps on a simulated faulty bearing</div>
+    <div class="controls">
+      <label>Fault <select id="enFault"><option>Outer race</option><option>Inner race</option><option>Ball</option><option>Normal</option></select></label>
+      <label>Speed <input type="range" id="enRpm" min="1700" max="1800" step="5" value="1797"> <b id="enRpmV"></b></label>
+    </div>
+    <canvas id="cvEnvRaw" height="120"></canvas>
+    <canvas id="cvEnvSpec" height="170" style="margin-top:8px"></canvas>
+    <div class="out" id="enOut"></div>
+  </div>
+  <p>From the envelope spectrum the project computes <b>10 envelope features</b>: the peak height near BPFO, BPFI and BSF (×1, ×2, ×3) and near the shaft speed, each divided by the spectrum's background level. A value near 1–2 means "nothing special"; above 5 means "a clear repeating knock".</p>
+  <div class="honest">In the real CWRU data some damaged bearings show <b>no</b> clear peak (for example outer race 0.014″: BPFO ratio 1.6, same as a healthy bearing). This becomes very important in chapter 12.</div>
+</section>
+
+<!-- ===================================================== 6 -->
+<section class="chapter" id="windows">
+  <h2>6 · Cutting signals into windows</h2>
+  <div class="tldr">We cut each recording into short overlapping pieces (2048 samples ≈ 0.17 s). Each piece becomes one row of numbers — one example for the model.</div>
+  <p>A 10-second recording is too long to describe with one set of numbers, and one recording is just one example. So we slice it into <b>windows</b> of <b>2048 samples</b> (= 0.17 s at 12 kHz ≈ 5 shaft turns), each overlapping the previous by <b>50%</b>.</p>
+  <div class="demo" id="demo-win">
+    <div class="dtitle">How many windows?</div>
+    <div class="controls">
+      <label>Recording length <input type="range" id="wnLen" min="0.5" max="10" step="0.5" value="3"> <b id="wnLenV"></b></label>
+      <label>Overlap <select id="wnOv"><option value="0">0%</option><option value="0.25">25%</option><option value="0.5" selected>50%</option><option value="0.75">75%</option></select></label>
+    </div>
+    <canvas id="cvWin" height="120"></canvas>
+    <div class="out" id="wnOut"></div>
+  </div>
+  <div class="example">10.1 s × 12,000 = 121,200 samples. Step = 2048 × (1 − 0.5) = 1024. Windows = 1 + ⌊(121,200 − 2048) / 1024⌋ = <b>117</b>. That's exactly what the project produced for most CWRU recordings.</div>
+</section>
+
+<!-- ===================================================== 7 -->
+<section class="chapter" id="features">
+  <h2>7 · Features: turning waves into numbers</h2>
+  <div class="tldr">A model cannot look at a wave. We describe each window with 37 numbers ("features") — how big, how spiky, which frequencies, how strong each knock rate is, and which knock dominates.</div>
+  <div class="analogy">A doctor doesn't diagnose from your whole body at once; they measure temperature, blood pressure, heart rate. Features are the vital signs of a vibration window.</div>
+  <h3>The 37 features in 4 groups</h3>
+  <table>
+    <tr><th>Group</th><th>Features</th><th>Plain meaning</th></tr>
+    <tr><td><b>Time (11)</b></td><td>mean, std, RMS, min, max, peak-to-peak, <b>kurtosis</b>, skewness, crest, impulse, shape factor</td><td>How big is the shaking, and how <b>spiky</b> is it?</td></tr>
+    <tr><td><b>Frequency (10)</b></td><td>spectral centroid, dominant frequency, energy share in 8 bands</td><td>Is the vibration high-pitched or low-pitched?</td></tr>
+    <tr><td><b>Envelope (10)</b></td><td>peaks at BPFO/BPFI/BSF ×1,2,3 and shaft ×1</td><td>Is there a repeating knock at a fault's rate?</td></tr>
+    <tr><td><b>Knock ratios (6)</b></td><td>share of BPFO / BPFI / BSF in the total knock energy, and log-ratios between them</td><td><b>Which</b> knock dominates? (works whatever the overall loudness)</td></tr>
+  </table>
+  <div class="honest">The fault-<b>type</b> model deliberately does <b>not</b> use the 6 absolute-size features (mean, std, RMS, min, max, peak-to-peak). Loudness depends on the individual bearing, sensor and machine, and with them the model learned to "recognise bearings" instead of faults (chapter 12). They are still computed and shown, and the <b>size</b> model uses them, because bigger cracks do knock harder.</div>
+  <p>Two of the most useful ideas:</p>
+  <ul>
+    <li><b>RMS</b> (root mean square) = the typical size of the shaking. Square every value, average, take the square root.</li>
+    <li><b>Kurtosis</b> = "how spiky". Smooth random noise has kurtosis ≈ 3. Sharp knocks push it far higher (CWRU outer-race windows median 7.75; one inner-race bearing over 20).</li>
+  </ul>
+  <div class="demo" id="demo-feat">
+    <div class="dtitle">Compute features yourself</div>
+    <div class="controls"><button id="ftSmooth">Smooth example</button><button id="ftSpiky">Spiky example</button><button id="ftRand">Random noise</button></div>
+    <textarea id="ftIn"></textarea>
+    <div class="out" id="ftOut"></div>
+  </div>
+  <div class="example">Smooth wave: RMS 0.50, crest factor 1.41, kurtosis 1.5. Same wave plus one big spike of 3.0: crest factor jumps to ~3.4 and kurtosis to ~7. One knock changes the "spikiness" numbers dramatically even though the average barely moves.</div>
+</section>
+
+<!-- ===================================================== 8 -->
+<section class="chapter" id="ml">
+  <h2>8 · What machine learning is</h2>
+  <div class="tldr">A model is a function: numbers in → answer out. "Training" means finding the function's rules automatically from many examples whose answers we already know.</div>
+  <p>Normally a programmer writes rules: <code>if kurtosis &gt; 5 then "fault"</code>. With 31 features and 4 classes, nobody can hand-write good rules. <b>Machine learning</b> lets the computer discover the rules from examples.</p>
+  <div class="analogy">Teaching a child to recognise dogs: you don't explain fur length thresholds. You show many pictures labelled "dog" / "not dog" and the child figures out the pattern. That's <b>supervised learning</b> — learning with an answer key.</div>
+  <h3>The three stages</h3>
+  <div class="grid2">
+    <div class="card"><b>1 · Training data</b><br>5,577 windows. Each has 31 feature numbers <i>and</i> the true label (e.g. "Outer race", size 0.014″). This is the homework with the answer key.</div>
+    <div class="card"><b>2 · Training</b><br>The algorithm adjusts its internal rules until its answers match the labels on the training data. Takes ~seconds to minutes.</div>
+    <div class="card"><b>3 · Testing</b><br>An exam on examples the model <b>never saw</b>. Only this score tells you if it really learned, rather than memorised.</div>
+  </div>
+  <h3>Two kinds of learning in this project</h3>
+  <table>
+    <tr><th></th><th>Supervised learning</th><th>Reinforcement learning</th></tr>
+    <tr><td>Used for</td><td>Diagnosis: Random Forests (fault type, fault size)</td><td>Decisions: the PPO maintenance agent</td></tr>
+    <tr><td>Learns from</td><td>Labelled examples (answer key)</td><td>Trial and error with rewards in a simulator</td></tr>
+    <tr><td>Analogy</td><td>Studying with solved exercises</td><td>Learning to ride a bike by falling and trying again</td></tr>
+  </table>
+  <h3>Phase 1 vs Phase 2</h3>
+  <p><b>Phase 1 — training</b> (run once by the scripts, minutes): create the models. <b>Phase 2 — runtime</b> (each "Analyze" click, under 1 second): apply the <b>frozen</b> models to a new recording. Nothing learns at runtime.</p>
+</section>
+
+<!-- ===================================================== 9 -->
+<section class="chapter" id="trees">
+  <h2>9 · Decision trees &amp; how they are trained</h2>
+  <div class="tldr">A decision tree is a flowchart of yes/no questions. Training picks, at each step, the question that best separates the classes — measured by "Gini impurity".</div>
+  <pre>Is kurtosis &gt; 4.2?
+├── no  → Is BPFI peak &gt; 3.8?
+│         ├── no  → "Normal"
+│         └── yes → "Inner race"
+└── yes → Is BPFO peak &gt; 5.0?
+          ├── yes → "Outer race"
+          └── no  → "Ball"</pre>
+  <p>To predict, a window walks down from the top, answering questions, until it reaches a <b>leaf</b> with an answer.</p>
+  <h3>How does the computer choose the questions?</h3>
+  <p>It measures how <b>mixed</b> a group is with <b>Gini impurity</b>:</p>
+  <p class="formula">Gini = 1 − (p₁² + p₂² + …)</p>
+  <p>where p₁, p₂… are the shares of each class in the group.</p>
+  <div class="example">A group with 5 healthy + 5 faulty: Gini = 1 − (0.5² + 0.5²) = <b>0.5</b> (very mixed). A group with 10 faulty: Gini = 1 − 1² = <b>0</b> (pure). Training wants pure groups.</div>
+  <p>For every feature and every possible threshold, the computer tries the split and computes the <b>weighted Gini</b> of the two resulting groups. It keeps the split with the <b>lowest</b> weighted Gini, then repeats inside each group — until groups are pure (or too small).</p>
+  <div class="demo" id="demo-gini">
+    <div class="dtitle">Find the best question yourself</div>
+    <p class="small muted" style="margin:0 0 6px">12 windows: kurtosis values. Green = healthy, red = faulty. Move the threshold: "Is kurtosis &gt; threshold?"</p>
+    <div class="controls">
+      <label>Threshold <input type="range" id="gnT" min="2.7" max="8.5" step="0.05" value="4"> <b id="gnTv"></b></label>
+      <button id="gnBest">Let the computer search</button>
+    </div>
+    <svg id="svGini" viewBox="0 0 640 110" style="width:100%"></svg>
+    <div class="out" id="gnOut"></div>
+  </div>
+  <p>That's literally what <code>scikit-learn</code> does inside <code>DecisionTreeClassifier.fit()</code> — just with 31 features, thousands of windows and 4 classes, very fast in C code.</p>
+  <h3>The problem with one tree</h3>
+  <p>A single deep tree can <b>memorise</b> the training data, including noise (<b>overfitting</b>). It answers perfectly on homework and badly on the exam. The fix: many different trees that vote. →</p>
+</section>
+
+<!-- ===================================================== 10 -->
+<section class="chapter" id="forest">
+  <h2>10 · Random Forest training, inside out</h2>
+  <div class="tldr">A Random Forest trains 100 slightly different trees (each on a random resample of the data, each split choosing from a random subset of features) and lets them vote. Confidence = share of votes.</div>
+  <div class="analogy">Ask one friend for directions and they might be wrong. Ask 100 friends who each know slightly different parts of town, and go where most of them point. Their individual mistakes cancel out.</div>
+  <h3>Step 1 — Bootstrap: each tree gets its own random dataset</h3>
+  <p>For each tree, draw N windows <b>with replacement</b> from the N training windows. Some windows appear twice or three times, about 37% don't appear at all ("out-of-bag").</p>
+  <div class="demo" id="demo-boot">
+    <div class="dtitle">Draw a bootstrap sample</div>
+    <div class="controls"><button id="btDraw" class="primary">Draw for a new tree</button></div>
+    <div class="boot" id="btOut"></div>
+    <div class="out small" id="btTxt"></div>
+  </div>
+  <h3>Step 2 — Random features at every split</h3>
+  <p>At each question, a tree may only look at a <b>random subset</b> of the features — by default √31 ≈ <b>5 of the 31</b>. So one tree may build its question on kurtosis, another on the BPFO peak. This makes the trees different from each other, which is what makes voting useful.</p>
+  <h3>Step 3 — Grow each tree (chapter 9) until leaves are pure</h3>
+  <h3>Step 4 — Predict by voting</h3>
+  <p>A new window goes down all 100 trees. Each tree says a class. <b>Confidence = share of trees</b> that agree (technically scikit-learn averages each tree's leaf probabilities; with fully grown trees that equals the vote share). For a whole recording we average over all its windows.</p>
+  <div class="demo" id="demo-forest">
+    <div class="dtitle">A mini forest of 9 trees votes on one window</div>
+    <div class="controls">
+      <label>Kurtosis <input type="range" id="rfK" min="2" max="25" step="0.1" value="3.1"> <b id="rfKv"></b></label>
+      <label>BPFO peak <input type="range" id="rfO" min="1" max="25" step="0.1" value="1.9"> <b id="rfOv"></b></label>
+      <label>BPFI peak <input type="range" id="rfI" min="1" max="20" step="0.1" value="1.5"> <b id="rfIv"></b></label>
+    </div>
+    <div class="bars" id="rfBars"></div>
+    <div class="trees" id="rfTrees"></div>
+    <div class="out small muted">Each tree only "sees" some features (random subsets) and learned slightly different thresholds (bootstrap). Try BPFO = 10 with kurtosis 8; then a borderline case like BPFO 4.5.</div>
+  </div>
+  <h3>Class balance</h3>
+  <p>Only 4 healthy recordings (409 windows) vs ~1,400–1,900 windows for each fault. Without care, the forest would "ignore" Normal. With <code>class_weight="balanced"</code> each Normal window counts more: weight = total ÷ (4 × class count) = 5577 ÷ (4 × 409) ≈ <b>3.4</b>, while a Ball window counts 5577 ÷ (4 × 1878) ≈ <b>0.74</b>.</p>
+  <h3>The project's training in pseudo-code</h3>
+  <pre>for tree in 1..100:
+    data = bootstrap_sample(5577 windows)          # step 1
+    grow(tree, data):                               # steps 2-3
+        if node is pure: make leaf
+        features = random 5 of 31
+        best = split with lowest weighted Gini over those features
+        grow(left), grow(right)
+predict(window) = average of the 100 trees' votes  # step 4</pre>
+</section>
+
+<!-- ===================================================== 11 -->
+<section class="chapter" id="severity">
+  <h2>11 · Severity &amp; health rules</h2>
+  <div class="tldr">A second Random Forest (trained only on faulty windows) estimates the crack size. Simple written rules then turn class + confidence + size + load into Healthy / Warning / Critical.</div>
+  <p>Why a separate model? It would be wrong to say "the model is 60% sure, so the damage is 60% bad" — <b>confidence is not severity</b>. The <b>severity RF</b> learns size (0.007 / 0.014 / 0.021 / 0.028 inch) from the same 31 features, using only faulty windows.</p>
+  <h3>The health rules (a rule-based estimate)</h3>
+  <table>
+    <tr><th>Condition</th><th>Status</th></tr>
+    <tr><td>Predicted Normal with confidence ≥ 0.70</td><td><span class="pill h">Healthy</span></td></tr>
+    <tr><td>Predicted Normal but confidence &lt; 0.70</td><td><span class="pill w">Warning</span> (uncertain)</td></tr>
+    <tr><td>Fault, size 0.007″</td><td><span class="pill w">Warning</span> early stage</td></tr>
+    <tr><td>Fault, size 0.014″</td><td><span class="pill w">Warning</span>; <span class="pill c">Critical</span> if load ≥ 2 HP</td></tr>
+    <tr><td>Fault, size ≥ 0.021″</td><td><span class="pill c">Critical</span></td></tr>
+    <tr><td>Top confidence &lt; 0.60 (any class)</td><td>+ "Low confidence — re-measure" flag</td></tr>
+  </table>
+  <div class="demo" id="demo-health">
+    <div class="dtitle">Apply the rules</div>
+    <div class="controls">
+      <label>Diagnosis <select id="hlC"><option>Normal</option><option>Inner race</option><option selected>Outer race</option><option>Ball</option></select></label>
+      <label>Confidence <input type="range" id="hlConf" min="0.25" max="1" step="0.01" value="0.9"> <b id="hlConfV"></b></label>
+      <label>Size <select id="hlS"><option>0.007</option><option selected>0.014</option><option>0.021</option><option>0.028</option></select></label>
+      <label>Load <select id="hlL"><option>0</option><option>1</option><option selected>2</option><option>3</option></select> HP</label>
+    </div>
+    <div class="out" id="hlOut"></div>
+  </div>
+</section>
+
+<!-- ===================================================== 12 -->
+<section class="chapter" id="evaluation">
+  <h2>12 · Honest testing &amp; metrics</h2>
+  <div class="tldr">How you split data into "study" and "exam" decides how honest the score is. On bearings it has seen at other loads the model is ~99.7% right; on bearings it has never seen, the ML model alone types 58% of recordings correctly — and 75% when combined with a physics knock check.</div>
+  <h3>Leakage: when the exam leaks into the homework</h3>
+  <p>Windows overlap by 50%, so neighbouring windows are near-copies. If we shuffle all windows randomly into train/test, the exam contains near-copies of homework → fake 100%.</p>
+  <div class="demo" id="demo-split">
+    <div class="dtitle">Three ways to split — see what the model is tested on</div>
+    <div class="controls">
+      <button data-split="random" class="primary">Random windows (leaky)</button>
+      <button data-split="lolo">Leave-one-load-out</button>
+      <button data-split="loso">Leave-one-size-out (unseen bearings)</button>
+    </div>
+    <div class="legend"><span><i style="background:var(--c1)"></i>training</span><span><i style="background:var(--c4)"></i>testing</span></div>
+    <div class="splitgrid" id="splitGrid"></div>
+    <div class="out" id="splitOut"></div>
+  </div>
+  <p><b>The key discovery of this project:</b> CWRU recorded each damaged bearing (e.g. "inner race 0.014″") at all four loads. In leave-one-load-out, the test bearing at 3 HP is the <b>same physical bearing</b> the model trained on at 0–2 HP. The model can partly recognise <i>that bearing</i> rather than the fault in general. Holding out whole bearings (all loads of one size) is the honest test for a new machine.</p>
+  <h3>Metrics in plain words</h3>
+  <p>Suppose we test 100 windows for "is it faulty?":</p>
+  <div class="demo" id="demo-metrics">
+    <div class="dtitle">Precision, recall and F1</div>
+    <div class="controls">
+      <label>True positives (fault → said fault) <input type="number" id="mTP" value="40" min="0" style="width:70px"></label>
+      <label>False positives (healthy → said fault) <input type="number" id="mFP" value="5" min="0" style="width:70px"></label>
+      <label>False negatives (fault → said healthy) <input type="number" id="mFN" value="10" min="0" style="width:70px"></label>
+      <label>True negatives (healthy → said healthy) <input type="number" id="mTN" value="45" min="0" style="width:70px"></label>
+    </div>
+    <div class="out" id="mOut"></div>
+  </div>
+  <ul>
+    <li><b>Accuracy</b> — share of all answers that were right.</li>
+    <li><b>Precision</b> — "when it says fault, how often is it right?" (few false alarms)</li>
+    <li><b>Recall</b> — "of all real faults, how many did it catch?" (few misses)</li>
+    <li><b>F1</b> — one number balancing both (harmonic mean). <b>Macro-F1</b> = average F1 over the 4 classes, so the small Normal class counts as much as the others.</li>
+  </ul>
+  <h3>The confusion matrix</h3>
+  <p>A table: rows = truth, columns = prediction. The diagonal = correct. This is the project's matrix on <b>unseen bearings</b> (share of windows):</p>
+  <table class="heat" id="heat"></table>
+  <p class="small muted">ML model only, before the physics check. Read row "Outer race": 65% of its windows were called "Ball". Read row "Normal": 100% correct — healthy vs damaged still works on unseen bearings.</p>
+  <h3>The project's results</h3>
+  <table>
+    <tr><th>Test</th><th class="num">Macro-F1 (windows)</th><th class="num">Recordings correct</th></tr>
+    <tr><td>Random windows (leaky)</td><td class="num">1.000</td><td class="num">—</td></tr>
+    <tr><td>Leave-one-load-out (seen bearings)</td><td class="num">0.997</td><td class="num">100%</td></tr>
+    <tr><td>Unseen bearings — first model (all original features)</td><td class="num">0.462</td><td class="num">37%</td></tr>
+    <tr><td><b>Unseen bearings — improved ML model</b></td><td class="num"><b>0.553</b></td><td class="num"><b>58%</b></td></tr>
+    <tr><td><b>Unseen bearings — ML + physics knock check</b></td><td class="num">—</td><td class="num"><b>75%</b></td></tr>
+    <tr><td>4 CWRU recordings never used for anything (final exam)</td><td class="num">—</td><td class="num">ML 2/4 · ML + physics <b>4/4</b></td></tr>
+    <tr><td>Severity, leave-one-load-out</td><td class="num">0.997</td><td class="num">100%</td></tr>
+    <tr><td><b>Severity, unseen fault type</b></td><td class="num"><b>0.128</b></td><td class="num">—</td></tr>
+  </table>
+  <h3>How the model was improved — two opinions are better than one</h3>
+  <p><b>1 · Better clues.</b> The first model leaned on <i>how loud</i> the vibration was — which differs from bearing to bearing — so it partly memorised bearings. Removing the 6 loudness features and adding 6 <b>"which knock dominates"</b> ratios lifted unseen-bearing accuracy from 37% to 58%.</p>
+  <p><b>2 · A physics cross-check</b> (no training): <i>if one fault family's knock peak is at least 5× the background and at least 1.5× the next family, that fault is named.</i> On CWRU it spoke on 19 of 48 recordings and was right <b>19 out of 19</b> times; when there is no clear knock it stays silent and the ML model decides. Combined: <b>75%</b>. If the two opinions disagree, the dashboard says so and flags low confidence.</p>
+  <div class="analogy">A vibration expert does the same: first look for the textbook knock at the defect frequency; only if there is none, judge from the overall "feel" of the signal.</div>
+  <div class="honest">To keep this honest, the improvement was chosen with a rule fixed <i>before</i> looking at the 4 never-used recordings, which were checked only afterwards. Some CWRU recordings simply have <b>no clear knock signature</b> (outer race 0.014″, inner race 0.028″, most ball faults), so no method gets everything right. Crack-<b>size</b> estimates still do not transfer to an unseen fault type (0.128 macro-F1, below the ~0.25 of guessing).</div>
+  <h3>Which feature groups help?</h3>
+  <table>
+    <tr><th>Features used</th><th class="num">Seen bearings (LOLO)</th><th class="num">Unseen bearings</th></tr>
+    <tr><td>Time shape only (5: kurtosis, skewness, crest, impulse, shape)</td><td class="num">0.692</td><td class="num">0.171</td></tr>
+    <tr><td>Frequency only (10)</td><td class="num">0.976</td><td class="num">0.369</td></tr>
+    <tr><td>Envelope + knock ratios (16)</td><td class="num">0.757</td><td class="num">0.385</td></tr>
+    <tr><td>All 31 used by the fault-type model</td><td class="num">0.997</td><td class="num">0.553</td></tr>
+  </table>
+</section>
+
+<!-- ===================================================== 13 -->
+<section class="chapter" id="edge">
+  <h2>13 · Small, fast, portable models</h2>
+  <div class="tldr">"Edge AI" = running the model on a small device next to the machine instead of in the cloud. We shrank the model 11× (401 KB → 36 KB) with almost no accuracy loss on seen bearings, exported it to ONNX, and measured its speed.</div>
+  <div class="analogy">Instead of phoning a doctor in another city for every heartbeat, you wear a smartwatch that checks your pulse itself. Faster, works offline, no data leaves the device.</div>
+  <h3>1 · Size vs accuracy study</h3>
+  <p>We trained 20 forests (trees ∈ {10, 25, 50, 100, 200} × max depth ∈ {8, 12, 16, unlimited}) and picked the <b>smallest within 1% of the best</b> score.</p>
+  <div class="demo" id="demo-edge">
+    <div class="dtitle">Explore the real size study</div>
+    <div class="controls">
+      <label>Trees <select id="edT"><option>10</option><option>25</option><option>50</option><option selected>100</option><option>200</option></select></label>
+      <label>Max depth <select id="edD"><option>8</option><option>12</option><option>16</option><option selected>none</option></select></label>
+    </div>
+    <div class="out" id="edOut"></div>
+    <canvas id="cvEdge" height="190"></canvas>
+  </div>
+  <h3>2 · ONNX: a universal model format</h3>
+  <p>Python's scikit-learn models are saved with <code>joblib</code> (a Python-only "pickle"). <b>ONNX</b> is a neutral file format describing the trees as a graph of operations, runnable by the small <code>onnxruntime</code> library on Windows, Linux, Raspberry Pi, phones…</p>
+  <p><b>Parity check:</b> ONNX uses 32-bit numbers, scikit-learn 64-bit; in rare cases a value sitting exactly on a threshold could flip. We checked all 5,577 windows: <b>0 differences</b> (max probability difference &lt; 0.000001).</p>
+  <h3>3 · Speed &amp; memory</h3>
+  <table>
+    <tr><th>Measurement (laptop CPU, single thread)</th><th class="num">Median</th></tr>
+    <tr><td>Feature extraction, one 0.17 s window</td><td class="num">4.3 ms</td></tr>
+    <tr><td>ONNX model inference, one window</td><td class="num">0.013 ms</td></tr>
+    <tr><td>Features + inference, one window</td><td class="num">4.2 ms</td></tr>
+    <tr><td>Whole 10 s recording (117 windows)</td><td class="num">59 ms</td></tr>
+  </table>
+  <p>Notice: almost all the time is spent computing features (FFTs), not in the model. The window covers 170 ms of signal and is analysed in ~5 ms → easily real-time.</p>
+  <p><code>edge/edge_infer.py</code> is a standalone script that needs only <b>NumPy, SciPy and onnxruntime</b> — the folder you would copy to a device. It also runs the physics knock check, so it gives the same final answer as the dashboard. Note the trade-off: on <i>unseen</i> bearings the small model scores 0.494 vs 0.553 for the full one (the choice rule only looked at seen-bearing accuracy).</p>
+  <div class="honest">All timings were measured on a development laptop, <b>not on edge hardware</b>. A Raspberry Pi would be several times slower (still likely fast enough, but unmeasured).</div>
+</section>
+
+<!-- ===================================================== 14 -->
+<section class="chapter" id="rl">
+  <h2>14 · What reinforcement learning is</h2>
+  <div class="tldr">An "agent" learns what to DO by trial and error: it tries actions in an environment, receives rewards or penalties, and gradually prefers actions that lead to more total reward.</div>
+  <div class="analogy">Training a dog: it does something, you give a treat or say "no". Nobody shows the dog the correct answer for every situation — it figures out from rewards which behaviour pays off. Or: playing a video game thousands of times until you know which moves win.</div>
+  <h3>The vocabulary</h3>
+  <table>
+    <tr><th>Term</th><th>Meaning</th><th>In our project</th></tr>
+    <tr><td><b>Agent</b></td><td>The decision-maker</td><td>The PPO policy (a small neural network)</td></tr>
+    <tr><td><b>Environment</b></td><td>The world it acts in</td><td>A simulated bearing on a fan</td></tr>
+    <tr><td><b>Observation</b></td><td>What the agent can see</td><td>16 numbers: diagnosis, confidence, size, health, load, monitoring, inspection results</td></tr>
+    <tr><td><b>Action</b></td><td>What it can do</td><td>Continue · Monitor · Inspect · Reduce load · Stop for maintenance</td></tr>
+    <tr><td><b>Reward</b></td><td>Score after each step</td><td>Production money minus costs; huge penalty for breakdown</td></tr>
+    <tr><td><b>Step / Episode</b></td><td>One decision / one full game</td><td>1 day / 180 days (or until breakdown)</td></tr>
+    <tr><td><b>Policy</b></td><td>The agent's strategy: situation → action</td><td>Saved as <code>models/ppo_agent.zip</code></td></tr>
+  </table>
+  <p>Why not supervised learning here? There is no answer key saying "on day 37 the correct action was inspect". Only the <b>consequences</b> tell us what was good — sometimes much later (a breakdown 20 days after a bad decision). RL is designed for exactly that.</p>
+</section>
+
+<!-- ===================================================== 15 -->
+<section class="chapter" id="sim">
+  <h2>15 · Our simulator — play it!</h2>
+  <div class="tldr">We built a "maintenance game" where a hidden crack grows day by day. The agent only sees noisy diagnoses — sampled from the real model's mistakes on unseen bearings — and must decide what to do.</div>
+  <h3>The hidden truth (agent can't see it)</h3>
+  <ul>
+    <li>35% of games start with a small fault; otherwise a healthy bearing gets a fault with 1.5% chance per day.</li>
+    <li><b>Degradation</b> grows from 0 to 1, faster at higher load and faster as it gets worse.</li>
+    <li>Daily breakdown chance = 0.3 × degradation⁵ × load factor. At 0.5 → ~1% per day; at 0.75 → ~7%; at 1.0 → ~30%.</li>
+  </ul>
+  <h3>What the agent sees</h3>
+  <p>Each measurement is <b>sampled from the real Random Forest's out-of-fold predictions on unseen bearings</b>. So if the real model confuses outer-race faults with ball faults 87% of the time, so does the simulator. The agent trains with realistic mistakes.</p>
+  <h3>Actions and their (illustrative) costs</h3>
+  <table>
+    <tr><th>Action</th><th>Effect</th></tr>
+    <tr><td>Continue operation</td><td>+10 per day production, normal wear</td></tr>
+    <tr><td>Monitor more frequently</td><td>−1 to switch on, −0.2/day; measurements daily instead of weekly and more accurate</td></tr>
+    <tr><td>Schedule inspection</td><td>−4 and 1 day downtime; reveals the true degradation</td></tr>
+    <tr><td>Reduce operating load</td><td>+6 per day; wear and breakdown risk halved</td></tr>
+    <tr><td>Stop for maintenance</td><td>−30 and 3 days downtime; new bearing. Extra −15 if the bearing was actually healthy</td></tr>
+    <tr><td><i>Breakdown</i></td><td>−300 and the game ends (all future production lost)</td></tr>
+    <tr><td><i>Safety</i></td><td>−5 per day of running while truly critical (degradation ≥ 0.75)</td></tr>
+  </table>
+  <div class="demo" id="demo-game">
+    <div class="dtitle">You are the maintenance engineer (simplified version, 90 days, load 2 HP)</div>
+    <div class="game">
+      <div>
+        <div class="screen" id="gmScreen"></div>
+        <div class="actions" id="gmActions">
+          <button data-a="0">▶ Continue</button><button data-a="1">👁 Monitor</button><button data-a="2">🔍 Inspect</button><button data-a="3">⬇ Reduce load</button><button data-a="4">🔧 Stop & replace</button>
+          <button data-a="c7">Continue ×7</button>
+        </div>
+        <div class="controls"><button id="gmNew" class="primary">New game</button><button id="gmCompare">How would the rules / run-to-failure do on this same bearing?</button></div>
+        <div class="out" id="gmCmp"></div>
+      </div>
+      <div>
+        <div class="log" id="gmLog"></div>
+        <canvas id="cvGame" height="150" style="margin-top:8px"></canvas>
+        <div class="small muted">The hidden degradation is revealed at the end of the game.</div>
+      </div>
+    </div>
+  </div>
+  <div class="honest">Every cost, wear rate and failure probability is an <b>illustrative assumption</b> (in <code>config.yaml</code>), not plant data. The game teaches the method; it is not a validated maintenance policy.</div>
+</section>
+
+<!-- ===================================================== 16 -->
+<section class="chapter" id="nn">
+  <h2>16 · Neural networks &amp; gradient descent</h2>
+  <div class="tldr">A neural network is layers of simple calculators with adjustable "knobs" (weights). Training nudges every knob a tiny bit in the direction that reduces the error — that's gradient descent.</div>
+  <p>The PPO agent's brain is a small <b>neural network</b> (it is the only neural network in this project — the Random Forests are not neural networks):</p>
+  <svg viewBox="0 0 640 210" style="width:100%" id="svNet" role="img" aria-label="Network diagram: 16 inputs, two hidden layers of 64, 5 outputs"></svg>
+  <ul>
+    <li><b>Input</b>: the 16 observation numbers.</li>
+    <li><b>Each neuron</b> multiplies its inputs by weights, adds them up, then applies a simple bend (tanh). Example: 0.8×0.5 + 0.2×(−1.0) + 0.1 = 0.3 → tanh(0.3) = 0.29.</li>
+    <li><b>Two hidden layers</b> of 64 neurons find useful combinations ("fault diagnosed AND high load").</li>
+    <li><b>Output</b>: 5 scores, turned into 5 probabilities by <b>softmax</b>.</li>
+  </ul>
+  <div class="demo" id="demo-softmax">
+    <div class="dtitle">Softmax: scores → probabilities</div>
+    <div id="smSliders" class="controls"></div>
+    <div class="bars" id="smBars"></div>
+    <div class="out small muted">Softmax: p = e^score ÷ sum of all e^scores. Higher score → higher probability; all probabilities add up to 100%. Raise one score by 1 and its probability multiplies by e ≈ 2.7 relative to the others.</div>
+  </div>
+  <h3>Gradient descent: how the knobs get tuned</h3>
+  <p>Training defines a <b>loss</b> = "how bad the network currently is". For each weight we compute the <b>gradient</b> (slope): if I increase this weight a little, does the loss go up or down? Then we move each weight a small step <b>downhill</b>. The step size is the <b>learning rate</b> (our PPO: 0.0003).</p>
+  <div class="analogy">Walking down a foggy mountain: you can't see the valley, but you can feel which way the ground slopes under your feet. Take a small step downhill, feel again, repeat.</div>
+  <div class="demo" id="demo-gd">
+    <div class="dtitle">Gradient descent on one knob</div>
+    <div class="controls">
+      <label>Learning rate <input type="range" id="gdLr" min="0.05" max="1.1" step="0.05" value="0.2"> <b id="gdLrV"></b></label>
+      <button id="gdStep" class="primary">Take a step</button><button id="gdRun">10 steps</button><button id="gdReset">Reset</button>
+    </div>
+    <canvas id="cvGd" height="200"></canvas>
+    <div class="out" id="gdOut"></div>
+  </div>
+  <p>Our network has about <b>10,000 weights</b>: (16×64 + 64) + (64×64 + 64) + (64×5 + 5) for the policy, plus a similar "value" network. Gradient descent adjusts all of them at once, using calculus (backpropagation) to get every slope efficiently.</p>
+</section>
+
+<!-- ===================================================== 17 -->
+<section class="chapter" id="ppo">
+  <h2>17 · How PPO training works inside</h2>
+  <div class="tldr">PPO plays many days in the simulator, checks which actions turned out better than expected, makes those a bit more likely and worse ones a bit less likely — but never changes too much at once (the "clip").</div>
+  <h3>The training loop (what happened during the ~3–7 minutes per seed)</h3>
+  <ol>
+    <li><b>Play:</b> 8 copies of the simulator × 512 days = <b>4,096 decisions</b>, choosing actions by the current probabilities (so it explores).</li>
+    <li><b>Score:</b> for each decision compute the <b>return</b> (the rewards that followed, future ones discounted) and the <b>advantage</b> = return − what the value network expected.</li>
+    <li><b>Learn:</b> 10 passes over the 4,096 decisions in mini-batches of 256: raise probabilities of positive-advantage actions, lower negative ones, with clipping; improve the value network's predictions.</li>
+    <li><b>Repeat</b> ~122 times = 500,000 simulated days (~2,900 games).</li>
+  </ol>
+  <h3>Discounting: money today vs money later</h3>
+  <p>Future rewards count slightly less: a reward n days ahead is multiplied by γⁿ (γ = 0.99). This makes the agent care about the next ~100 days most.</p>
+  <div class="demo" id="demo-gamma">
+    <div class="dtitle">How much is +10 worth if it comes later?</div>
+    <div class="controls"><label>γ (gamma) <input type="range" id="gmG" min="0.9" max="0.999" step="0.001" value="0.99"> <b id="gmGv"></b></label></div>
+    <div class="out" id="gmGout"></div>
+  </div>
+  <h3>Advantage: "better or worse than expected?"</h3>
+  <div class="example">The value network predicts that from today's situation the future is worth 1,200. The agent chose "Inspect" and the actual (discounted) outcome was 1,260. Advantage = +60 → make "Inspect" a bit more likely in situations like this. If the outcome had been 1,100, advantage = −100 → make it less likely.</div>
+  <h3>The clip: small, safe steps</h3>
+  <p>One lucky game shouldn't rewrite the whole strategy. PPO limits each update so the new probability of an action is at most <b>±20%</b> different from the old one (ratio between 0.8 and 1.2). That's the "Proximal" (= nearby) in Proximal Policy Optimization.</p>
+  <div class="demo" id="demo-ppo">
+    <div class="dtitle">Watch a policy learn in one situation: "Warning — fault diagnosed, size 0.007″"</div>
+    <div class="controls">
+      <label><input type="checkbox" id="ppClip" checked> clip at ±20%</label>
+      <label>Learning rate <input type="range" id="ppLr" min="0.05" max="2" step="0.05" value="0.5"> <b id="ppLrV"></b></label>
+      <button id="ppOne" class="primary">Play 1 day & learn</button><button id="pp50">50 days</button><button id="ppReset">Reset</button>
+    </div>
+    <div class="bars" id="ppBars"></div>
+    <div class="log" id="ppLog" style="max-height:120px;margin-top:8px"></div>
+    <div class="out small muted">Hidden "true" value of each action in this toy situation: Stop 5 · Monitor 3 · Continue 2 · Inspect 1 · Reduce 0. The agent doesn't know them; it only sees noisy outcomes. Turn off the clip and raise the learning rate to see why big jumps are risky.</div>
+  </div>
+  <h3>Two more ingredients</h3>
+  <ul>
+    <li><b>Entropy bonus</b> (0.01): a small reward for staying a bit random, so it keeps exploring instead of locking in early.</li>
+    <li><b>Reward normalisation</b>: rewards range from +10 to −300; they are rescaled during training so updates stay stable.</li>
+  </ul>
+  <h3>Results (1,000 test games, same games for every policy)</h3>
+  <table>
+    <tr><th>Policy</th><th class="num">Avg reward</th><th class="num">Breakdowns / game</th><th class="num">Availability</th></tr>
+    <tr><td><b>PPO agent + safety shield</b> (what the dashboard recommends)</td><td class="num"><b>1,597</b></td><td class="num">0.000</td><td class="num">95.4%</td></tr>
+    <tr><td>PPO agent alone (best of 3 seeds)</td><td class="num">1,622</td><td class="num">0.003</td><td class="num">96.0%</td></tr>
+    <tr><td>Rule-based engineer</td><td class="num">1,535</td><td class="num">0.082</td><td class="num">91.5%</td></tr>
+    <tr><td>Replace every 30 days</td><td class="num">1,080</td><td class="num">0.254</td><td class="num">72.8%</td></tr>
+    <tr><td>Run to failure</td><td class="num">451</td><td class="num">0.928</td><td class="num">41.4%</td></tr>
+    <tr><td>Random actions</td><td class="num">−583</td><td class="num">0.001</td><td class="num">43.1%</td></tr>
+  </table>
+  <p>On the same games, the shielded agent beat the rules by <b>+62 per game (95% interval +42 to +81)</b> and the unshielded one by +86. All three training seeds (three random starting points — same code, different luck) beat the rules: 1,622 / 1,571 / 1,549. Before the diagnosis was improved they scored 1,642 / 1,381 / 777 — better information made training much more reliable.</p>
+  <div class="honest">What the agent learned can surprise you: crack-<b>size</b> estimates are unreliable on unseen bearings, so in the simulator most "Critical" readings are false alarms. The agent learned to treat "Critical" alone as weak evidence and often keeps running, relying on other clues — with zero breakdowns in simulation. On a real Critical reading that is not acceptable advice, so the project adds a <b>safety shield</b>: on a Critical rating the agent may not recommend "Continue" or "Monitor", and the rule-based action is used instead (the dashboard says when this happens). It costs about 1.5% simulated reward and still has zero breakdowns. RL optimises exactly the game you give it, including its blind spots — a shield is a common way to add hard safety rules on top.</div>
+</section>
+
+<!-- ===================================================== 18 -->
+<section class="chapter" id="whatif">
+  <h2>18 · "What if we keep running?" — Monte Carlo simulation</h2>
+  <div class="tldr">We can't know the future, so we simulate it 300 times from the current diagnosis and count how often the bearing breaks within 7, 30, 90 and 180 days.</div>
+  <p>The diagnosis doesn't reveal the exact hidden degradation, so each simulated future first <b>draws a plausible starting state</b>: fault type from the class probabilities, degradation from the estimated size band (e.g. 0.014″ → between 0.25 and 0.5). Then it runs the simulator with "continue" every day.</p>
+  <div class="example">Outer race 0.014″ at 2 HP: in 300 simulated futures, 10% broke within 7 days, 98% within 30 days, 100% within 90 days. This is a <b>simulated</b> estimate based on the assumed wear rates — "Monte Carlo" just means "estimate by repeated random simulation", like rolling dice many times to learn the odds.</div>
+</section>
+
+<!-- ===================================================== 19 -->
+<section class="chapter" id="llm">
+  <h2>19 · The AI assistant &amp; its guard</h2>
+  <div class="tldr">A large language model (Gemini) writes the explanations, but it only receives the analysis report as data and strict rules. A "guard" then checks every number in its answer against the report.</div>
+  <h3>What a large language model (LLM) is</h3>
+  <p>An LLM is a huge neural network trained on enormous amounts of text to <b>predict the next word</b>. Doing that well makes it able to explain, summarise and answer questions fluently.</p>
+  <div class="analogy">It's like a very well-read assistant with no access to your machine. Ask "how is bearing 3?" with no data, and it may confidently make something up — this is called <b>hallucination</b>. Hand it the inspection report first and ask it to only use that, and it becomes useful and trustworthy.</div>
+  <h3>How the project keeps it honest (grounding)</h3>
+  <ol>
+    <li><b>Only the report:</b> the <code>AnalysisReport</code> is converted to JSON (diagnosis, probabilities, health, envelope peaks, top features vs healthy, RL action, simulated risk, caveats). Raw signals are not sent.</li>
+    <li><b>Strict system prompt:</b> "use only the report; never invent readings, predictions or actions; say 'not available' if missing; always call simulated numbers simulated".</li>
+    <li><b>Real simulations for what-if questions:</b> "What if we reduce the load?" actually runs the simulator, then gives the result to the model.</li>
+    <li><b>Number guard:</b> every number in the answer is checked against the report; unmatched ones are shown as a warning.</li>
+    <li><b>Offline fallback:</b> with no API key or no internet, 7 standard questions are answered from templates filled with the real report values.</li>
+  </ol>
+  <div class="demo" id="demo-guard">
+    <div class="dtitle">Be the guard: check an AI answer against the report</div>
+    <pre id="grReport" class="small"></pre>
+    <textarea id="grAns">The bearing has an outer race fault with 94% confidence, the envelope peak is at 104.6 Hz, and there is an 87% chance of failure within 2 weeks.</textarea>
+    <div class="controls"><button id="grCheck" class="primary">Check numbers</button></div>
+    <div class="out" id="grOut"></div>
+  </div>
+  <p class="small muted">Rules used (same as <code>pdm/llm/guard.py</code>): a number matches if a report value equals it after rounding to the same decimals; 0.94 also matches "94%"; small whole numbers ≤ 10 (like "3 harmonics") are ignored.</p>
+</section>
+
+<!-- ===================================================== 20 -->
+<section class="chapter" id="pipeline">
+  <h2>20 · One "Analyze" click, step by step</h2>
+  <div class="tldr">Everything at runtime happens inside one function, <code>analyze(signal, fs, rpm, load)</code>, which returns one <code>AnalysisReport</code>. The dashboard and chat only show that report — so they can't invent results.</div>
+  <p>Click each step. Example: the bundled sample "Outer race 0.014″ @ 2 HP" (3 s, 12 kHz, 1749 RPM).</p>
+  <div class="flow" id="flow"></div>
+  <div class="flowdetail" id="flowDetail"></div>
+  <h3>Phase 1 scripts (run once)</h3>
+  <table>
+    <tr><th>Script</th><th>What it does</th></tr>
+    <tr><td><code>01_download_data.py</code></td><td>Download 48 CWRU files, cut demo samples</td></tr>
+    <tr><td><code>02_build_features.py</code></td><td>Resample, window, 31 features → <code>features.csv</code></td></tr>
+    <tr><td><code>03_train_classifier.py</code></td><td>Train + evaluate fault RF and severity RF</td></tr>
+    <tr><td><code>04_edge_benchmark.py</code></td><td>Size study, ONNX export, parity, speed</td></tr>
+    <tr><td><code>05_train_rl.py</code></td><td>PPO training, 3 seeds × 500k steps</td></tr>
+    <tr><td><code>06_evaluate_rl.py</code></td><td>Compare with baselines on 1,000 games</td></tr>
+    <tr><td><code>07_make_figures.py</code></td><td>Architecture diagram</td></tr>
+  </table>
+</section>
+
+<!-- ===================================================== 21 -->
+<section class="chapter" id="limits">
+  <h2>21 · Limitations &amp; honesty</h2>
+  <div class="tldr">Know what the numbers do and don't mean before trusting them on a real fan.</div>
+  <ol>
+    <li><b>Lab data, not a fan.</b> CWRU is a 2 HP motor rig. A real PA fan has different speeds, structure, sensor placement and noise. Retraining and validation on fan data would be needed.</li>
+    <li><b>Artificial faults.</b> CWRU damage was machined, not grown naturally. Each fault type and size is <b>one physical bearing</b>.</li>
+    <li><b>Seen vs unseen bearings.</b> 99.9% when the bearing was seen at another load; 46% on never-seen bearings. Healthy vs damaged is reliable; fault type and size are not.</li>
+    <li><b>Simulated decisions.</b> The RL agent's world, costs and failure rates are assumptions. Its choices show the method, not a validated plant policy.</li>
+    <li><b>No edge hardware.</b> Speeds measured on a laptop.</li>
+    <li><b>Rule-based health.</b> Healthy / Warning / Critical comes from written rules, not from measurement.</li>
+    <li><b>Bundled samples were in training.</b> The app detects this and warns that ~100% confidence is expected.</li>
+  </ol>
+</section>
+
+<!-- ===================================================== 22 -->
+<section class="chapter" id="glossary">
+  <h2>22 · Glossary</h2>
+  <input type="text" id="glFilter" placeholder="Filter terms… (e.g. gini, onnx, reward)" style="width:100%;max-width:420px">
+  <dl class="gloss" id="glList"></dl>
+</section>
+
+<!-- ===================================================== 23 -->
+<section class="chapter" id="quiz">
+  <h2>23 · Final quiz</h2>
+  <p>21 questions. Pick an answer to see instantly if it is right, with an explanation.</p>
+  <div class="quiz" id="quizBox"></div>
+  <p id="score"></p>
+  <button id="quizReset">Start over</button>
+</section>
+</main>
+</div>
+<script>
+"use strict";
+/* ---------------------------------------------------------------- helpers */
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const cssv = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+function gaussFrom(rng){const u=Math.max(rng(),1e-12),v=rng();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);}
+const fmt = (x,d=2) => Number(x).toFixed(d);
+const pct = (x,d=0) => (100*x).toFixed(d)+"%";
+const REDRAW = [];
+function safe(name, fn){ try{ fn(); }catch(e){ console.error("demo "+name+" failed:", e); } }
+
+function prep(cv){
+  const dpr = window.devicePixelRatio || 1;
+  if(!cv.dataset.h) cv.dataset.h = cv.getAttribute("height");
+  const h = +cv.dataset.h, w = Math.max(cv.clientWidth, 280);
+  cv.style.height = h + "px"; cv.width = Math.round(w*dpr); cv.height = Math.round(h*dpr);
+  const ctx = cv.getContext("2d"); ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,w,h);
+  return {ctx, w, h};
+}
+/* generic chart: series of lines / bars / dots, optional vertical marker lines */
+function chart(cv, o){
+  const {ctx, w, h} = prep(cv);
+  const P = {l:46, r:10, t:10, b:o.xlabel?30:18};
+  const X = v => P.l + (v-o.xr[0])/(o.xr[1]-o.xr[0])*(w-P.l-P.r);
+  const Y = v => h-P.b - (v-o.yr[0])/(o.yr[1]-o.yr[0])*(h-P.t-P.b);
+  ctx.font = "11px sans-serif"; ctx.fillStyle = cssv("--muted"); ctx.strokeStyle = cssv("--line"); ctx.lineWidth = 1;
+  for(let i=0;i<=4;i++){
+    const yv = o.yr[0] + i*(o.yr[1]-o.yr[0])/4, yy = Y(yv);
+    ctx.beginPath(); ctx.moveTo(P.l, yy); ctx.lineTo(w-P.r, yy); ctx.stroke();
+    ctx.textAlign="right"; ctx.fillText(Math.abs(yv)>=100?yv.toFixed(0):Math.abs(yv)<1e-12?0:+yv.toPrecision(2), P.l-4, yy+4);
+  }
+  for(let i=0;i<=5;i++){
+    const xv = o.xr[0] + i*(o.xr[1]-o.xr[0])/5;
+    ctx.textAlign="center"; ctx.fillText(+xv.toFixed(o.xdec ?? 2), X(xv), h-P.b+13);
+  }
+  if(o.xlabel){ctx.textAlign="center"; ctx.fillText(o.xlabel, (P.l+w-P.r)/2, h-3);}
+  ctx.save(); ctx.beginPath(); ctx.rect(P.l, P.t-2, w-P.l-P.r, h-P.t-P.b+4); ctx.clip();
+  for(const v of (o.vlines||[])){
+    ctx.strokeStyle = v.color; ctx.setLineDash(v.dash?[5,4]:[]); ctx.lineWidth = 1.3;
+    ctx.beginPath(); ctx.moveTo(X(v.x), P.t); ctx.lineTo(X(v.x), h-P.b); ctx.stroke();
+    if(v.label){ctx.fillStyle=v.color; ctx.textAlign="left"; ctx.fillText(v.label, X(v.x)+3, P.t+10+(v.dy||0));}
+  }
+  ctx.setLineDash([]);
+  for(const s of o.series){
+    ctx.strokeStyle = ctx.fillStyle = s.color || cssv("--accent"); ctx.lineWidth = s.lw || 1.5;
+    if(s.mode==="bars"){
+      const bw = Math.max(1, (X(s.x[1]??1)-X(s.x[0]??0))*0.8);
+      s.x.forEach((xv,i)=>{ ctx.fillRect(X(xv)-bw/2, Y(Math.max(s.y[i],o.yr[0])), bw, Y(o.yr[0])-Y(Math.max(s.y[i],o.yr[0]))); });
+    } else if(s.mode==="dots"){
+      s.x.forEach((xv,i)=>{ ctx.beginPath(); ctx.arc(X(xv), Y(s.y[i]), s.r||3.5, 0, 7); ctx.fill(); });
+    } else {
+      ctx.beginPath(); s.x.forEach((xv,i)=> i?ctx.lineTo(X(xv),Y(s.y[i])):ctx.moveTo(X(xv),Y(s.y[i]))); ctx.stroke();
+    }
+  }
+  ctx.restore();
+  return {ctx, X, Y, w, h};
+}
+function bars(el, items, max=1, fmtv=v=>pct(v), colors){
+  el.innerHTML = items.map(([label,v],i)=>`<div class="row"><span>${label}</span><div class="track"><div class="fill" style="width:${Math.max(0,Math.min(100,100*v/max))}%;${colors?`background:${colors[i]}`:""}"></div></div><span class="num">${fmtv(v)}</span></div>`).join("");
+}
+const HCLASS = {Healthy:"h", Warning:"w", Critical:"c"};
+const pill = s => `<span class="pill ${HCLASS[s]}">${s}</span>`;
+
+/* the project's health rules (pdm/health.py) */
+function health(fault, conf, size, load){
+  const reasons=[]; const low = conf < 0.60;
+  if(fault==="Normal"){
+    if(conf>=0.70) return {s:"Healthy", stage:"no fault detected", low, reasons:[`Normal with confidence ${fmt(conf)} ≥ 0.70`]};
+    return {s:"Warning", stage:"uncertain — possibly early fault", low, reasons:[`Normal but confidence ${fmt(conf)} < 0.70`]};
+  }
+  if(size>=0.021) return {s:"Critical", stage:"advanced damage", low, reasons:[`size ${size}″ ≥ 0.021″`]};
+  if(size===0.014 && load>=2) return {s:"Critical", stage:"moderate damage under high load", low, reasons:[`0.014″ at ${load} HP ≥ 2 HP`]};
+  if(size===0.014) return {s:"Warning", stage:"moderate damage", low, reasons:["size 0.014″ at low load"]};
+  return {s:"Warning", stage:"early-stage damage", low, reasons:["size 0.007″"]};
+}
+const MULT = {bpfo:3.5848, bpfi:5.4152, bsf:4.7135, ftf:0.39828};
+
+/* bearing illustration balls */
+safe("balls", ()=>{
+  const g = $("#balls"); let html="";
+  for(let i=0;i<9;i++){const a=i/9*2*Math.PI; html+=`<circle cx="${130+90*Math.cos(a)}" cy="${130+90*Math.sin(a)}" r="17" fill="var(--panel2)" stroke="var(--text)" stroke-width="1.5"/>`;}
+  g.innerHTML = html;
+});
+
+/* ---------------------------------------------------------------- 2 sampling */
+safe("sampling", ()=>{
+  const f=$("#smpF"), s=$("#smpS");
+  function draw(){
+    const F=+f.value, S=+s.value; $("#smpFv").textContent=F+" Hz"; $("#smpSv").textContent=S+" samples/s";
+    const tx=[],ty=[]; for(let i=0;i<=1000;i++){tx.push(i/1000); ty.push(Math.sin(2*Math.PI*F*i/1000));}
+    const sx=[],sy=[]; for(let k=0;k<=S;k++){sx.push(k/S); sy.push(Math.sin(2*Math.PI*F*k/S));}
+    chart($("#cvSampling"),{xr:[0,1],yr:[-1.2,1.2],xlabel:"time (s)",series:[
+      {x:tx,y:ty,color:cssv("--line"),lw:2},{x:sx,y:sy,color:cssv("--c2"),lw:1.5},{x:sx,y:sy,mode:"dots",color:cssv("--c2")}]});
+    let msg;
+    if(S>2*F) msg=`✅ ${S} samples/s is more than 2 × ${F} = ${2*F}. The red dots follow the true grey wave: you can see ${F} cycles.`;
+    else { const al=Math.abs(F-Math.round(F/S)*S); msg=`⚠️ Aliasing! ${S} samples/s is not more than 2 × ${F} = ${2*F}. The red line shows a fake ${al} Hz wave (${al===0?"it even looks flat":"slower than the real one"}).`; }
+    $("#smpOut").textContent=msg;
+  }
+  f.oninput=s.oninput=draw; draw(); REDRAW.push(draw);
+});
+
+/* simulated bearing vibration (used by the knock & envelope demos) */
+function bearingSignal(fault, rpm, fs, T, seed, opt={}){
+  const rng=mulberry32(seed), n=Math.round(fs*T), x=new Float64Array(n), fr=rpm/60;
+  const res=opt.res||3200, tau=opt.tau||0.0006, noise=opt.noise??0.06;
+  for(let i=0;i<n;i++) x[i]=noise*gaussFrom(rng)+0.05*Math.sin(2*Math.PI*fr*i/fs);
+  if(fault==="Normal") return {x, fd:null};
+  const key={"Outer race":"bpfo","Inner race":"bpfi","Ball":"bsf"}[fault], fd=MULT[key]*fr;
+  const ringLen=Math.round(tau*fs*8);
+  for(let t=rng()*0.002; t<T; t+=1/fd){
+    let amp=1;
+    if(fault==="Inner race") amp=0.25+0.75*(0.5+0.5*Math.cos(2*Math.PI*fr*t));
+    if(fault==="Ball") amp=0.35*(0.5+0.5*Math.cos(2*Math.PI*MULT.ftf*fr*t))*(0.6+0.8*rng());
+    const t0=t+(fault==="Ball"?(rng()-0.5)*0.0008:0), i0=Math.floor(t0*fs);
+    for(let j=0;j<ringLen && i0+j<n;j++) if(i0+j>=0) x[i0+j]+=amp*Math.exp(-j/(tau*fs))*Math.sin(2*Math.PI*res*j/fs);
+  }
+  return {x, fd};
+}
+
+/* ---------------------------------------------------------------- 3 knock */
+safe("knock", ()=>{
+  const sel=$("#knFault"), r=$("#knRpm");
+  function draw(){
+    const rpm=+r.value; $("#knRpmV").textContent=rpm+" RPM";
+    const fs=12000, T=0.1, {x,fd}=bearingSignal(sel.value,rpm,fs,T,11);
+    const tx=[...x].map((_,i)=>i/fs);
+    chart($("#cvKnock"),{xr:[0,T],yr:[-1.2,1.2],xlabel:"time (s) — 0.1 seconds",series:[{x:tx,y:[...x],lw:1}]});
+    const fr=rpm/60;
+    $("#knOut").innerHTML = fd ? `Shaft: ${rpm} ÷ 60 = <b>${fmt(fr)}</b> turns/s. ${sel.value} multiplier ${({"Outer race":MULT.bpfo,"Inner race":MULT.bpfi,"Ball":MULT.bsf})[sel.value]} → <b>${fmt(fd,1)} knocks per second</b>, i.e. about ${Math.round(fd*T)} knocks in this 0.1 s view.`
+      : `Shaft: ${fmt(fr)} turns/s. A healthy bearing: just small random vibration and a gentle shaft-speed wobble — no repeating knocks.`;
+  }
+  sel.onchange=r.oninput=draw; draw(); REDRAW.push(draw);
+});
+
+/* ---------------------------------------------------------------- 4 FFT */
+safe("fft", ()=>{
+  const ids=["ffF1","ffA1","ffF2","ffA2","ffN"];
+  function draw(){
+    const [f1,a1,f2,a2,nz]=ids.map(i=>+$("#"+i).value); $("#ffF1v").textContent=f1+" Hz"; $("#ffF2v").textContent=f2+" Hz";
+    const N=512, rng=mulberry32(5), x=[];
+    for(let i=0;i<N;i++){const t=i/N; x.push(a1/10*Math.sin(2*Math.PI*f1*t)+a2/10*Math.sin(2*Math.PI*f2*t)+nz/20*gaussFrom(rng));}
+    chart($("#cvFftT"),{xr:[0,1],yr:[-2.2,2.2],xlabel:"time (s)",series:[{x:x.map((_,i)=>i/N),y:x,lw:1}]});
+    const fx=[],fy=[];
+    for(let k=0;k<=120;k++){let re=0,im=0;for(let i=0;i<N;i++){const a=2*Math.PI*k*i/N;re+=x[i]*Math.cos(a);im-=x[i]*Math.sin(a);}fx.push(k);fy.push(2*Math.hypot(re,im)/N);}
+    chart($("#cvFftF"),{xr:[0,120],yr:[0,1.1],xlabel:"frequency (Hz)",xdec:0,series:[{x:fx,y:fy,mode:"bars",color:cssv("--c3")}]});
+  }
+  ids.forEach(i=>$("#"+i).oninput=draw); draw(); REDRAW.push(draw);
+});
+
+/* ---------------------------------------------------------------- 5 envelope */
+safe("envelope", ()=>{
+  const sel=$("#enFault"), r=$("#enRpm");
+  function draw(){
+    const rpm=+r.value; $("#enRpmV").textContent=rpm+" RPM";
+    const fs=12000, T=0.5, {x}=bearingSignal(sel.value,rpm,fs,T,21,{res:3500,tau:0.0008,noise:0.12});
+    const n=x.length, M=12, env=new Float64Array(n); let acc=0;
+    for(let i=0;i<n;i++){acc+=Math.abs(x[i]); if(i>=M) acc-=Math.abs(x[i-M]); env[i]=acc/Math.min(i+1,M);}
+    let mean=0; for(const v of env) mean+=v; mean/=n;
+    const show=Math.round(0.06*fs), tx=[],raw=[],en=[];
+    for(let i=0;i<show;i++){tx.push(i/fs);raw.push(x[i]);en.push(env[i]*1.6);}
+    chart($("#cvEnvRaw"),{xr:[0,0.06],yr:[-1.2,1.2],xlabel:"time (s): grey = raw ringing, coloured = envelope (outline)",xdec:3,series:[{x:tx,y:raw,color:cssv("--line"),lw:1},{x:tx,y:en,color:cssv("--c2"),lw:1.6}]});
+    const fx=[],fy=[];
+    for(let f=2;f<=600;f+=2){let re=0,im=0;for(let i=0;i<n;i++){const a=2*Math.PI*f*i/fs,v=env[i]-mean;re+=v*Math.cos(a);im-=v*Math.sin(a);}fx.push(f);fy.push(Math.hypot(re,im)/n);}
+    const mx=Math.max(...fy), fr=rpm/60, med=[...fy].sort((a,b)=>a-b)[fy.length>>1];
+    const vl=[["BPFO",MULT.bpfo,"--c1"],["BPFI",MULT.bpfi,"--c3"],["BSF",MULT.bsf,"--c4"]].map(([l,m,c],j)=>({x:m*fr,color:cssv(c),dash:true,label:l,dy:j*12}));
+    chart($("#cvEnvSpec"),{xr:[0,600],yr:[0,mx*1.15],xlabel:"envelope spectrum: frequency (Hz) — dashed lines = expected knock rates",xdec:0,series:[{x:fx,y:fy,lw:1.3}],vlines:vl});
+    const k=fy.indexOf(mx), fpk=fx[k];
+    const near=[["BPFO (outer race)",MULT.bpfo],["BPFI (inner race)",MULT.bpfi],["BSF (ball)",MULT.bsf]].map(([l,m])=>[l,m*fr]).sort((a,b)=>Math.abs(a[1]-fpk)-Math.abs(b[1]-fpk))[0];
+    $("#enOut").innerHTML = sel.value==="Normal" ? `No peak stands out (tallest is ${fmt(mx/med,1)}× the background level) — nothing knocks.`
+      : `Tallest peak at <b>${fpk} Hz</b>, ${fmt(mx/med,1)}× the background level. Closest expected knock rate: <b>${near[0]} = ${fmt(near[1],1)} Hz</b>.`;
+  }
+  sel.onchange=r.oninput=draw; draw(); REDRAW.push(draw);
+});
+
+/* ---------------------------------------------------------------- 6 windows */
+safe("windows", ()=>{
+  const L=$("#wnLen"), ov=$("#wnOv");
+  function draw(){
+    const sec=+L.value, o=+ov.value; $("#wnLenV").textContent=sec+" s";
+    const N=Math.round(sec*12000), step=Math.round(2048*(1-o)), n=N<2048?0:1+Math.floor((N-2048)/step);
+    const {ctx,w,h}=prep($("#cvWin"));
+    ctx.fillStyle=cssv("--panel2"); ctx.fillRect(10,h-22,w-20,12);
+    ctx.fillStyle=cssv("--muted"); ctx.font="11px sans-serif"; ctx.fillText("signal ("+N.toLocaleString()+" samples)",12,h-26);
+    const sc=(w-20)/N, cols=[cssv("--c1"),cssv("--c3"),cssv("--c4"),cssv("--c5")];
+    for(let i=0;i<n;i++){ctx.fillStyle=cols[i%4]; ctx.globalAlpha=0.75; ctx.fillRect(10+i*step*sc, 8+(i%4)*14, Math.max(1,2048*sc), 10);}
+    ctx.globalAlpha=1;
+    $("#wnOut").innerHTML=`${N.toLocaleString()} samples, window 2048, step ${step} → <b>${n} windows</b>, each one a separate example (one row of 31 numbers).`;
+  }
+  L.oninput=ov.onchange=draw; draw(); REDRAW.push(draw);
+});
+
+/* ---------------------------------------------------------------- 7 features */
+safe("features", ()=>{
+  const ta=$("#ftIn");
+  const smooth=[0,0.5,0.707,0.5,0,-0.5,-0.707,-0.5,0,0.5,0.707,0.5,0,-0.5,-0.707,-0.5];
+  const presets={smooth, spiky:[...smooth.slice(0,10),3.0,...smooth.slice(10)],
+    rand:(()=>{const r=mulberry32(3);return Array.from({length:24},()=>+(0.5*gaussFrom(r)).toFixed(3));})()};
+  function calc(){
+    const x=ta.value.split(/[\s,;]+/).map(Number).filter(v=>Number.isFinite(v));
+    if(x.length<4){$("#ftOut").textContent="Enter at least 4 numbers.";return;}
+    const n=x.length, m=x.reduce((a,b)=>a+b)/n, v=x.reduce((a,b)=>a+(b-m)**2,0)/n, sd=Math.sqrt(v);
+    const rms=Math.sqrt(x.reduce((a,b)=>a+b*b,0)/n), pk=Math.max(...x.map(Math.abs));
+    const k=x.reduce((a,b)=>a+(b-m)**4,0)/n/(v*v||1), sk=x.reduce((a,b)=>a+(b-m)**3,0)/n/(sd**3||1);
+    $("#ftOut").innerHTML=`<table><tr><th>Feature</th><th class="num">Value</th><th>Meaning</th></tr>
+      <tr><td>count</td><td class="num">${n}</td><td></td></tr>
+      <tr><td>mean</td><td class="num">${fmt(m,3)}</td><td>average level</td></tr>
+      <tr><td>RMS</td><td class="num">${fmt(rms,3)}</td><td>typical size of shaking</td></tr>
+      <tr><td>peak</td><td class="num">${fmt(pk,3)}</td><td>largest swing</td></tr>
+      <tr><td>crest factor</td><td class="num">${fmt(pk/(rms||1),2)}</td><td>peak ÷ RMS (sine ≈ 1.41)</td></tr>
+      <tr><td><b>kurtosis</b></td><td class="num"><b>${fmt(k,2)}</b></td><td>spikiness (noise ≈ 3, sine ≈ 1.5, knocks ≫ 3)</td></tr>
+      <tr><td>skewness</td><td class="num">${fmt(sk,2)}</td><td>lopsidedness</td></tr></table>`;
+  }
+  $("#ftSmooth").onclick=()=>{ta.value=presets.smooth.join(", ");calc();};
+  $("#ftSpiky").onclick=()=>{ta.value=presets.spiky.join(", ");calc();};
+  $("#ftRand").onclick=()=>{ta.value=presets.rand.join(", ");calc();};
+  ta.oninput=calc; ta.value=presets.smooth.join(", "); calc();
+});
+/* ---------------------------------------------------------------- 9 Gini */
+safe("gini", ()=>{
+  const H=[2.8,2.9,3.0,3.1,3.3,3.6], F=[3.4,5.2,6.0,7.5,8.0,20.5];
+  const pts=[...H.map(v=>({v,c:"H"})),...F.map(v=>({v,c:"F"}))];
+  const gini=g=>{if(!g.length)return 0;const p=g.filter(x=>x.c==="H").length/g.length;return 1-p*p-(1-p)*(1-p);};
+  const evalT=t=>{const L=pts.filter(p=>p.v<=t),R=pts.filter(p=>p.v>t);return {L,R,gL:gini(L),gR:gini(R),w:(L.length*gini(L)+R.length*gini(R))/pts.length};};
+  const sl=$("#gnT");
+  function draw(){
+    const t=+sl.value; $("#gnTv").textContent=fmt(t);
+    const X=v=>20+(Math.min(v,8.6)-2.7)/(8.6-2.7)*600, e=evalT(t);
+    let s=`<line x1="20" y1="55" x2="620" y2="55" stroke="var(--line)" stroke-width="2"/>`;
+    pts.forEach((p,i)=>{const x=X(p.v), y=55+(i%2?-14:14);
+      s+=`<circle cx="${x}" cy="${y}" r="7" fill="${p.c==="H"?"var(--c3)":"var(--c2)"}"/><text x="${x}" y="${y+(i%2?-11:20)}" font-size="10" text-anchor="middle">${p.v>8.6?"→"+p.v:p.v}</text>`;});
+    s+=`<line x1="${X(t)}" y1="8" x2="${X(t)}" y2="102" stroke="var(--accent)" stroke-width="2.5" stroke-dasharray="5 3"/>`;
+    $("#svGini").innerHTML=s;
+    const cnt=g=>`${g.filter(x=>x.c==="H").length} healthy + ${g.filter(x=>x.c==="F").length} faulty`;
+    $("#gnOut").innerHTML=`Left (≤ ${fmt(t)}): ${cnt(e.L)} → Gini <b>${fmt(e.gL,3)}</b> · Right: ${cnt(e.R)} → Gini <b>${fmt(e.gR,3)}</b><br>
+      Weighted Gini = (${e.L.length}×${fmt(e.gL,3)} + ${e.R.length}×${fmt(e.gR,3)}) ÷ 12 = <b>${fmt(e.w,3)}</b> <span class="muted">(lower is better; before any split it is 0.500)</span>`;
+  }
+  $("#gnBest").onclick=()=>{
+    const vs=pts.map(p=>p.v).sort((a,b)=>a-b); let best=null;
+    for(let i=0;i<vs.length-1;i++){const t=(vs[i]+vs[i+1])/2; if(t>8.5) continue; const w=evalT(t).w; if(!best||w<best.w-1e-9) best={t,w};}
+    sl.value=best.t; draw();
+    $("#gnOut").innerHTML+=`<br>🔎 The computer tried every midpoint between neighbouring values and kept <b>${fmt(best.t)}</b> (weighted Gini ${fmt(best.w,3)}). It would then keep splitting each side the same way.`;
+  };
+  sl.oninput=draw; draw();
+});
+
+/* ---------------------------------------------------------------- 10 bootstrap */
+safe("bootstrap", ()=>{
+  let seed=1;
+  function draw(){
+    const r=mulberry32(seed++), counts=Array(10).fill(0); const picks=[];
+    for(let i=0;i<10;i++){const k=Math.floor(r()*10); counts[k]++; picks.push(k);}
+    $("#btOut").innerHTML = counts.map((c,i)=>`<span class="${c===0?"oob":c>1?"dup":""}">W${i+1}${c>1?" ×"+c:""}</span>`).join("");
+    const oob=counts.filter(c=>c===0).length, dup=counts.filter(c=>c>1).length;
+    $("#btTxt").innerHTML=`This tree trains on: ${picks.map(k=>"W"+(k+1)).join(", ")}.<br><b>${dup}</b> window(s) drawn more than once (blue), <b>${oob}</b> never drawn (crossed out = "out-of-bag", ${oob*10}%; on average about 37%). Click again — every tree gets a different mix.`;
+  }
+  $("#btDraw").onclick=draw; draw();
+});
+
+/* ---------------------------------------------------------------- 10 forest voting */
+safe("forest", ()=>{
+  const r=mulberry32(7), FEATS=["kurtosis","BPFO","BPFI"], trees=[];
+  for(let t=0;t<9;t++){
+    let f=FEATS.filter(()=>r()<0.75); if(f.length<2) f=[FEATS[t%3],FEATS[(t+1)%3]];
+    trees.push({f, kT:3.4+r()*1.2, oT:3.5+r()*3, iT:3.5+r()*2.5});
+  }
+  const CL=["Normal","Inner race","Outer race","Ball"];
+  function vote(t,x){
+    const k=t.f.includes("kurtosis")?x.k>=t.kT:null, o=t.f.includes("BPFO")?x.o>=t.oT:null, i=t.f.includes("BPFI")?x.i>=t.iT:null;
+    if(![k,o,i].some(v=>v===true)) return "Normal";
+    if(o && (!i || x.o/t.oT>=x.i/t.iT)) return "Outer race";
+    if(i) return "Inner race";
+    return "Ball";
+  }
+  function draw(){
+    const x={k:+$("#rfK").value,o:+$("#rfO").value,i:+$("#rfI").value};
+    $("#rfKv").textContent=fmt(x.k,1); $("#rfOv").textContent=fmt(x.o,1); $("#rfIv").textContent=fmt(x.i,1);
+    const votes=trees.map(t=>vote(t,x));
+    bars($("#rfBars"), CL.map(c=>[c, votes.filter(v=>v===c).length/9]), 1, v=>`${Math.round(v*9)}/9`);
+    $("#rfTrees").innerHTML=trees.map((t,j)=>`<div class="tree"><b>Tree ${j+1}: ${votes[j]}</b><br><span class="muted">sees: ${t.f.join(", ")}</span><br>${t.f.includes("kurtosis")?`kurt ≥ ${fmt(t.kT,1)} `:""}${t.f.includes("BPFO")?`· BPFO ≥ ${fmt(t.oT,1)} `:""}${t.f.includes("BPFI")?`· BPFI ≥ ${fmt(t.iT,1)}`:""}</div>`).join("");
+  }
+  ["#rfK","#rfO","#rfI"].forEach(s=>$(s).oninput=draw); draw();
+});
+
+/* ---------------------------------------------------------------- 11 health */
+safe("health", ()=>{
+  function draw(){
+    const c=$("#hlC").value, conf=+$("#hlConf").value, size=+$("#hlS").value, load=+$("#hlL").value;
+    $("#hlConfV").textContent=pct(conf); $("#hlS").disabled=c==="Normal";
+    const h=health(c,conf,c==="Normal"?null:size,load);
+    $("#hlOut").innerHTML=`${pill(h.s)} <b>${h.stage}</b> — because ${h.reasons.join("; ")}.${h.low?` <br>⚠️ <b>Low confidence — re-measure</b> (top confidence ${pct(conf)} &lt; 60%).`:""} <span class="muted">(rule-based estimate)</span>`;
+  }
+  ["#hlC","#hlS","#hlL"].forEach(s=>$(s).onchange=draw); $("#hlConf").oninput=draw; draw();
+});
+
+/* ---------------------------------------------------------------- 12 split strategies */
+safe("split", ()=>{
+  const rows=["Normal","Inner 0.007″","Inner 0.014″","Outer 0.007″","Ball 0.007″","Ball 0.021″"];
+  const txt={
+    random:"<b>Random windows:</b> windows of the same recording land in BOTH training and test (they overlap 50%, so the test contains near-copies of homework). Project score: <b>macro-F1 1.000</b> — meaningless.",
+    lolo:"<b>Leave-one-load-out</b> (here: test on 3 HP). Whole recordings are kept apart, but the 3 HP test bearing is the <i>same physical bearing</i> as the 0–2 HP training ones. Project score: <b>0.997</b> (averaged over 4 folds).",
+    loso:"<b>Leave-one-size-out</b> (here: hold out every 0.014″ bearing at all loads, plus Normal at 1 HP). The model is tested on bearings it has <i>never</i> seen. Project score: <b>0.553</b> (58% of recordings; 75% with the physics knock check). This is the realistic number for a new machine."};
+  function draw(mode){
+    const r=mulberry32(4); let h=`<div></div>${[0,1,2,3].map(l=>`<div class="small" style="text-align:center"><b>${l} HP</b></div>`).join("")}`;
+    rows.forEach(row=>{
+      h+=`<div class="small">${row}</div>`;
+      for(let l=0;l<4;l++){
+        let cell="";
+        for(let w=0;w<4;w++){
+          let test = mode==="random" ? r()<0.25 : mode==="lolo" ? l===3 : (row.includes("0.014") || (row==="Normal" && l===1));
+          cell+=`<span class="w ${test?"test":"train"}"></span>`;
+        }
+        h+=`<div class="cell">${cell}</div>`;
+      }
+    });
+    $("#splitGrid").innerHTML=h; $("#splitOut").innerHTML=txt[mode];
+    $$("#demo-split button").forEach(b=>b.classList.toggle("primary",b.dataset.split===mode));
+  }
+  $$("#demo-split button").forEach(b=>b.onclick=()=>draw(b.dataset.split)); draw("random");
+});
+
+/* ---------------------------------------------------------------- 12 metrics + heatmap */
+safe("metrics", ()=>{
+  function draw(){
+    const [tp,fp,fn,tn]=["#mTP","#mFP","#mFN","#mTN"].map(s=>Math.max(0,+$(s).value||0));
+    const tot=tp+fp+fn+tn||1, acc=(tp+tn)/tot, pr=tp/((tp+fp)||1), rc=tp/((tp+fn)||1), f1=2*pr*rc/((pr+rc)||1);
+    $("#mOut").innerHTML=`Accuracy = (${tp}+${tn}) ÷ ${tot} = <b>${pct(acc,1)}</b> · Precision = ${tp} ÷ (${tp}+${fp}) = <b>${pct(pr,1)}</b> · Recall = ${tp} ÷ (${tp}+${fn}) = <b>${pct(rc,1)}</b> · F1 = 2·P·R ÷ (P+R) = <b>${fmt(f1,3)}</b>`;
+  }
+  ["#mTP","#mFP","#mFN","#mTN"].forEach(s=>$(s).oninput=draw); draw();
+  const L=["Normal","Inner race","Outer race","Ball"], M=[[1,0,0,0],[0,0.409,0.061,0.530],[0.040,0.029,0.279,0.653],[0,0.025,0.145,0.830]];
+  let h=`<tr><th>true ↓ / predicted →</th>${L.map(l=>`<th>${l}</th>`).join("")}</tr>`;
+  M.forEach((row,i)=>{h+=`<tr><th>${L[i]}</th>${row.map((v,j)=>`<td title="${pct(v,1)} of true ${L[i]} windows were predicted ${L[j]}" style="background:color-mix(in srgb, var(--accent) ${Math.round(v*85)}%, transparent);${v>0.5?"color:var(--on-accent);font-weight:700":""}">${pct(v)}</td>`).join("")}</tr>`;});
+  $("#heat").innerHTML=h;
+});
+
+/* ---------------------------------------------------------------- 13 edge size study */
+safe("edge", ()=>{
+  const D={"10/8":[36.4,.9973,.494],"10/12":[42.4,.9965,.557],"10/16":[42.4,.9963,.556],"10/none":[42.4,.9963,.556],
+    "25/8":[85.8,.9965,.471],"25/12":[96.5,.9969,.459],"25/16":[96.5,.9969,.475],"25/none":[96.5,.9969,.475],
+    "50/8":[169.9,.9950,.492],"50/12":[197.2,.9972,.521],"50/16":[197.2,.9973,.540],"50/none":[197.2,.9973,.540],
+    "100/8":[337.4,.9971,.548],"100/12":[397.4,.9972,.550],"100/16":[401.1,.9972,.553],"100/none":[401.1,.9972,.553],
+    "200/8":[683.7,.9971,.575],"200/12":[799.7,.9971,.574],"200/16":[804.5,.9971,.574],"200/none":[804.5,.9971,.574]};
+  function draw(){
+    const key=$("#edT").value+"/"+$("#edD").value, [kb,f1,un]=D[key];
+    $("#edOut").innerHTML=`ONNX file <b>${kb} KB</b> · LOLO macro-F1 <b>${f1.toFixed(4)}</b> · unseen-bearing macro-F1 <b>${un.toFixed(3)}</b>${key==="10/8"?" — ✅ <b>this is the chosen edge model</b> (smallest within 1% of the best 0.9973)":""}${key==="100/none"?" — this is the full model used by the dashboard":""}`;
+    const keys=Object.keys(D), {ctx,w,h}=prep($("#cvEdge")), maxkb=810, bw=(w-60)/keys.length;
+    ctx.font="10px sans-serif";
+    keys.forEach((k,i)=>{const v=D[k][0], bh=(h-40)*v/maxkb, x=50+i*bw;
+      ctx.fillStyle = k===key?cssv("--c2"):k==="10/8"?cssv("--c3"):cssv("--c1"); ctx.globalAlpha=k===key||k==="10/8"?1:0.55;
+      ctx.fillRect(x+2,h-22-bh,bw-4,bh); ctx.globalAlpha=1;
+      if(i%4===0){ctx.fillStyle=cssv("--muted");ctx.textAlign="left";ctx.fillText(k.split("/")[0]+" trees",x+2,h-8);}});
+    ctx.fillStyle=cssv("--muted"); ctx.textAlign="left"; ctx.fillText("ONNX size (KB) of all 20 models — red = your choice, green = chosen edge model",50,12);
+  }
+  $("#edT").onchange=$("#edD").onchange=draw; draw(); REDRAW.push(draw);
+});
+/* ---------------------------------------------------------------- 15 the maintenance game */
+safe("game", ()=>{
+  const DAYS=90, LOAD=2, LF=1.2, TYPES=["Inner race","Outer race","Ball"], SIZES=[0.007,0.014,0.021,0.028];
+  const ACT=["Continue","Monitor","Inspect","Reduce load","Stop & replace"];
+  const rnd=(seed,stream,b,age)=>mulberry32((seed*1000003 + stream*7919 + b*104729 + age*1299709)|0)();
+  function newBearing(s,b){
+    s.b=b; s.age=0; s.reveal=null; s.monitor=0; s.d=0; s.init=false;
+    s.ftype=TYPES[Math.floor(rnd(s.seed,3,b,0)*3)];
+    if(b===0 && rnd(s.seed,1,0,0)<0.35){s.init=true; s.d=0.4*rnd(s.seed,2,0,0);}
+  }
+  function newState(seed){const s={seed,day:0,total:0,over:false,failed:false,dsi:60,hist:[],sinceMeas:0,obs:null}; newBearing(s,0); measure(s); return s;}
+  function measure(s){
+    const r=k=>rnd(s.seed,10+k,s.b,s.age); let diag,conf,size=null;
+    if(!s.init){ diag=r(0)<0.01?"Ball":"Normal"; conf=0.85+0.15*r(1); if(diag==="Ball") size=0.007; }
+    else{
+      const others=TYPES.filter(t=>t!==s.ftype);
+      diag = r(0)<(s.monitor>0?0.6:0.4) ? s.ftype : others[r(1)<0.5?0:1];
+      conf = 0.45+0.5*r(2);
+      const k = s.d<0.25?0:s.d<0.5?1:s.d<0.75?2:3;
+      const est = r(3)<(s.monitor>0?0.75:0.5) ? k : Math.min(3,Math.max(0,k+(r(4)<0.5?-1:1)));
+      size=SIZES[est];
+    }
+    const h=health(diag,conf,size,LOAD); s.obs={diag,conf,size,h}; s.sinceMeas=0;
+  }
+  function wear(s,reduced){
+    const f=reduced?0.5:1;
+    if(!s.init){ if(rnd(s.seed,4,s.b,s.age)<0.015) s.init=true; return false; }
+    const mean=LF*f*(1+s.d)/70, g=mean*(-Math.log(Math.max(rnd(s.seed,5,s.b,s.age),1e-9))-Math.log(Math.max(rnd(s.seed,6,s.b,s.age),1e-9)))/2;
+    s.d=Math.min(1,s.d+g);
+    return rnd(s.seed,7,s.b,s.age) < Math.min(0.9,0.3*Math.pow(s.d,5)*LF*f);
+  }
+  function step(s,a){
+    if(s.over) return "";
+    let r=0, days=1, note="";
+    const dBefore=s.d;
+    if(a===0||a===1||a===3){
+      if(a===1){ if(s.monitor===0) r-=1; s.monitor=14; }
+      r += a===3?6:10; if(s.monitor>0) r-=0.2;
+      if(s.init && s.d>=0.75){ r-=5; note+=" (safety penalty: running while critical)"; }
+      if(wear(s,a===3)){ r-=300; s.over=true; s.failed=true; note+=" 💥 BREAKDOWN! −300"; }
+    } else if(a===2){ r-=4; s.reveal=s.init?s.d:0; s.dsi=-1; note=` → inspection reveals degradation ${fmt(s.reveal)}${s.init?` (${s.ftype} fault)`:" (no fault)"}`; }
+    else if(a===4){ r-=30; days=3; if(!s.init){ r-=15; note=" (bearing was healthy: unnecessary −15)"; } else note=` (removed bearing had degradation ${fmt(s.d)})`; s.dsi=-3; newBearing(s,s.b+1); }
+    s.hist.push({day:s.day, d:dBefore, a});
+    s.total+=r; s.day+=days; s.age+=days; s.dsi+=days; s.sinceMeas+=days;
+    if(a!==1 && s.monitor>0) s.monitor=Math.max(0,s.monitor-days); else if(a===1) s.monitor-=1;
+    if(s.day>=DAYS) s.over=true;
+    if(!s.over && (a===4 || s.sinceMeas >= (s.monitor>0?1:7))) measure(s);
+    return `Day ${s.hist.at(-1).day+1}: ${ACT[a]} → ${r>=0?"+":""}${fmt(r,1)}${note}`;
+  }
+  function rulePolicy(s){
+    const o=s.obs; if(s.reveal!==null && s.reveal>=0.5) return 4;
+    if(o.h.s==="Critical") return 4;
+    if(o.h.low && s.monitor===0) return 1;
+    if(o.h.s==="Warning"){ if(s.monitor===0) return 1; if(s.dsi>30) return 2; return 0; }
+    return 0;
+  }
+  function autoplay(seed,pol){const s=newState(seed); let guard=0; while(!s.over && guard++<500) step(s,pol(s)); return s;}
+  let S, seedCounter=Math.floor(Math.random()*100000), logLines=[];
+  function render(){
+    const o=S.obs;
+    $("#gmScreen").innerHTML = `<b>Day ${Math.min(S.day,DAYS)} / ${DAYS}</b> · total reward <b>${fmt(S.total,1)}</b><br>
+      Latest measurement (${S.sinceMeas===0?"today":S.sinceMeas+" day(s) ago"}): <b>${o.diag}</b> (${pct(o.conf)})${o.size?`, est. size ${o.size}″`:""}<br>
+      Health: ${pill(o.h.s)} ${o.h.low?"⚠️ low confidence":""}<br>
+      Frequent monitoring: ${S.monitor>0?`<b>ON</b> (${S.monitor} days left, daily measurements)`:"off (measured weekly)"}<br>
+      Last inspection: ${S.reveal===null?"none on this bearing":`degradation ${fmt(S.reveal)}`}
+      ${S.over?`<br><b>${S.failed?"💥 Game over — the bearing broke.":"🏁 Season finished!"}</b> Final reward ${fmt(S.total,1)}.`:""}`;
+    $("#gmLog").innerHTML = logLines.slice(-60).reverse().join("<br>");
+    $$("#gmActions button").forEach(b=>b.disabled=S.over);
+    drawHist(S);
+  }
+  function drawHist(s){
+    if(!s.over){ const {ctx,w,h}=prep($("#cvGame")); ctx.fillStyle=cssv("--muted"); ctx.font="12px sans-serif"; ctx.fillText("🔒 hidden degradation chart — revealed when the game ends",10,h/2); return; }
+    const cols=[cssv("--c3"),cssv("--c4"),cssv("--c5"),cssv("--c1"),cssv("--c2")];
+    const c=chart($("#cvGame"),{xr:[0,DAYS],yr:[0,1],xlabel:"day — line = hidden degradation; dots = your actions",xdec:0,series:[{x:s.hist.map(p=>p.day),y:s.hist.map(p=>p.d),color:cssv("--text"),lw:1.4}]});
+    s.hist.forEach(p=>{c.ctx.fillStyle=cols[p.a]; c.ctx.beginPath(); c.ctx.arc(c.X(p.day),c.Y(0.96),3.2,0,7); c.ctx.fill();});
+  }
+  function start(){ S=newState(++seedCounter); logLines=["New season. A bearing on a fan at 2 HP. Make a decision for each day."]; $("#gmCmp").innerHTML=""; render(); }
+  $$("#gmActions button").forEach(b=>b.onclick=()=>{
+    if(b.dataset.a==="c7"){ for(let i=0;i<7 && !S.over;i++) logLines.push(step(S,0)); }
+    else logLines.push(step(S,+b.dataset.a));
+    render();
+  });
+  $("#gmNew").onclick=start;
+  $("#gmCompare").onclick=()=>{
+    const rb=autoplay(S.seed,rulePolicy), rf=autoplay(S.seed,()=>0), pr=autoplay(S.seed,s=>s.obs.diag!=="Normal"?4:0);
+    const line=(n,s)=>`<tr><td>${n}</td><td class="num">${fmt(s.total,1)}</td><td>${s.failed?"💥 broke on day "+s.day:"survived"}</td></tr>`;
+    $("#gmCmp").innerHTML=`<table><tr><th>Policy on this same bearing</th><th class="num">Reward</th><th>Outcome</th></tr>
+      ${S.over?line("<b>You</b>",S):`<tr><td><b>You</b></td><td colspan="2" class="muted">finish your game to compare</td></tr>`}
+      ${line("Rule-based engineer",rb)}${line("“Replace when any fault is diagnosed” (what PPO learned)",pr)}${line("Run to failure",rf)}</table>
+      <span class="small muted">One game is luck-heavy; the project compares policies over 1,000 games.</span>`;
+  };
+  start(); REDRAW.push(()=>S&&drawHist(S));
+});
+
+/* ---------------------------------------------------------------- 16 network diagram */
+safe("net", ()=>{
+  const cols=[{x:100,n:8,label:"16 inputs"},{x:260,n:9,label:"64 neurons"},{x:420,n:9,label:"64 neurons"},{x:560,n:5,label:"5 actions"}];
+  const y=(i,n)=>25+i*(160/(n-1)); let s="";
+  for(let c=0;c<3;c++) for(let i=0;i<cols[c].n;i++) for(let j=0;j<cols[c+1].n;j++)
+    s+=`<line x1="${cols[c].x}" y1="${y(i,cols[c].n)}" x2="${cols[c+1].x}" y2="${y(j,cols[c+1].n)}" stroke="var(--line)" stroke-width="0.7"/>`;
+  const outs=["Continue","Monitor","Inspect","Reduce","Stop"], ins=["diag: Normal","diag: Inner","diag: Outer","diag: Ball","confidence","est. size","health…","…"];
+  cols.forEach((c,ci)=>{ for(let i=0;i<c.n;i++){
+      s+=`<circle cx="${c.x}" cy="${y(i,c.n)}" r="7" fill="${ci===0?"var(--c1)":ci===3?"var(--c2)":"var(--c3)"}"/>`;
+      if(ci===3) s+=`<text x="${c.x+11}" y="${y(i,c.n)+4}" font-size="10">${outs[i]}</text>`;
+      if(ci===0) s+=`<text x="${c.x-11}" y="${y(i,c.n)+4}" font-size="9" text-anchor="end">${ins[i]}</text>`; }
+    s+=`<text x="${c.x}" y="205" font-size="11" text-anchor="middle" font-weight="700">${c.label}</text>`; });
+  $("#svNet").innerHTML=s;
+});
+
+/* ---------------------------------------------------------------- 16 softmax */
+safe("softmax", ()=>{
+  const names=["Continue","Monitor","Inspect","Reduce load","Stop"], init=[0.5,1.2,0,-1,0.8];
+  $("#smSliders").innerHTML=names.map((n,i)=>`<label>${n} <input type="range" min="-3" max="3" step="0.1" value="${init[i]}" data-i="${i}"> <b data-v="${i}"></b></label>`).join("");
+  function draw(){
+    const z=$$("#smSliders input").map(e=>+e.value), ex=z.map(Math.exp), S=ex.reduce((a,b)=>a+b);
+    z.forEach((v,i)=>$(`#smSliders b[data-v="${i}"]`).textContent=fmt(v,1));
+    bars($("#smBars"), names.map((n,i)=>[n, ex[i]/S]));
+  }
+  $$("#smSliders input").forEach(e=>e.oninput=draw); draw();
+});
+
+/* ---------------------------------------------------------------- 16 gradient descent */
+safe("gd", ()=>{
+  let w=-2, hist=[-2]; const loss=v=>(v-3)**2+1, lr=$("#gdLr");
+  function draw(){
+    $("#gdLrV").textContent=fmt(+lr.value);
+    const xs=[],ys=[]; for(let v=-4;v<=10;v+=0.1){xs.push(v);ys.push(loss(v));}
+    const vis=hist.filter(v=>v>=-4&&v<=10);
+    const c=chart($("#cvGd"),{xr:[-4,10],yr:[0,50],xlabel:"knob value (weight) — the valley bottom is at 3",xdec:0,series:[{x:xs,y:ys,color:cssv("--muted"),lw:1.5},{x:vis,y:vis.map(loss),color:cssv("--c4"),lw:1},{x:vis,y:vis.map(loss),mode:"dots",color:cssv("--c2"),r:4}]});
+    const g=2*(w-3);
+    $("#gdOut").innerHTML=Math.abs(w)>1e4?"💥 The steps got bigger and bigger — the learning rate is too high, training <b>diverged</b>. Reset and lower it.":
+      `Step ${hist.length-1}: knob = <b>${fmt(w,3)}</b>, loss = <b>${fmt(loss(w),3)}</b>, slope (gradient) = ${fmt(g,3)} → next move = −learning rate × slope = ${fmt(-(+lr.value)*g,3)}${Math.abs(g)<0.01?" — ✅ reached the bottom!":""}`;
+  }
+  const one=()=>{w=w-(+lr.value)*2*(w-3); hist.push(w);};
+  $("#gdStep").onclick=()=>{one();draw();}; $("#gdRun").onclick=()=>{for(let i=0;i<10;i++)one();draw();};
+  $("#gdReset").onclick=()=>{w=-2;hist=[-2];draw();}; lr.oninput=draw; draw(); REDRAW.push(draw);
+});
+
+/* ---------------------------------------------------------------- 17 discount */
+safe("gamma", ()=>{
+  const g=$("#gmG");
+  function draw(){
+    const G=+g.value; $("#gmGv").textContent=G.toFixed(3);
+    $("#gmGout").innerHTML=`<table><tr>${[1,7,30,90,180].map(n=>`<th class="num">in ${n} day${n>1?"s":""}</th>`).join("")}</tr><tr>${[1,7,30,90,180].map(n=>`<td class="num">${fmt(10*G**n,2)}</td>`).join("")}</tr></table>
+      Rough "planning horizon" = 1 ÷ (1 − γ) = <b>${fmt(1/(1-G),0)} days</b>. ${G===0.99?"(the project's setting)":""}`;
+  }
+  g.oninput=draw; draw();
+});
+
+/* ---------------------------------------------------------------- 17 PPO toy */
+safe("ppo", ()=>{
+  const names=["Continue","Monitor","Inspect","Reduce load","Stop"], Q=[2,3,1,0,5];
+  let z, rng, n, log;
+  const soft=z=>{const m=Math.max(...z),e=z.map(v=>Math.exp(v-m)),S=e.reduce((a,b)=>a+b);return e.map(v=>v/S);};
+  function reset(){z=[0.3,0.6,0.2,-0.2,0];rng=mulberry32(9);n=0;log=[];draw();}
+  function one(){
+    const p=soft(z); let u=rng(),a=0; while(a<4 && u>p[a]){u-=p[a];a++;}
+    const outcome=Q[a]+1.5*gaussFrom(rng), V=p.reduce((s,pi,i)=>s+pi*Q[i],0), A=outcome-V;
+    const lr=+$("#ppLr").value, g=p.map((pi,i)=>A*((i===a?1:0)-pi));
+    const apply=s=>soft(z.map((v,i)=>v+s*lr*g[i]));
+    let s=1, ratio=apply(1)[a]/p[a], clipped=false;
+    if($("#ppClip").checked && ((A>0&&ratio>1.2)||(A<0&&ratio<0.8))){
+      const target=A>0?1.2:0.8; let lo=0,hi=1; for(let k=0;k<40;k++){const mid=(lo+hi)/2; const r=apply(mid)[a]/p[a]; if((A>0&&r>target)||(A<0&&r<target)) hi=mid; else lo=mid;} s=lo; clipped=true;
+    }
+    z=z.map((v,i)=>v+s*lr*g[i]); n++;
+    const pn=soft(z);
+    log.push(`Day ${n}: tried <b>${names[a]}</b> → outcome ${fmt(outcome,1)}, expected ${fmt(V,1)}, advantage <b>${A>=0?"+":""}${fmt(A,1)}</b> → P(${names[a]}) ${pct(p[a])} → ${pct(pn[a])}${clipped?" <i>(clipped)</i>":""}`);
+  }
+  function draw(){ $("#ppLrV").textContent=fmt(+$("#ppLr").value); bars($("#ppBars"),names.map((nm,i)=>[nm,soft(z)[i]])); $("#ppLog").innerHTML=log.slice(-40).reverse().join("<br>")||"Press “Play 1 day & learn”."; }
+  $("#ppOne").onclick=()=>{one();draw();}; $("#pp50").onclick=()=>{for(let i=0;i<50;i++)one();draw();};
+  $("#ppReset").onclick=reset; $("#ppLr").oninput=draw; reset();
+});
+
+/* ---------------------------------------------------------------- 19 guard */
+safe("guard", ()=>{
+  const report={diagnosis:{fault:"Outer race",confidence:0.9412,size_in:0.014},envelope_peaks:{bpfo:{frequency_hz:104.62,peak_ratio_h1:9.95}},
+    whatif_continue:{p_failure_within_7_days:0.1033,p_failure_within_30_days:0.9833},input:{rpm:1750,load_hp:2}};
+  $("#grReport").textContent="REPORT (what the AI receives):\n"+JSON.stringify(report,null,1);
+  const NUM=/(?<![\w.])-?\d+(?:,\d{3})*(?:\.\d+)?%?/g;
+  function known(o,out){ if(typeof o==="number"){out.push(o,o*100);} else if(typeof o==="string"){(o.replace(/_/g," ").match(NUM)||[]).forEach(t=>out.push(parseFloat(t.replace(/[,%]/g,""))));}
+    else if(o&&typeof o==="object"){for(const [k,v] of Object.entries(o)){known(k,out);known(v,out);}} return out; }
+  $("#grCheck").onclick=()=>{
+    const ans=$("#grAns").value, K=known(report,[]); const bad=[];
+    const html=ans.replace(/[<>&]/g,c=>({"<":"&lt;",">":"&gt;","&":"&amp;"}[c])).replace(NUM,tok=>{
+      const s=tok.replace(/[%,]/g,""), n=parseFloat(s);
+      if(Number.isInteger(n)&&Math.abs(n)<=10&&!s.includes(".")) return `<span class="muted" title="small whole number - ignored">${tok}</span>`;
+      const dec=s.includes(".")?s.split(".")[1].length:0, tol=0.5*10**(-dec)+1e-9;
+      const ok=K.some(v=>Math.abs(n-v)<=tol); if(!ok) bad.push(tok);
+      return `<b style="color:${ok?"var(--good)":"var(--bad)"}">${tok}</b>`;});
+    $("#grOut").innerHTML=html+"<br><br>"+(bad.length?`⚠️ Not found in the report: <b>${bad.join(", ")}</b> — the dashboard would show this warning under the answer.`:"✅ Every number is supported by the report.");
+  };
+  $("#grCheck").onclick();
+});
+
+/* ---------------------------------------------------------------- 20 flow */
+safe("flow", ()=>{
+  const steps=[
+    ["Upload","The engineer picks <code>cwru_OR014at6_2.csv</code>: 36,000 samples, sampling rate 12,000 Hz (3 s), 1749 RPM, 2 HP. The file is read as <b>data only</b> (no code inside is ever run)."],
+    ["Validate","Checks: not empty, no NaN, not flat; RPM within the training range (~1720–1800); load 0–3 HP. It also compares the first 256 samples to the training recordings → match found: <i>“this is OR014@6_2, which the models were trained on — not an independent test”</i>."],
+    ["Resample","Already 12 kHz → unchanged. (A 48 kHz file would be anti-alias filtered and reduced to 12 kHz.)"],
+    ["Windows","36,000 samples → 2048-sample windows with 50% overlap → <b>34 windows</b>."],
+    ["Features","34 × 37 numbers. For this recording: RMS 0.097 (healthy median 0.059 → 1.7×), BPFO peak 1.7 (healthy ~2.0: <b>no clear knock</b>), band 6 energy share 0.09 (healthy 0.34)."],
+    ["Fault RF","Each of the 34 windows goes through all 100 trees (using 31 of the 37 numbers); votes are averaged → <b>Outer race 100%</b>."],
+    ["Physics check","Strongest knock family is only ~2× the background (needs ≥ 5×) → <b>no clear signature</b>, so the ML opinion is used. (For the never-seen file <code>144.mat</code> it finds a clear 12.9× outer-race knock and corrects the ML model, which said Inner race.)"],
+    ["Severity RF","Only because a fault was found: the size model says <b>0.014″</b> (99.7%)."],
+    ["Health rules","Fault + 0.014″ + load 2 HP ≥ 2 → <b>Critical</b> (“moderate damage under high load”) — a rule-based estimate. The gauge needle points to condition index 72."],
+    ["PPO agent","The diagnosis is packed into the 16-number observation (assumptions: monitoring off, last inspection 30 days ago) → the network's own top action is <b>Continue operation (57%)</b>, but the rating is Critical, so the <b>safety shield</b> replaces it with the rule-based action: <b>Stop for maintenance</b>. The dashboard shows both — see chapter 17 for why the agent distrusts “Critical” labels."],
+    ["What-if","300 simulated futures with “continue” every day → breakdown within 30 days in <b>98%</b> of them (SIMULATED)."],
+    ["Report","Everything is packed into one <code>AnalysisReport</code> (in 0.3 s). The dashboard draws it; the chat receives it as JSON. Neither computes anything new."]];
+  $("#flow").innerHTML=steps.map((s,i)=>`${i?'<span class="arrow">→</span>':""}<button data-i="${i}">${i+1}. ${s[0]}</button>`).join("");
+  const show=i=>{$("#flowDetail").innerHTML=`<b>${i+1}. ${steps[i][0]}</b><br>${steps[i][1]}`; $$("#flow button").forEach(b=>b.classList.toggle("on",+b.dataset.i===i));};
+  $$("#flow button").forEach(b=>b.onclick=()=>show(+b.dataset.i)); show(0);
+});
+
+/* ---------------------------------------------------------------- 22 glossary */
+safe("glossary", ()=>{
+  const G=[["Accelerometer","Sensor that measures vibration (acceleration)."],["Accuracy","Share of all predictions that were correct."],
+  ["Advantage","How much better (or worse) an action's outcome was than the value network expected. PPO pushes up actions with positive advantage."],
+  ["Agent","The decision-maker in reinforcement learning (here: the PPO policy network)."],["Aliasing","A fast wave looks like a fake slow wave when sampled too slowly."],
+  ["Anti-aliasing filter","Removes frequencies too high for the new sampling rate before resampling."],["Bootstrap sample","A random sample drawn with replacement; each tree in a Random Forest gets its own."],
+  ["BPFO / BPFI / BSF / FTF","Knock rates of an outer-race, inner-race, ball and cage defect, as multiples of shaft speed (3.5848, 5.4152, 4.7135, 0.39828 for the 6205)."],
+  ["Class weight (balanced)","Makes rare classes (Normal: 409 windows) count more during training."],["Clipping (PPO)","Limits each update so an action's probability changes at most ±20%."],
+  ["Confidence","Share of the Random Forest's trees voting for the winning class (averaged over windows)."],["Confusion matrix","Table of true class (rows) vs predicted class (columns)."],
+  ["Crest factor","Peak ÷ RMS. High for spiky signals."],["CWRU","Case Western Reserve University bearing dataset — lab recordings of a 2 HP motor with machined bearing faults."],
+  ["Decision tree","Flowchart of yes/no questions learned from data."],["Discount factor γ","How much future rewards count (0.99 per day here)."],
+  ["Edge AI","Running the model on a small device next to the machine."],["Entropy bonus","Small reward for keeping the policy a bit random so it keeps exploring."],
+  ["Envelope analysis","Band-pass → envelope → spectrum; reveals the repeating knock rate."],["Episode","One complete game in the simulator (180 days or until breakdown)."],
+  ["F1 / Macro-F1","Balance of precision and recall; macro = averaged equally over classes."],["Feature","A number describing a window (e.g. RMS, kurtosis, BPFO peak)."],
+  ["FFT / spectrum","Splits a signal into its frequencies and their strengths."],["Gini impurity","1 − Σp²: how mixed a group is. 0 = pure."],
+  ["Gradient descent","Repeatedly nudging weights downhill on the loss."],["Grounding","Giving an LLM the real data and telling it to use only that."],
+  ["Hallucination","An LLM confidently stating something not supported by its input."],["Hz","Hertz: times per second."],
+  ["Kurtosis","Spikiness of a signal; Gaussian noise ≈ 3."],["Leakage","When test data secretly resembles training data, inflating the score."],
+  ["Learning rate","Size of each training step."],["LLM","Large language model (here: Google Gemini)."],
+  ["LOLO","Leave-one-load-out evaluation: train on 3 loads, test on the 4th."],["Loss","Number measuring how wrong a model currently is; training lowers it."],
+  ["Monte Carlo","Estimating odds by running many random simulations."],["Neural network","Layers of weighted sums with bends; weights are learned."],
+  ["Nyquist","You must sample faster than 2× the highest frequency you want to see."],["Observation","What the RL agent can see each day (16 numbers)."],
+  ["ONNX","Portable model file format, runnable with the small onnxruntime library."],["Out-of-bag / out-of-fold","Predictions made on data a model did not train on."],
+  ["Overfitting","Memorising training data instead of learning general patterns."],["Physics knock check","Rule with no training: names a fault when its envelope knock peak is ≥5× the background and ≥1.5× the next fault family; otherwise the ML model decides."],["Policy","The agent's strategy: situation → action probabilities."],
+  ["PPO","Proximal Policy Optimization — the RL algorithm used (Stable-Baselines3)."],["Precision","When the model says 'fault', how often it is right."],
+  ["Random Forest","Many decision trees, each trained on a bootstrap sample with random feature subsets, voting together."],["Recall","Of all real faults, how many were caught."],
+  ["Resampling","Changing the sampling rate (48 kHz → 12 kHz here)."],["Reward","Score the environment gives after each action."],
+  ["RMS","Root mean square: typical size of the vibration."],["RPM","Revolutions per minute. ÷60 = turns per second."],
+  ["Sampling rate","Measurements per second (12,000 here)."],["Safety shield","Hard rule on top of the RL agent: on a Critical rating it may not recommend Continue or Monitor; the rule-based action is used instead."],["Seed","Starting point of a random number generator; different seeds = different luck."],
+  ["Severity RF","Second Random Forest that estimates fault size."],["Softmax","Turns scores into probabilities that sum to 1."],
+  ["Supervised learning","Learning from examples with known answers."],["Unseen bearings","Evaluation on physical bearings never used in training (leave-one-size-out)."],
+  ["Value network","Part of PPO that predicts how good a situation is, used to compute advantages."],["Window","A short slice of signal (2048 samples ≈ 0.17 s)."]];
+  const list=$("#glList"), f=$("#glFilter");
+  const draw=()=>{const q=f.value.toLowerCase(); list.innerHTML=G.filter(([t,d])=>(t+d).toLowerCase().includes(q)).map(([t,d])=>`<dt>${t}</dt><dd>${d}</dd>`).join("")||"<dd class='muted'>No match.</dd>";};
+  f.oninput=draw; draw();
+});
+
+/* ---------------------------------------------------------------- 23 quiz */
+safe("quiz", ()=>{
+  const Q=[
+   ["The shaft turns at 1800 RPM. How many turns per second is that?",["18","30","180","3,600"],1,"1800 ÷ 60 = 30 turns per second (30 Hz)."],
+   ["With an outer-race crack (BPFO multiplier 3.58) at 30 turns/s, roughly how many knocks per second?",["about 8","about 30","about 107","about 1,800"],2,"30 × 3.58 ≈ 107 knocks per second."],
+   ["Why was the 48 kHz healthy data resampled to 12 kHz?",["To save disk space only","So the model can't 'cheat' by learning sampling rate = healthy","Because 48 kHz is less accurate","The Random Forest only accepts 12 kHz"],1,"If healthy and faulty data had different rates, the model could tell them apart by rate rather than by bearing condition."],
+   ["What is aliasing?",["Noise from the sensor cable","A fast wave looking like a fake slow one because sampling is too slow","Two sensors with the same name","Overfitting in a decision tree"],1,"Sampling below 2× the frequency creates a fake slower wave."],
+   ["What does high kurtosis tell you about a vibration window?",["It is very loud","It is very spiky / impulsive","It has a low frequency","The sensor is broken"],1,"Kurtosis measures spikiness; noise ≈ 3, knocks push it higher."],
+   ["Why do we use envelope analysis instead of only the plain FFT?",["Because knocks excite a high-frequency ringing; the envelope reveals how often the knocks repeat","Because the FFT is too slow","To remove the shaft speed","It makes the signal louder"],0,"The ringing sits at kHz; the envelope's spectrum shows the knock rate (~100 Hz)."],
+   ["A group has 3 healthy and 1 faulty window. What is its Gini impurity?",["0","0.375","0.5","0.75"],1,"1 − (0.75² + 0.25²) = 1 − 0.625 = 0.375."],
+   ["When growing a decision tree, which split does the algorithm choose?",["The first feature in the list","The split with the lowest weighted Gini","A random split","The split that makes the tree deepest"],1,"It tries candidate splits and keeps the one that makes the groups purest."],
+   ["What is a bootstrap sample?",["The first 10% of data","A random sample drawn WITH replacement, giving each tree a different dataset","Data from the boot of a car","Only the test data"],1,"Drawing with replacement means duplicates and ~37% left out per tree."],
+   ["In this project, the Random Forest's 'confidence' means…",["the damage size","the share of trees (vote share) agreeing on the class","the probability the bearing fails tomorrow","the accuracy on the test set"],1,"Confidence = averaged vote share. It is NOT severity — that's why a separate severity model exists."],
+   ["Why is a random split of windows into train/test misleading here?",["It's too slow","Overlapping windows from the same recording end up in both, so the test contains near-copies","It uses too little data","Random splits always give 50%"],1,"That's leakage; it gave a meaningless 100%."],
+   ["Why did leave-one-load-out still give ~99.7%?",["The model is perfect","Each damaged bearing was recorded at all 4 loads, so the test bearing was already seen at other loads","The test set was empty","Loads don't matter"],1,"The model partly recognised the specific bearing. On never-seen bearings the ML model alone got 58% of recordings right (75% with the physics check)."],
+   ["What does the physics knock check do?",["It retrains the model every day","If one fault's knock peak is clearly strong (≥5× background) and dominant, it names that fault; otherwise it stays silent and the ML model decides","It measures the bearing temperature","It replaces the Random Forest completely"],1,"It's a rule with no training. On CWRU it spoke on 19 of 48 recordings and was right every time; combined with ML, unseen-bearing accuracy rose from 58% to 75%."],
+   ["On unseen bearings, what does the model still do well?",["Fault type","Fault size","Healthy vs damaged","Predicting RPM"],2,"100% of healthy windows were correct and very few faults were called healthy."],
+   ["Precision answers which question?",["Of all real faults, how many were caught?","When it says 'fault', how often is it right?","How fast is the model?","How many trees agree?"],1,"Recall is the other one (caught / all real faults)."],
+   ["What did the Edge AI study choose?",["200 trees, unlimited depth","10 trees, max depth 8 (36 KB) — within 1% of the best","1 tree","A neural network"],1,"Smallest model within 1% of the best LOLO score: 11× smaller than the full model."],
+   ["In reinforcement learning, what replaces the 'answer key'?",["Labels from experts","Rewards and penalties from the environment","The confusion matrix","Nothing — it guesses"],1,"The agent learns from the consequences of its actions."],
+   ["Where do the agent's simulated diagnoses come from?",["Random numbers","The real Random Forest's predictions on unseen bearings, including its mistakes","A perfect oracle","The LLM"],1,"So the agent experiences realistic misdiagnoses."],
+   ["What does PPO's 'clip' do?",["Deletes bad games","Limits how much an action's probability can change in one update (±20%)","Cuts the episode short","Removes noise from signals"],1,"Small, safe steps — 'proximal' means nearby."],
+   ["With γ = 0.99, a reward of 10 that arrives in 100 days is worth about…",["10","9.9","3.7","0.1"],2,"10 × 0.99¹⁰⁰ ≈ 3.66."],
+   ["How does the project stop the chat assistant from inventing numbers?",["It doesn't","It gives the LLM only the report JSON with strict rules, then a guard checks every number against the report","It uses a bigger model","It removes all numbers"],1,"Grounding + system prompt + number guard + offline fallback."]];
+  const box=$("#quizBox"); let answered={};
+  function render(){
+    answered={};
+    box.innerHTML=Q.map(([q,opts,_,ex],i)=>`<div class="q" id="q${i}"><p>${i+1}. ${q}</p>${opts.map((o,j)=>`<label><input type="radio" name="q${i}" value="${j}"> ${o}</label>`).join("")}<div class="fb"></div></div>`).join("");
+    $$("#quizBox input").forEach(inp=>inp.onchange=()=>{
+      const i=+inp.name.slice(1), j=+inp.value, ok=j===Q[i][2], qd=$("#q"+i);
+      answered[i]=ok; qd.classList.toggle("right",ok); qd.classList.toggle("wrong",!ok);
+      qd.querySelector(".fb").innerHTML=(ok?"✅ Correct. ":"❌ Not quite — the answer is: <b>"+Q[i][1][Q[i][2]]+"</b>. ")+`<span>${Q[i][3]}</span>`;
+      score();
+    });
+    score();
+  }
+  function score(){const n=Object.keys(answered).length,c=Object.values(answered).filter(Boolean).length;
+    $("#score").textContent=n?`Score: ${c} / ${n} answered${n===Q.length?` — ${c>=18?"🏆 Excellent! You understand the system.":c>=12?"👍 Good — revisit the chapters for the ones you missed.":"📚 Worth another read of the chapters, then try again."}`:""}`:"";}
+  $("#quizReset").onclick=render; render();
+});
+
+/* ---------------------------------------------------------------- navigation, progress, theme */
+safe("nav", ()=>{
+  const links=$$("nav#toc a"), secs=$$("section.chapter");
+  let read={}; try{read=JSON.parse(localStorage.getItem("pdmGuideRead")||"{}");}catch(e){}
+  const mark=()=>links.forEach(a=>a.classList.toggle("read",!!read[a.getAttribute("href").slice(1)]));
+  mark();
+  const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ links.forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+e.target.id)); }}),{rootMargin:"-30% 0px -60% 0px"});
+  secs.forEach(s=>io.observe(s));
+  window.addEventListener("scroll",()=>{
+    const h=document.documentElement; $("#progress").style.width=(100*h.scrollTop/((h.scrollHeight-h.clientHeight)||1))+"%";
+    secs.forEach(s=>{const r=s.getBoundingClientRect(); if(r.bottom<window.innerHeight*0.9 && !read[s.id]){read[s.id]=1; try{localStorage.setItem("pdmGuideRead",JSON.stringify(read));}catch(e){} mark();}});
+  },{passive:true});
+  $("#tocBtn").onclick=()=>$("#toc").classList.toggle("open");
+  links.forEach(a=>a.addEventListener("click",()=>$("#toc").classList.remove("open")));
+  try{const t=localStorage.getItem("pdmGuideTheme"); if(t) document.documentElement.dataset.theme=t;}catch(e){}
+  $("#themeBtn").onclick=()=>{
+    const cur=document.documentElement.dataset.theme || (matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");
+    const nxt=cur==="dark"?"light":"dark"; document.documentElement.dataset.theme=nxt;
+    try{localStorage.setItem("pdmGuideTheme",nxt);}catch(e){}
+    REDRAW.forEach(f=>safe("redraw",f));
+  };
+  let rt; window.addEventListener("resize",()=>{clearTimeout(rt); rt=setTimeout(()=>REDRAW.forEach(f=>safe("redraw",f)),150);});
+  REDRAW.forEach(f=>safe("redraw",f));
+});
+</script>
+</body>
+</html>

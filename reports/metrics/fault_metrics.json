@@ -1,0 +1,2033 @@
+{
+  "labels": [
+    "Normal",
+    "Inner race",
+    "Outer race",
+    "Ball"
+  ],
+  "window": {
+    "accuracy": {
+      "mean": 0.9962818696883853,
+      "std": 0.006439990608878597,
+      "per_fold": [
+        1.0,
+        1.0,
+        1.0,
+        0.9851
+      ]
+    },
+    "macro_f1": {
+      "mean": 0.9972091537384714,
+      "std": 0.004833887521081177,
+      "per_fold": [
+        1.0,
+        1.0,
+        1.0,
+        0.9888
+      ]
+    },
+    "per_class_f1": {
+      "Normal": {
+        "mean": 1.0,
+        "std": 0.0,
+        "per_fold": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "Inner race": {
+        "mean": 0.994299674267101,
+        "std": 0.00987325378907341,
+        "per_fold": [
+          1.0,
+          1.0,
+          1.0,
+          0.9772
+        ]
+      },
+      "Outer race": {
+        "mean": 1.0,
+        "std": 0.0,
+        "per_fold": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "Ball": {
+        "mean": 0.9945369406867846,
+        "std": 0.009462296295251393,
+        "per_fold": [
+          1.0,
+          1.0,
+          1.0,
+          0.9781
+        ]
+      }
+    },
+    "confusion": [
+      [
+        409,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1856,
+        0,
+        21
+      ],
+      [
+        0,
+        0,
+        1413,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1878
+      ]
+    ],
+    "folds": [
+      {
+        "accuracy": 1.0,
+        "macro_f1": 1.0,
+        "per_class": {
+          "Normal": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 58
+          },
+          "Inner race": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 468
+          },
+          "Outer race": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 353
+          },
+          "Ball": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 469
+          }
+        },
+        "confusion": [
+          [
+            58,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            468,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            353,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            469
+          ]
+        ],
+        "test_fold": 0
+      },
+      {
+        "accuracy": 1.0,
+        "macro_f1": 1.0,
+        "per_class": {
+          "Normal": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 117
+          },
+          "Inner race": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 469
+          },
+          "Outer race": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 354
+          },
+          "Ball": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 469
+          }
+        },
+        "confusion": [
+          [
+            117,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            469,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            354,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            469
+          ]
+        ],
+        "test_fold": 1
+      },
+      {
+        "accuracy": 1.0,
+        "macro_f1": 1.0,
+        "per_class": {
+          "Normal": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 117
+          },
+          "Inner race": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 469
+          },
+          "Outer race": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 352
+          },
+          "Ball": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 470
+          }
+        },
+        "confusion": [
+          [
+            117,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            469,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            352,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            470
+          ]
+        ],
+        "test_fold": 2
+      },
+      {
+        "accuracy": 0.9851274787535411,
+        "macro_f1": 0.9888366149538856,
+        "per_class": {
+          "Normal": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 117
+          },
+          "Inner race": {
+            "precision": 1.0,
+            "recall": 0.9554140127388535,
+            "f1": 0.9771986970684039,
+            "support": 471
+          },
+          "Outer race": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 354
+          },
+          "Ball": {
+            "precision": 0.9572301425661914,
+            "recall": 1.0,
+            "f1": 0.9781477627471384,
+            "support": 470
+          }
+        },
+        "confusion": [
+          [
+            117,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            450,
+            0,
+            21
+          ],
+          [
+            0,
+            0,
+            354,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            470
+          ]
+        ],
+        "test_fold": 3
+      }
+    ]
+  },
+  "recording": {
+    "accuracy": {
+      "mean": 1.0,
+      "std": 0.0,
+      "per_fold": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "macro_f1": {
+      "mean": 1.0,
+      "std": 0.0,
+      "per_fold": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "confusion": [
+      [
+        4,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        16,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        12,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        16
+      ]
+    ],
+    "folds": [
+      {
+        "accuracy": 1.0,
+        "macro_f1": 1.0,
+        "per_class": {
+          "Normal": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 1
+          },
+          "Inner race": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 4
+          },
+          "Outer race": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 3
+          },
+          "Ball": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 4
+          }
+        },
+        "confusion": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            4,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            4
+          ]
+        ],
+        "test_fold": 0,
+        "recordings": [
+          {
+            "recording_id": "B007_0",
+            "true": "Ball",
+            "pred": "Ball",
+            "confidence": 0.984237288135593
+          },
+          {
+            "recording_id": "B014_0",
+            "true": "Ball",
+            "pred": "Ball",
+            "confidence": 0.9388888888888891
+          },
+          {
+            "recording_id": "B021_0",
+            "true": "Ball",
+            "pred": "Ball",
+            "confidence": 0.750338983050847
+          },
+          {
+            "recording_id": "B028_0",
+            "true": "Ball",
+            "pred": "Ball",
+            "confidence": 0.9917241379310343
+          },
+          {
+            "recording_id": "IR007_0",
+            "true": "Inner race",
+            "pred": "Inner race",
+            "confidence": 0.9682905982905976
+          },
+          {
+            "recording_id": "IR014_0",
+            "true": "Inner race",
+            "pred": "Inner race",
+            "confidence": 0.9319658119658122
+          },
+          {
+            "recording_id": "IR021_0",
+            "true": "Inner race",
+            "pred": "Inner race",
+            "confidence": 0.9620338983050845
+          },
+          {
+            "recording_id": "IR028_0",
+            "true": "Inner race",
+            "pred": "Inner race",
+            "confidence": 0.9407758620689654
+          },
+          {
+            "recording_id": "Normal_0",
+            "true": "Normal",
+            "pred": "Normal",
+            "confidence": 0.5543103448275862
+          },
+          {
+            "recording_id": "OR007@6_0",
+            "true": "Outer race",
+            "pred": "Outer race",
+            "confidence": 0.9833050847457618
+          },
+          {
+            "recording_id": "OR014@6_0",
+            "true": "Outer race",
+            "pred": "Outer race",
+            "confidence": 0.8545299145299144
+          },
+          {
+            "recording_id": "OR021@6_0",
+            "true": "Outer race",
+            "pred": "Outer race",
+            "confidence": 0.9894067796610164
+          }
+        ]
+      },
+      {
+        "accuracy": 1.0,
+        "macro_f1": 1.0,
+        "per_class": {
+          "Normal": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 1
+          },
+          "Inner race": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 4
+          },
+          "Outer race": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 3
+          },
+          "Ball": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 4
+          }
+        },
+        "confusion": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            4,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            4
+          ]
+        ],
+        "test_fold": 1,
+        "recordings": [
+          {
+            "recording_id": "B007_1",
+            "true": "Ball",
+            "pred": "Ball",
+            "confidence": 0.9804273504273502
+          },
+          {
+            "recording_id": "B014_1",
+            "true": "Ball",
+            "pred": "Ball",
+            "confidence": 0.9855932203389827
+          },
+          {
+            "recording_id": "B021_1",
+            "true": "Ball",
+            "pred": "Ball",
+            "confidence": 0.9449572649572646
+          },
+          {
+            "recording_id": "B028_1",
+            "true": "Ball",
+            "pred": "Ball",
+            "confidence": 0.9928205128205125
+          },
+          {
+            "recording_id": "IR007_1",
+            "true": "Inner race",
+            "pred": "Inner race",
+            "confidence": 0.9989830508474578
+          },
+          {
+            "recording_id": "IR014_1",
+            "true": "Inner race",
+            "pred": "Inner race",
+            "confidence": 0.9752136752136747
+          },
+          {
+            "recording_id": "IR021_1",
+            "true": "Inner race",
+            "pred": "Inner race",
+            "confidence": 0.9986324786324783
+          },
+          {
+            "recording_id": "IR028_1",
+            "true": "Inner race",
+            "pred": "Inner race",
+            "confidence": 0.8998290598290595
+          },
+          {
+            "recording_id": "Normal_1",
+            "true": "Normal",
+            "pred": "Normal",
+            "confidence": 0.9780341880341871
+          },
+          {
+            "recording_id": "OR007@6_1",
+            "true": "Outer race",
+            "pred": "Outer race",
+            "confidence": 0.9700000000000002
+          },
+          {
+            "recording_id": "OR014@6_1",
+            "true": "Outer race",
+            "pred": "Outer race",
+            "confidence": 0.97635593220339
+          },
+          {
+            "recording_id": "OR021@6_1",
+            "true": "Outer race",
+            "pred": "Outer race",
+            "confidence": 0.9860169491525421
+          }
+        ]
+      },
+      {
+        "accuracy": 1.0,
+        "macro_f1": 1.0,
+        "per_class": {
+          "Normal": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 1
+          },
+          "Inner race": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 4
+          },
+          "Outer race": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 3
+          },
+          "Ball": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 4
+          }
+        },
+        "confusion": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            4,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            4
+          ]
+        ],
+        "test_fold": 2,
+        "recordings": [
+          {
+            "recording_id": "B007_2",
+            "true": "Ball",
+            "pred": "Ball",
+            "confidence": 0.9861538461538456
+          },
+          {
+            "recording_id": "B014_2",
+            "true": "Ball",
+            "pred": "Ball",
+            "confidence": 0.9780508474576267
+          },
+          {
+            "recording_id": "B021_2",
+            "true": "Ball",
+            "pred": "Ball",
+            "confidence": 0.9023728813559321
+          },
+          {
+            "recording_id": "B028_2",
+            "true": "Ball",
+            "pred": "Ball",
+            "confidence": 0.9967521367521368
+          },
+          {
+            "recording_id": "IR007_2",
+            "true": "Inner race",
+            "pred": "Inner race",
+            "confidence": 0.9882203389830502
+          },
+          {
+            "recording_id": "IR014_2",
+            "true": "Inner race",
+            "pred": "Inner race",
+            "confidence": 0.9793162393162385
+          },
+          {
+            "recording_id": "IR021_2",
+            "true": "Inner race",
+            "pred": "Inner race",
+            "confidence": 0.9994017094017095
+          },
+          {
+            "recording_id": "IR028_2",
+            "true": "Inner race",
+            "pred": "Inner race",
+            "confidence": 0.9852991452991445
+          },
+          {
+            "recording_id": "Normal_2",
+            "true": "Normal",
+            "pred": "Normal",
+            "confidence": 0.9948717948717949
+          },
+          {
+            "recording_id": "OR007@6_2",
+            "true": "Outer race",
+            "pred": "Outer race",
+            "confidence": 0.9896581196581195
+          },
+          {
+            "recording_id": "OR014@6_2",
+            "true": "Outer race",
+            "pred": "Outer race",
+            "confidence": 0.9799999999999998
+          },
+          {
+            "recording_id": "OR021@6_2",
+            "true": "Outer race",
+            "pred": "Outer race",
+            "confidence": 0.9931355932203386
+          }
+        ]
+      },
+      {
+        "accuracy": 1.0,
+        "macro_f1": 1.0,
+        "per_class": {
+          "Normal": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 1
+          },
+          "Inner race": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 4
+          },
+          "Outer race": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 3
+          },
+          "Ball": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 4
+          }
+        },
+        "confusion": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            4,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            4
+          ]
+        ],
+        "test_fold": 3,
+        "recordings": [
+          {
+            "recording_id": "B007_3",
+            "true": "Ball",
+            "pred": "Ball",
+            "confidence": 0.997350427350427
+          },
+          {
+            "recording_id": "B014_3",
+            "true": "Ball",
+            "pred": "Ball",
+            "confidence": 0.9571186440677959
+          },
+          {
+            "recording_id": "B021_3",
+            "true": "Ball",
+            "pred": "Ball",
+            "confidence": 0.9294067796610178
+          },
+          {
+            "recording_id": "B028_3",
+            "true": "Ball",
+            "pred": "Ball",
+            "confidence": 0.9938461538461534
+          },
+          {
+            "recording_id": "IR007_3",
+            "true": "Inner race",
+            "pred": "Inner race",
+            "confidence": 0.797563025210084
+          },
+          {
+            "recording_id": "IR014_3",
+            "true": "Inner race",
+            "pred": "Inner race",
+            "confidence": 0.6975213675213676
+          },
+          {
+            "recording_id": "IR021_3",
+            "true": "Inner race",
+            "pred": "Inner race",
+            "confidence": 0.9799152542372874
+          },
+          {
+            "recording_id": "IR028_3",
+            "true": "Inner race",
+            "pred": "Inner race",
+            "confidence": 0.8588034188034189
+          },
+          {
+            "recording_id": "Normal_3",
+            "true": "Normal",
+            "pred": "Normal",
+            "confidence": 0.9542735042735035
+          },
+          {
+            "recording_id": "OR007@6_3",
+            "true": "Outer race",
+            "pred": "Outer race",
+            "confidence": 0.9698305084745767
+          },
+          {
+            "recording_id": "OR014@6_3",
+            "true": "Outer race",
+            "pred": "Outer race",
+            "confidence": 0.8537288135593221
+          },
+          {
+            "recording_id": "OR021@6_3",
+            "true": "Outer race",
+            "pred": "Outer race",
+            "confidence": 0.9799152542372874
+          }
+        ]
+      }
+    ]
+  },
+  "window_confusion_normalised": [
+    [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.9888,
+      0.0,
+      0.0112
+    ],
+    [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "recording_confusion_normalised": [
+    [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "naive_random_split": {
+    "accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  "leave_one_size_out": {
+    "labels": [
+      "Normal",
+      "Inner race",
+      "Outer race",
+      "Ball"
+    ],
+    "window": {
+      "accuracy": {
+        "mean": 0.5641066796921022,
+        "std": 0.23229803065815868,
+        "per_fold": [
+          0.9456,
+          0.3591,
+          0.3961,
+          0.5557
+        ]
+      },
+      "macro_f1": {
+        "mean": 0.5532806198388213,
+        "std": 0.24109376005789857,
+        "per_fold": [
+          0.9573,
+          0.3334,
+          0.5058,
+          0.4167
+        ]
+      },
+      "per_class_f1": {
+        "Normal": {
+          "mean": 0.9517241379310345,
+          "std": 0.08361624588263548,
+          "per_fold": [
+            1.0,
+            0.8069,
+            1.0,
+            1.0
+          ]
+        },
+        "Inner race": {
+          "mean": 0.43163141266108596,
+          "std": 0.43695988679879233,
+          "per_fold": [
+            0.9968,
+            0.012,
+            0.7178,
+            0.0
+          ]
+        },
+        "Outer race": {
+          "mean": 0.2277456647398844,
+          "std": 0.39446706253302755,
+          "per_fold": [
+            0.911,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "Ball": {
+          "mean": 0.6020212640232805,
+          "std": 0.22465022463910092,
+          "per_fold": [
+            0.9214,
+            0.5147,
+            0.3053,
+            0.6667
+          ]
+        }
+      },
+      "confusion": [
+        [
+          409,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          767,
+          115,
+          995
+        ],
+        [
+          56,
+          41,
+          394,
+          922
+        ],
+        [
+          0,
+          47,
+          273,
+          1558
+        ]
+      ],
+      "folds": [
+        {
+          "accuracy": 0.9455782312925171,
+          "macro_f1": 0.9573022748754048,
+          "per_class": {
+            "Normal": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 58
+            },
+            "Inner race": {
+              "precision": 1.0,
+              "recall": 0.9936440677966102,
+              "f1": 0.9968119022316685,
+              "support": 472
+            },
+            "Outer race": {
+              "precision": 1.0,
+              "recall": 0.8365180467091295,
+              "f1": 0.9109826589595376,
+              "support": 471
+            },
+            "Ball": {
+              "precision": 0.8542805100182149,
+              "recall": 1.0,
+              "f1": 0.9214145383104125,
+              "support": 469
+            }
+          },
+          "confusion": [
+            [
+              58,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              469,
+              0,
+              3
+            ],
+            [
+              0,
+              0,
+              394,
+              77
+            ],
+            [
+              0,
+              0,
+              0,
+              469
+            ]
+          ],
+          "test_fold": 0
+        },
+        {
+          "accuracy": 0.35910878112712974,
+          "macro_f1": 0.3333952885660171,
+          "per_class": {
+            "Normal": {
+              "precision": 0.6763005780346821,
+              "recall": 1.0,
+              "f1": 0.8068965517241379,
+              "support": 117
+            },
+            "Inner race": {
+              "precision": 0.08823529411764706,
+              "recall": 0.00641025641025641,
+              "f1": 0.01195219123505976,
+              "support": 468
+            },
+            "Outer race": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 470
+            },
+            "Ball": {
+              "precision": 0.35906040268456374,
+              "recall": 0.9087048832271762,
+              "f1": 0.5147324113048707,
+              "support": 471
+            }
+          },
+          "confusion": [
+            [
+              117,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              3,
+              115,
+              350
+            ],
+            [
+              56,
+              0,
+              0,
+              414
+            ],
+            [
+              0,
+              31,
+              12,
+              428
+            ]
+          ],
+          "test_fold": 1
+        },
+        {
+          "accuracy": 0.396078431372549,
+          "macro_f1": 0.5057582492471969,
+          "per_class": {
+            "Normal": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 117
+            },
+            "Inner race": {
+              "precision": 0.8380681818181818,
+              "recall": 0.6276595744680851,
+              "f1": 0.7177615571776156,
+              "support": 470
+            },
+            "Outer race": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 472
+            },
+            "Ball": {
+              "precision": 0.2425,
+              "recall": 0.4118895966029724,
+              "f1": 0.30527143981117233,
+              "support": 471
+            }
+          },
+          "confusion": [
+            [
+              117,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              295,
+              0,
+              175
+            ],
+            [
+              0,
+              41,
+              0,
+              431
+            ],
+            [
+              0,
+              16,
+              261,
+              194
+            ]
+          ],
+          "test_fold": 2
+        },
+        {
+          "accuracy": 0.5556612749762131,
+          "macro_f1": 0.41666666666666663,
+          "per_class": {
+            "Normal": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 117
+            },
+            "Inner race": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 467
+            },
+            "Outer race": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 0
+            },
+            "Ball": {
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1": 0.6666666666666666,
+              "support": 467
+            }
+          },
+          "confusion": [
+            [
+              117,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              467
+            ],
+            [
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              467
+            ]
+          ],
+          "test_fold": 3
+        }
+      ]
+    },
+    "recording": {
+      "accuracy": {
+        "mean": 0.5811965811965811,
+        "std": 0.25166550195445225,
+        "per_fold": [
+          1.0,
+          0.3846,
+          0.3846,
+          0.5556
+        ]
+      },
+      "macro_f1": {
+        "mean": 0.5764880952380952,
+        "std": 0.2496857080533895,
+        "per_fold": [
+          1.0,
+          0.375,
+          0.5143,
+          0.4167
+        ]
+      },
+      "confusion": [
+        [
+          4,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          7,
+          0,
+          9
+        ],
+        [
+          0,
+          0,
+          4,
+          8
+        ],
+        [
+          0,
+          0,
+          3,
+          13
+        ]
+      ],
+      "folds": [
+        {
+          "accuracy": 1.0,
+          "macro_f1": 1.0,
+          "per_class": {
+            "Normal": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 1
+            },
+            "Inner race": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 4
+            },
+            "Outer race": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 4
+            },
+            "Ball": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 4
+            }
+          },
+          "confusion": [
+            [
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              4,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              4,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              4
+            ]
+          ],
+          "test_fold": 0,
+          "recordings": [
+            {
+              "recording_id": "B007_0",
+              "true": "Ball",
+              "pred": "Ball",
+              "confidence": 0.9348305084745762
+            },
+            {
+              "recording_id": "B007_1",
+              "true": "Ball",
+              "pred": "Ball",
+              "confidence": 0.8999145299145298
+            },
+            {
+              "recording_id": "B007_2",
+              "true": "Ball",
+              "pred": "Ball",
+              "confidence": 0.8947008547008548
+            },
+            {
+              "recording_id": "B007_3",
+              "true": "Ball",
+              "pred": "Ball",
+              "confidence": 0.936666666666667
+            },
+            {
+              "recording_id": "IR007_0",
+              "true": "Inner race",
+              "pred": "Inner race",
+              "confidence": 0.6553846153846153
+            },
+            {
+              "recording_id": "IR007_1",
+              "true": "Inner race",
+              "pred": "Inner race",
+              "confidence": 0.7072881355932199
+            },
+            {
+              "recording_id": "IR007_2",
+              "true": "Inner race",
+              "pred": "Inner race",
+              "confidence": 0.6544915254237283
+            },
+            {
+              "recording_id": "IR007_3",
+              "true": "Inner race",
+              "pred": "Inner race",
+              "confidence": 0.5563865546218486
+            },
+            {
+              "recording_id": "Normal_0",
+              "true": "Normal",
+              "pred": "Normal",
+              "confidence": 0.5167241379310343
+            },
+            {
+              "recording_id": "OR007@6_0",
+              "true": "Outer race",
+              "pred": "Outer race",
+              "confidence": 0.49923728813559337
+            },
+            {
+              "recording_id": "OR007@6_1",
+              "true": "Outer race",
+              "pred": "Outer race",
+              "confidence": 0.5064406779661018
+            },
+            {
+              "recording_id": "OR007@6_2",
+              "true": "Outer race",
+              "pred": "Outer race",
+              "confidence": 0.4907692307692307
+            },
+            {
+              "recording_id": "OR007@6_3",
+              "true": "Outer race",
+              "pred": "Outer race",
+              "confidence": 0.5061016949152541
+            }
+          ]
+        },
+        {
+          "accuracy": 0.38461538461538464,
+          "macro_f1": 0.375,
+          "per_class": {
+            "Normal": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 1
+            },
+            "Inner race": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 4
+            },
+            "Outer race": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 4
+            },
+            "Ball": {
+              "precision": 0.3333333333333333,
+              "recall": 1.0,
+              "f1": 0.5,
+              "support": 4
+            }
+          },
+          "confusion": [
+            [
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              4
+            ],
+            [
+              0,
+              0,
+              0,
+              4
+            ],
+            [
+              0,
+              0,
+              0,
+              4
+            ]
+          ],
+          "test_fold": 1,
+          "recordings": [
+            {
+              "recording_id": "B014_0",
+              "true": "Ball",
+              "pred": "Ball",
+              "confidence": 0.6857264957264959
+            },
+            {
+              "recording_id": "B014_1",
+              "true": "Ball",
+              "pred": "Ball",
+              "confidence": 0.7647457627118645
+            },
+            {
+              "recording_id": "B014_2",
+              "true": "Ball",
+              "pred": "Ball",
+              "confidence": 0.7065254237288134
+            },
+            {
+              "recording_id": "B014_3",
+              "true": "Ball",
+              "pred": "Ball",
+              "confidence": 0.6099999999999999
+            },
+            {
+              "recording_id": "IR014_0",
+              "true": "Inner race",
+              "pred": "Ball",
+              "confidence": 0.4232478632478633
+            },
+            {
+              "recording_id": "IR014_1",
+              "true": "Inner race",
+              "pred": "Ball",
+              "confidence": 0.4773504273504274
+            },
+            {
+              "recording_id": "IR014_2",
+              "true": "Inner race",
+              "pred": "Ball",
+              "confidence": 0.49102564102564106
+            },
+            {
+              "recording_id": "IR014_3",
+              "true": "Inner race",
+              "pred": "Ball",
+              "confidence": 0.635128205128205
+            },
+            {
+              "recording_id": "Normal_1",
+              "true": "Normal",
+              "pred": "Normal",
+              "confidence": 0.9794871794871797
+            },
+            {
+              "recording_id": "OR014@6_0",
+              "true": "Outer race",
+              "pred": "Ball",
+              "confidence": 0.5427350427350427
+            },
+            {
+              "recording_id": "OR014@6_1",
+              "true": "Outer race",
+              "pred": "Ball",
+              "confidence": 0.6820338983050844
+            },
+            {
+              "recording_id": "OR014@6_2",
+              "true": "Outer race",
+              "pred": "Ball",
+              "confidence": 0.7063247863247857
+            },
+            {
+              "recording_id": "OR014@6_3",
+              "true": "Outer race",
+              "pred": "Ball",
+              "confidence": 0.5452542372881356
+            }
+          ]
+        },
+        {
+          "accuracy": 0.38461538461538464,
+          "macro_f1": 0.5142857142857143,
+          "per_class": {
+            "Normal": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 1
+            },
+            "Inner race": {
+              "precision": 1.0,
+              "recall": 0.75,
+              "f1": 0.8571428571428571,
+              "support": 4
+            },
+            "Outer race": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 4
+            },
+            "Ball": {
+              "precision": 0.16666666666666666,
+              "recall": 0.25,
+              "f1": 0.2,
+              "support": 4
+            }
+          },
+          "confusion": [
+            [
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              3,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              0,
+              4
+            ],
+            [
+              0,
+              0,
+              3,
+              1
+            ]
+          ],
+          "test_fold": 2,
+          "recordings": [
+            {
+              "recording_id": "B021_0",
+              "true": "Ball",
+              "pred": "Outer race",
+              "confidence": 0.39635593220338977
+            },
+            {
+              "recording_id": "B021_1",
+              "true": "Ball",
+              "pred": "Outer race",
+              "confidence": 0.4924786324786327
+            },
+            {
+              "recording_id": "B021_2",
+              "true": "Ball",
+              "pred": "Outer race",
+              "confidence": 0.5754237288135594
+            },
+            {
+              "recording_id": "B021_3",
+              "true": "Ball",
+              "pred": "Ball",
+              "confidence": 0.5894067796610171
+            },
+            {
+              "recording_id": "IR021_0",
+              "true": "Inner race",
+              "pred": "Inner race",
+              "confidence": 0.5464406779661017
+            },
+            {
+              "recording_id": "IR021_1",
+              "true": "Inner race",
+              "pred": "Inner race",
+              "confidence": 0.525128205128205
+            },
+            {
+              "recording_id": "IR021_2",
+              "true": "Inner race",
+              "pred": "Inner race",
+              "confidence": 0.495042735042735
+            },
+            {
+              "recording_id": "IR021_3",
+              "true": "Inner race",
+              "pred": "Ball",
+              "confidence": 0.5227118644067796
+            },
+            {
+              "recording_id": "Normal_2",
+              "true": "Normal",
+              "pred": "Normal",
+              "confidence": 0.9779487179487171
+            },
+            {
+              "recording_id": "OR021@6_0",
+              "true": "Outer race",
+              "pred": "Ball",
+              "confidence": 0.6979661016949152
+            },
+            {
+              "recording_id": "OR021@6_1",
+              "true": "Outer race",
+              "pred": "Ball",
+              "confidence": 0.6797457627118645
+            },
+            {
+              "recording_id": "OR021@6_2",
+              "true": "Outer race",
+              "pred": "Ball",
+              "confidence": 0.696949152542373
+            },
+            {
+              "recording_id": "OR021@6_3",
+              "true": "Outer race",
+              "pred": "Ball",
+              "confidence": 0.6789830508474576
+            }
+          ]
+        },
+        {
+          "accuracy": 0.5555555555555556,
+          "macro_f1": 0.41666666666666663,
+          "per_class": {
+            "Normal": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 1
+            },
+            "Inner race": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 4
+            },
+            "Outer race": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 0
+            },
+            "Ball": {
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1": 0.6666666666666666,
+              "support": 4
+            }
+          },
+          "confusion": [
+            [
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              4
+            ],
+            [
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              4
+            ]
+          ],
+          "test_fold": 3,
+          "recordings": [
+            {
+              "recording_id": "B028_0",
+              "true": "Ball",
+              "pred": "Ball",
+              "confidence": 0.9261206896551735
+            },
+            {
+              "recording_id": "B028_1",
+              "true": "Ball",
+              "pred": "Ball",
+              "confidence": 0.9232478632478636
+            },
+            {
+              "recording_id": "B028_2",
+              "true": "Ball",
+              "pred": "Ball",
+              "confidence": 0.9294871794871801
+            },
+            {
+              "recording_id": "B028_3",
+              "true": "Ball",
+              "pred": "Ball",
+              "confidence": 0.9264102564102573
+            },
+            {
+              "recording_id": "IR028_0",
+              "true": "Inner race",
+              "pred": "Ball",
+              "confidence": 0.7063793103448274
+            },
+            {
+              "recording_id": "IR028_1",
+              "true": "Inner race",
+              "pred": "Ball",
+              "confidence": 0.8108547008547009
+            },
+            {
+              "recording_id": "IR028_2",
+              "true": "Inner race",
+              "pred": "Ball",
+              "confidence": 0.6741880341880341
+            },
+            {
+              "recording_id": "IR028_3",
+              "true": "Inner race",
+              "pred": "Ball",
+              "confidence": 0.7005128205128204
+            },
+            {
+              "recording_id": "Normal_3",
+              "true": "Normal",
+              "pred": "Normal",
+              "confidence": 0.9364957264957275
+            }
+          ]
+        }
+      ]
+    },
+    "window_confusion_normalised": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.4086,
+        0.0613,
+        0.5301
+      ],
+      [
+        0.0396,
+        0.029,
+        0.2788,
+        0.6525
+      ],
+      [
+        0.0,
+        0.025,
+        0.1454,
+        0.8296
+      ]
+    ],
+    "recording_confusion_normalised": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.4375,
+        0.0,
+        0.5625
+      ],
+      [
+        0.0,
+        0.0,
+        0.3333,
+        0.6667
+      ],
+      [
+        0.0,
+        0.0,
+        0.1875,
+        0.8125
+      ]
+    ],
+    "note": "fold k = all fault recordings of size k + Normal at load k; tests on physical bearings never seen in training"
+  },
+  "hybrid_unseen_bearings": {
+    "recordings": 48,
+    "ml_only_accuracy": 0.5833,
+    "hybrid_accuracy": 0.75,
+    "physics_calls": 19,
+    "physics_calls_correct": 19,
+    "faulty_detected_as_faulty_hybrid": 1.0
+  },
+  "independent_holdout": {
+    "note": "CWRU outer race @3/@12 o'clock: never used for training or design decisions",
+    "results": [
+      {
+        "file": "144.mat",
+        "recording": "OR007@3_0",
+        "truth": "Outer race",
+        "ml": "Inner race",
+        "ml_confidence": 0.375,
+        "physics": "Outer race",
+        "hybrid": "Outer race"
+      },
+      {
+        "file": "156.mat",
+        "recording": "OR007@12_0",
+        "truth": "Outer race",
+        "ml": "Outer race",
+        "ml_confidence": 0.56,
+        "physics": "Outer race",
+        "hybrid": "Outer race"
+      },
+      {
+        "file": "246.mat",
+        "recording": "OR021@3_0",
+        "truth": "Outer race",
+        "ml": "Ball",
+        "ml_confidence": 0.436,
+        "physics": "Outer race",
+        "hybrid": "Outer race"
+      },
+      {
+        "file": "258.mat",
+        "recording": "OR021@12_0",
+        "truth": "Outer race",
+        "ml": "Outer race",
+        "ml_confidence": 0.533,
+        "physics": null,
+        "hybrid": "Outer race"
+      }
+    ],
+    "ml_correct": 2,
+    "hybrid_correct": 4,
+    "n": 4
+  },
+  "model_features": [
+    "t_kurtosis",
+    "t_skewness",
+    "t_crest",
+    "t_impulse",
+    "t_shape",
+    "f_centroid",
+    "f_dominant",
+    "f_band_1",
+    "f_band_2",
+    "f_band_3",
+    "f_band_4",
+    "f_band_5",
+    "f_band_6",
+    "f_band_7",
+    "f_band_8",
+    "e_bpfo_1",
+    "e_bpfo_2",
+    "e_bpfo_3",
+    "e_bpfi_1",
+    "e_bpfi_2",
+    "e_bpfi_3",
+    "e_bsf_1",
+    "e_bsf_2",
+    "e_bsf_3",
+    "e_shaft_1",
+    "e_share_bpfo",
+    "e_share_bpfi",
+    "e_share_bsf",
+    "e_logratio_bpfo_bpfi",
+    "e_logratio_bpfo_bsf",
+    "e_logratio_bpfi_bsf"
+  ],
+  "feature_importance": {
+    "f_band_6": 0.14087,
+    "f_band_8": 0.10643,
+    "f_band_5": 0.09682,
+    "e_bpfi_1": 0.07458,
+    "e_share_bpfo": 0.0666,
+    "f_band_4": 0.05806,
+    "f_band_3": 0.05449,
+    "f_band_7": 0.05067,
+    "f_band_1": 0.04774,
+    "e_bpfo_1": 0.04637,
+    "f_centroid": 0.03908,
+    "t_shape": 0.03354,
+    "e_logratio_bpfi_bsf": 0.02455,
+    "t_kurtosis": 0.02248,
+    "e_share_bpfi": 0.02145,
+    "e_bpfo_2": 0.01834,
+    "e_logratio_bpfo_bpfi": 0.01828,
+    "f_band_2": 0.01557,
+    "e_share_bsf": 0.01222,
+    "f_dominant": 0.01047,
+    "t_impulse": 0.00964,
+    "t_skewness": 0.00788,
+    "e_shaft_1": 0.00577,
+    "t_crest": 0.00497,
+    "e_bpfi_2": 0.00392,
+    "e_logratio_bpfo_bsf": 0.00241,
+    "e_bpfo_3": 0.00223,
+    "e_bsf_1": 0.00206,
+    "e_bpfi_3": 0.00183,
+    "e_bsf_3": 0.0006,
+    "e_bsf_2": 0.0001
+  },
+  "n_windows": 5577,
+  "n_recordings": 48
+}

@@ -1,0 +1,33 @@
+{
+  "name": "fault_rf_edge",
+  "file": "fault_rf_edge.joblib",
+  "trained_utc": "2026-11-15T12:54:38+00:00",
+  "classes": [
+    "Ball",
+    "Inner race",
+    "Normal",
+    "Outer race"
+  ],
+  "n_features": 31,
+  "n_estimators": 10,
+  "max_depth": 8,
+  "feature_params": {
+    "n_bands": 8,
+    "band_max_hz": 6000,
+    "envelope_band_hz": [
+      2000,
+      5500
+    ],
+    "envelope_nfft": 8192,
+    "envelope_max_hz": 600,
+    "envelope_tolerance": 0.03,
+    "envelope_harmonics": 3,
+    "multipliers": {
+      "bpfo": 3.5848,
+      "bpfi": 5.4152,
+      "bsf": 4.7135
+    }
+  },
+  "chosen_by": "smallest ONNX within 1% LOLO macro-F1 of best",
+  "lolo_macro_f1": 0.9973200638208413
+}

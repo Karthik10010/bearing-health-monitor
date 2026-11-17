@@ -1,0 +1,255 @@
+{
+  "label": "SIMULATION - illustrative costs",
+  "test_episodes": 1000,
+  "best_ppo_seed": 0,
+  "best_periodic": "periodic_30",
+  "summary": {
+    "PPO agent": {
+      "mean_reward": 1621.5058,
+      "std_reward": 87.3743,
+      "failures_per_episode": 0.002,
+      "maintenances_per_episode": 2.345,
+      "unnecessary_maintenance_per_episode": 0.0,
+      "inspections_per_episode": 0.0,
+      "downtime_days": 7.035,
+      "safety_days": 0.0,
+      "availability_pct": 96.0283,
+      "sem_reward": 2.763
+    },
+    "PPO agent + safety shield": {
+      "mean_reward": 1596.8226,
+      "std_reward": 88.4027,
+      "failures_per_episode": 0.0,
+      "maintenances_per_episode": 2.797,
+      "unnecessary_maintenance_per_episode": 0.0,
+      "inspections_per_episode": 0.0,
+      "downtime_days": 8.391,
+      "safety_days": 0.0,
+      "availability_pct": 95.3511,
+      "sem_reward": 2.7955
+    },
+    "PPO seed 1": {
+      "mean_reward": 1570.97,
+      "std_reward": 333.8159,
+      "failures_per_episode": 0.101,
+      "maintenances_per_episode": 2.031,
+      "unnecessary_maintenance_per_episode": 0.0,
+      "inspections_per_episode": 0.0,
+      "downtime_days": 6.093,
+      "safety_days": 0.318,
+      "availability_pct": 92.4328,
+      "sem_reward": 10.5562
+    },
+    "PPO seed 2": {
+      "mean_reward": 1548.5408,
+      "std_reward": 307.005,
+      "failures_per_episode": 0.092,
+      "maintenances_per_episode": 2.054,
+      "unnecessary_maintenance_per_episode": 0.0,
+      "inspections_per_episode": 0.0,
+      "downtime_days": 6.162,
+      "safety_days": 0.378,
+      "availability_pct": 93.0072,
+      "sem_reward": 9.7084
+    },
+    "Rule-based": {
+      "mean_reward": 1535.1036,
+      "std_reward": 330.7869,
+      "failures_per_episode": 0.081,
+      "maintenances_per_episode": 2.333,
+      "unnecessary_maintenance_per_episode": 0.0,
+      "inspections_per_episode": 1.361,
+      "downtime_days": 8.36,
+      "safety_days": 0.006,
+      "availability_pct": 91.5172,
+      "sem_reward": 10.4604
+    },
+    "Periodic (every 30 days)": {
+      "mean_reward": 1080.43,
+      "std_reward": 650.914,
+      "failures_per_episode": 0.254,
+      "maintenances_per_episode": 3.822,
+      "unnecessary_maintenance_per_episode": 2.455,
+      "inspections_per_episode": 0.0,
+      "downtime_days": 11.466,
+      "safety_days": 0.561,
+      "availability_pct": 72.8289,
+      "sem_reward": 20.5837
+    },
+    "Run-to-failure": {
+      "mean_reward": 451.135,
+      "std_reward": 552.5378,
+      "failures_per_episode": 0.93,
+      "maintenances_per_episode": 0.0,
+      "unnecessary_maintenance_per_episode": 0.0,
+      "inspections_per_episode": 0.0,
+      "downtime_days": 0.0,
+      "safety_days": 3.019,
+      "availability_pct": 41.4017,
+      "sem_reward": 17.4728
+    },
+    "Random": {
+      "mean_reward": -582.7366,
+      "std_reward": 209.6208,
+      "failures_per_episode": 0.001,
+      "maintenances_per_episode": 25.662,
+      "unnecessary_maintenance_per_episode": 24.262,
+      "inspections_per_episode": 25.638,
+      "downtime_days": 102.624,
+      "safety_days": 0.004,
+      "availability_pct": 43.1261,
+      "sem_reward": 6.6288
+    }
+  },
+  "ppo_all_seeds_mean_reward": {
+    "mean": 1580.3388666666635,
+    "std": 30.51561953288061,
+    "values": [
+      1621.5057999999954,
+      1570.97,
+      1548.5407999999954
+    ]
+  },
+  "ppo_minus_rule_paired": {
+    "mean_diff": 86.40219999999645,
+    "sem_diff": 10.231213660564823,
+    "ci95": [
+      66.3490212252894,
+      106.4553787747035
+    ],
+    "ppo_better_episodes_pct": 55.7,
+    "rule_better_episodes_pct": 44.3
+  },
+  "shielded_minus_rule_paired": {
+    "mean_diff": 61.718999999996434,
+    "sem_diff": 10.037773672448457,
+    "ci95": [
+      42.04496360199746,
+      81.39303639799542
+    ],
+    "ppo_better_episodes_pct": 43.0,
+    "rule_better_episodes_pct": 56.99999999999999
+  },
+  "validation": {
+    "ppo_seed0": {
+      "mean_reward": 1608.8867,
+      "std_reward": 134.579,
+      "failures_per_episode": 0.01,
+      "maintenances_per_episode": 2.3967,
+      "unnecessary_maintenance_per_episode": 0.0,
+      "inspections_per_episode": 0.0,
+      "downtime_days": 7.19,
+      "safety_days": 0.0,
+      "availability_pct": 95.5278,
+      "sem_reward": 7.7699
+    },
+    "ppo_seed1": {
+      "mean_reward": 1581.9,
+      "std_reward": 340.7792,
+      "failures_per_episode": 0.0667,
+      "maintenances_per_episode": 2.1267,
+      "unnecessary_maintenance_per_episode": 0.0,
+      "inspections_per_episode": 0.0,
+      "downtime_days": 6.38,
+      "safety_days": 0.1933,
+      "availability_pct": 92.5926,
+      "sem_reward": 19.6749
+    },
+    "ppo_seed2": {
+      "mean_reward": 1527.7113,
+      "std_reward": 340.9813,
+      "failures_per_episode": 0.1033,
+      "maintenances_per_episode": 2.0733,
+      "unnecessary_maintenance_per_episode": 0.0,
+      "inspections_per_episode": 0.0,
+      "downtime_days": 6.22,
+      "safety_days": 0.4367,
+      "availability_pct": 92.0685,
+      "sem_reward": 19.6866
+    },
+    "periodic_30": {
+      "mean_reward": 1108.2833,
+      "std_reward": 638.8973,
+      "failures_per_episode": 0.23,
+      "maintenances_per_episode": 3.9033,
+      "unnecessary_maintenance_per_episode": 2.45,
+      "inspections_per_episode": 0.0,
+      "downtime_days": 11.71,
+      "safety_days": 0.44,
+      "availability_pct": 74.0741,
+      "sem_reward": 36.8868
+    },
+    "periodic_20": {
+      "mean_reward": 1086.6167,
+      "std_reward": 422.6044,
+      "failures_per_episode": 0.1067,
+      "maintenances_per_episode": 7.1733,
+      "unnecessary_maintenance_per_episode": 5.3233,
+      "inspections_per_episode": 0.0,
+      "downtime_days": 21.52,
+      "safety_days": 0.1533,
+      "availability_pct": 78.5796,
+      "sem_reward": 24.3991
+    },
+    "periodic_25": {
+      "mean_reward": 1067.3833,
+      "std_reward": 532.9773,
+      "failures_per_episode": 0.17,
+      "maintenances_per_episode": 5.83,
+      "unnecessary_maintenance_per_episode": 4.0533,
+      "inspections_per_episode": 0.0,
+      "downtime_days": 17.49,
+      "safety_days": 0.27,
+      "availability_pct": 75.3019,
+      "sem_reward": 30.7715
+    },
+    "periodic_15": {
+      "mean_reward": 944.3833,
+      "std_reward": 268.2915,
+      "failures_per_episode": 0.0533,
+      "maintenances_per_episode": 10.4133,
+      "unnecessary_maintenance_per_episode": 8.33,
+      "inspections_per_episode": 0.0,
+      "downtime_days": 31.24,
+      "safety_days": 0.0467,
+      "availability_pct": 77.6648,
+      "sem_reward": 15.4898
+    },
+    "periodic_45": {
+      "mean_reward": 915.7333,
+      "std_reward": 761.769,
+      "failures_per_episode": 0.48,
+      "maintenances_per_episode": 1.8,
+      "unnecessary_maintenance_per_episode": 1.0167,
+      "inspections_per_episode": 0.0,
+      "downtime_days": 5.4,
+      "safety_days": 1.07,
+      "availability_pct": 63.0185,
+      "sem_reward": 43.9808
+    },
+    "periodic_60": {
+      "mean_reward": 743.4333,
+      "std_reward": 751.4109,
+      "failures_per_episode": 0.6633,
+      "maintenances_per_episode": 0.94,
+      "unnecessary_maintenance_per_episode": 0.4967,
+      "inspections_per_episode": 0.0,
+      "downtime_days": 2.82,
+      "safety_days": 1.9433,
+      "availability_pct": 54.8778,
+      "sem_reward": 43.3827
+    },
+    "periodic_90": {
+      "mean_reward": 555.1167,
+      "std_reward": 665.7369,
+      "failures_per_episode": 0.8267,
+      "maintenances_per_episode": 0.3133,
+      "unnecessary_maintenance_per_episode": 0.17,
+      "inspections_per_episode": 0.0,
+      "downtime_days": 0.94,
+      "safety_days": 2.4733,
+      "availability_pct": 45.9685,
+      "sem_reward": 38.4363
+    }
+  }
+}
